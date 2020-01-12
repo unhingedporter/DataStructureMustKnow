@@ -1,0 +1,52 @@
+var varVariable = “this is a var variable”;let letVariable = “this is a let variable”;
+
+Say, here we have two variables declared. let us see what output it actually gives you.
+
+console.log(window.varVariable); //this is a var variableconsole.log(window.letVariable); //undefined
+
+Thus let variables cannot be accessed in the window object because they cannot be globally accessed.
+Block
+
+let variables are usually used when there is a limited use of those variables. Say, in for loops, while loops or inside the scope of if conditions etc. Basically, where ever the scope of the variable has to be limited.
+
+For example: -
+
+For loop using let variable: -
+
+for(let i=0;i<10;i++){console.log(i); //i is visible thus is logged in the console as 0,1,2,....,9}
+console.log(i); //throws an error as "i is not defined" because i is not visible
+
+For loop using var variable: -
+
+for(var i=0; i<10; i++){console.log(i); //i is visible thus is logged in the console as 0,1,2,....,9}
+console.log(i); //i is visible here too. thus is logged as 10.
+
+Thus, as you can see the var variable is logged as 10 outside of the for loop too.
+
+    Note: It logged it as 10 because the for loop terminates after checking the incremented value of i.
+
+Redeclaration
+
+let variables cannot be re-declared while var variable can be re-declared in the same scope.
+
+Assume we are using strict mode
+
+'use strict';
+var temp = "this is a temp variable";
+var temp = "this is a second temp variable"; //replaced easily
+
+We cannot do the same thing with let-
+
+'use strict';
+let temp = "this is a temp variable";let temp = "this is a second temp variable" //SyntaxError: temp is already declared
+
+Function
+
+let and var variables work the same way when used in a function block.
+
+function aSampleFunction(){
+let letVariable = "Hey! What's up? I am let variable.";
+var varVariable = "Hey! How are you? I am var variable.";console.log(letVariable); //Hey! What's up? I am let variable.
+console.log(varVariable); //Hey! How are you? I am var variable.}
+
+With the above explanation, I can surely tell that now you have total idea about the difference about let and var variables.
