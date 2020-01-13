@@ -1,0 +1,111 @@
+
+Q1.What is Vue.js ? What are the advantages of it ?
+
+Vue is a progressive framework used to building user interfaces.The core library is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
+
+Following are the advantages of using Vue.js.
+
+Small in size — The size of this framework is 18 to 21KB and it takes no time for the user to download and use it.
+Easy to Understand — One of the reasons for the popularity of this framework is that it is quite easy to understand.The user can easily add Vue.js to his web project because of its simple structure.
+Simple Integration — Vue.js can be integrated with the existing applications easily.
+Flexibility — This flexibility also makes it easy to understand for the developers of React.js, Angular.js, and any other new JavaScript framework.
+Virtual DOM — It uses virtual DOM similar to other existing frameworks such as ReactJS, Ember etc.Virtual DOM is a light - weight in -memory tree representation of the original HTML DOM and updated without affecting the original DOM.
+Components — Used to create reusable custom elements in VueJS applications.
+Two - Way Communication — Vue.js also facilitates two way communications because of its MVVM architecture which makes it quite easy to handle HTML blocks.
+
+Q2.What are all the life cycle hooks in Vue instance ?
+
+Each Vue instance goes through series of steps when they are created, mounted and destroyed.Along the way, it will also runs functions called life cycle hooks, giving us the opportunity to add our own code at specific stage.Below are the events, a Vue instance goes through.
+
+beforeCreate — The first hook in the creation hooks.They allow us to perform actions before our component has even been added to the DOM.We do not have access to the DOM inside of this.
+created — This hook can be used to run code after an instance is created.We can access the reactive data.But templates and Virtual DOM have not yet been mounted or rendered.
+beforeMount — The beforeMount hook runs right before the initial render happens and after the template or render functions have been compiled.Most likely we’ll never need to use this hook.
+mounted — We will have full access to the reactive component, templates, and rendered DOM.This is the most frequently used hook.
+beforeUpdate — This hook runs after data changes on our component and the update cycle begins.But runs right before the DOM is patched and re - rendered.
+updated — This hook runs after data changes on our component and the DOM re - renders.If we need to access the DOM after a property change, here is probably the safest place to do it.
+beforeDestroy — This hook will run right before tearing down the instance.If we need to clean up events or reactive subscriptions, this is the right place to do it.
+destroyed — This hook will be used to do any last minute clean up.
+
+Q3.What is the difference between v - show and v -if directives ?
+
+Below are some of the main differences between between v - show and v -if directives:
+
+v -if only renders the element to the DOM if the expression passes whereas v - show renders all elements to the DOM and then uses the CSS display property to show / hide elements based on expression.
+v -if supports v -else and v -else -if directives whereas v - show doesn't support else directives.
+v -if has higher toggle costs since it add or remove the DOM every time while v - show has higher initial render costs.i.e, v - show has a performance advantage if the elements are switched on and off frequently, while the v -if has the advantage when it comes to initial render time.
+v -if supports tab but v - show doesn't support.
+
+Q4.What is key in Vue.js ?
+
+In order to render DOM elements more efficiently, Vue.js reuses the elements instead of creating them from scratch every time.This default mode is efficient, but in some cases it may causes problems.For example, if you try to render the same input element in both v -if and v -else blocks then it holds the previous value as below:
+
+Q5.Why should not use if and for directives together on the same element ?
+
+It is recommended not to use v -if on the same element as v -for.Because v -for directive has a higher priority than v -if.There are two common cases where this can be tempting:
+
+To filter items in a list(e.g.v -for= "user in users" v -if= "user.isActive").In these cases, replace users with a new computed property that returns your filtered list(e.g.activeUsers).
+To avoid rendering a list if it should be hidden(e.g.v -for= "user in users" v -if= "shouldShowUsers").In these cases, move the v -if to a container element(e.g.ul, ol).
+
+Q6.What is the difference between comptuted properties and methods ?
+
+Computed properties are getter function in Vue instance rather than actual methods.we can define the same function as a method instead.However, the difference is that computed properties are cached based on their dependencies.A computed property will only re - evaluate when some of its dependencies have changed.In comparison, a method invocation will always run the function whenever a re - render happens.
+
+When we have to compute something by doing lot of computations like looping through a large array, it is best to use computed properties instead of a method.Without caching, we would spend more time than necessary.When we do not want cache, we can use a method instead.
+
+Q7.What is $parent in Vue ?
+
+Similar to $root, the $parent property can be used to access the parent instance from a child.
+
+Although it provides direct access, it makes the application hard to test and debug.And we can not easily find out the where the mutation come from.
+
+Vue also provides $child just like $parent, but it can be used to access the child instance.
+
+Q8.What is the role of ref in Vue.js ?
+
+Despite the existence of props and events, sometimes if we still need to directly access a child component, we can assign a reference ID to the child component using the ref attribute.For example:
+
+Now in the component where we have defined this ref, we can use:
+
+$refs are only populated after the component has been rendered, and they are not reactive.Hence we should avoid accessing $refs from within templates or computed properties.
+
+Q9.Why do we need local registration ?
+
+Global registration often isn’t ideal.For example, if we are using a build system like Webpack, globally registering all components means that even if we stop using a component, it could still be included in our final build.This unnecessarily increases the amount of JavaScript your users have to download.In these cases, you can define your components as plain JavaScript objects:
+
+Then define the components you’d like to use in a components option:
+
+Q10.What is Mixins ?
+
+Mixins are a flexible way to distribute reusable functionalities for Vue components.A mixin object can contain any component options.When a component uses a mixin, all options in the mixin will be “mixed” into the component’s own options.Example:
+
+Q11.How Vue.js track changes ?
+
+When you pass a plain JavaScript object to a Vue instance as its data option, Vue will walk through all of its properties and convert them to getter / setters using Object.defineProperty.
+
+The getter / setters are invisible to the user, but under the hood they enable Vue to perform dependency - tracking and change - notification when properties are accessed or modified.
+
+Every component instance has a corresponding watcher instance, which records any properties “touched” during the component’s render as dependencies.Later on when a dependency’s setter is triggered, it notifies the watcher, which in turn causes the component to re - render.
+
+Q12.What are Async Components ?
+
+In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it’s needed.To make that easier, Vue allows you to define our component as a factory function that asynchronously resolves your component definition.Vue will only trigger the factory function when the component needs to be rendered and will cache the result for future re - renders.For example:
+
+As we can see, the factory function receives a resolve callback, which should be called when we have retrieved your component definition from the server.We can also call reject(reason) to indicate the load has failed.
+
+Q13.What are filters in Vue.js ?
+
+Vue.js allows us to define filters that can be used to apply common text formatting.Filters are usable in two places: mustache interpolations and v - bindexpressions.Filters should be appended to the end of the JavaScript expression, denoted by the "pipe" symbol:
+
+Q14.What is Vue Router ?
+
+Vue Router is the official router for Vue.js.It deeply integrates with Vue.js core to make building Single Page Applications with Vue.js easy to implement.Its features include:
+
+Nested route / view mapping
+Modular, component - based router configuration
+Route params, query, wildcards
+View transition effects powered by Vue.js’ transition system
+Fine - grained navigation control
+Links with automatic active CSS classes
+Customizable Scroll Behavior
+HTML5 history mode or hash mode, with auto - fallback in IE9
+

@@ -1,4 +1,5 @@
-To understand this keyword, only we need to know how, when and from where the function is called, does not matter how and where function is declared or defined.
+To understand this keyword, only we need to know how, when and from where the function is 
+called, does not matter how and where function is declared or defined.
 
 function bike() {
   console.log(this.name);

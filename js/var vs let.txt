@@ -49,4 +49,9 @@ let letVariable = "Hey! What's up? I am let variable.";
 var varVariable = "Hey! How are you? I am var variable.";console.log(letVariable); //Hey! What's up? I am let variable.
 console.log(varVariable); //Hey! How are you? I am var variable.}
 
+var is function scope.
+let and const are block scope.Function scope is within the function.
+Block scope is within curly brackets.
+
+
 With the above explanation, I can surely tell that now you have total idea about the difference about let and var variables.
