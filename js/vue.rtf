@@ -37,7 +37,6 @@ created — This hook can be used to run code after an instance is created.We ca
 beforeMount — The beforeMount hook runs right before the initial render happens and after the template or render functions have been compiled.Most likely we’ll never need to use this hook.
 
 mounted — We will have full access to the reactive component, templates, and rendered DOM.This is the most frequently used hook.
-
 beforeUpdate — This hook runs after data changes on our component and the update cycle begins.But runs right before the DOM is patched and re - rendered.
 
 updated — This hook runs after data changes on our component and the DOM re - renders.If we need to access the DOM after a property change, here is probably the safest place to do it.
@@ -49,12 +48,9 @@ Q3.What is the difference between v - show and v -if directives ?
 
 Below are some of the main differences between between v - show and v -if directives:
 
-*v -if only renders the element to the DOM if the expression passes whereas v - show renders all elements to the DOM and then uses the CSS display property to show / hide elements based on expression.
-
+v -if only renders the element to the DOM if the expression passes whereas v - show renders all elements to the DOM and then uses the CSS display property to show / hide elements based on expression.
 v -if supports v -else and v -else -if directives whereas v - show doesn't support else directives.
-
-**v -if has higher toggle costs since it add or remove the DOM every time while v - show has higher initial render costs.i.e, v - show has a performance advantage if the elements are switched on and off frequently, while the v -if has the advantage when it comes to initial render time.
-
+v -if has higher toggle costs since it add or remove the DOM every time while v - show has higher initial render costs.i.e, v - show has a performance advantage if the elements are switched on and off frequently, while the v -if has the advantage when it comes to initial render time.
 v -if supports tab but v - show doesn't support.
 
 Q4.What is key in Vue.js ?
@@ -70,13 +66,9 @@ To avoid rendering a list if it should be hidden(e.g.v -for= "user in users" v -
 
 Q6.What is the difference between comptuted properties and methods ?
 
-Computed properties are getter function in Vue instance rather than actual methods.
-we can define the same function as a method instead.
-However, the difference is that computed properties are cached based on their dependencies.
-A computed property will only re - evaluate when some of its dependencies have changed.
-In comparison, a method invocation will always run the function whenever a re - render happens.
-When we have to compute something by doing lot of computations like looping through a large array, it is best to use
-computed properties instead of a method.Without caching, we would spend more time than necessary.When we do not want cache, we can use a method instead.
+Computed properties are getter function in Vue instance rather than actual methods.we can define the same function as a method instead.However, the difference is that computed properties are cached based on their dependencies.A computed property will only re - evaluate when some of its dependencies have changed.In comparison, a method invocation will always run the function whenever a re - render happens.
+
+When we have to compute something by doing lot of computations like looping through a large array, it is best to use computed properties instead of a method.Without caching, we would spend more time than necessary.When we do not want cache, we can use a method instead.
 
 Q7.What is $parent in Vue ?
 
@@ -112,6 +104,25 @@ The getter / setters are invisible to the user, but under the hood they enable V
 
 Every component instance has a corresponding watcher instance, which records any properties “touched” during the component’s render as dependencies.Later on when a dependency’s setter is triggered, it notifies the watcher, which in turn causes the component to re - render.
 
+
+// define a mixin object
+var myMixin = {
+  created: function() {
+    this.hello();
+  },
+  methods: {
+    hello: function() {
+      console.log("hello from mixin!");
+    }
+  }
+};
+// define a component that uses this mixin
+var Component = Vue.extend({
+  mixins: [myMixin]
+});
+var component = new Component(); // => "hello from mixin!"
+
+
 Q12.What are Async Components ?
 
 In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it’s needed.To make that easier, Vue allows you to define our component as a factory function that asynchronously resolves your component definition.Vue will only trigger the factory function when the component needs to be rendered and will cache the result for future re - renders.For example:
@@ -135,107 +146,3 @@ Links with automatic active CSS classes
 Customizable Scroll Behavior
 HTML5 history mode or hash mode, with auto - fallback in IE9
 
-
-https://www.toptal.com/vue-js/interview-questions
-
-Why would you choose Vue.js over other front-end frameworks?
-
-When a developer chooses a tech stack they should display an understanding of the pros and cons of alternative solutions. Vue.js should be compared with the most popular front-end frameworks, React and Angular.
-Performance
-
-All three frameworks display similar performance. No significant difference here. However, Angular apps with the same base features and functionality have a larger compiled size than two other frameworks.
-Ease of Use
-
-React is widely considered to have a steep learning curve. Developers need to learn JSX, ES6, and a build system (like webpack) before they can be productive with React. Create React App assumes that you are building a single-page app thus adopting React for other scenarios would require extra learning time.
-
-Angular effectively requires knowing TypeScript to get started with it. Angular framework design targets building enterprise-scale applications and is quite complex. Developers need to familiarize themselves with an extensive framework API and its concepts before starting to be productive.
-
-One design goal of Vue.js was for it to be incrementally adoptable. This means you can drop it into legacy projects and start using it without rebuilding the whole app from the ground up. Vue.js uses core web technologies that web developers are already familiar with: HTML, CSS, and plain JavaScript (ES5). Using build tools is not required: You can include Vue with just a <script> tag.
-Suitability for Large-scale Apps
-
-React and Angular were developed by Facebook and Google, respectively, so they have been enterprise-grade frameworks from the start. While Vue.js started as a one-man project, it’s come a long way since then, attracting a large number of supporters and developers—its core team now has more than 20 developers.
-
-More to the point, Vue.js has been adopted by a number of companies including the likes of Adobe and Alibaba.
-
-Thus, all three frameworks are well-suited for building large-scale apps.
-Ecosystem
-
-React is the most popular framework at the moment, having a considerably richer ecosystem than both Vue and Angular, with a large number of third-party libraries.
-
-To sum up, Vue.js is on equal footing with other frameworks when building large-scale apps, and it excels when you need to work with legacy applications or jump in and get something done fast. But it’s worth checking ecosystem support for your project’s particulars first.
-
-
-Explain Vue.js reactivity and common issues when tracking changes.
-
-
-All properties defined in a Vue instance’s data option are reactive, meaning that if they change, the component is automatically updated and re-rendered as needed.
-
-All such properties are converted to getters and setters during initialization, thus allowing Vue to detect when those properties are accessed or changed.
-
-The following limitations must be accounted for when designing a Vue app:
-
-    Vue cannot detect object property addition or deletion due to a JavaScript limitation, so the Vue.set method must be used to add new root-level reactive properties.
-    Similarly, Vue cannot detect when an array item is modified using an index. Vue.set must be used here as well.
-
-
-
-What are mixins? Describe their benefits and drawbacks.
-
-
-Mixin support is a feature that allows code reuse between components in a Vue.js application and a software composition tool.
-
-A mixin is a JavaScript object that can contain any option that a component can contain. All mixin content is merged with a component’s options when that component uses a mixin.
-
-Mixins help with following the DRY (don’t repeat yourself) principle. A mixin can even be applied globally to every component instance. In that case, it’s called a global mixin.
-
-Mixins are a powerful tool, but some caution is needed while using them. As with all injected code, we should be careful to avoid maintenance issues and unexpected behavior.
-
-It helps to implement mixins using pure functions that don’t modify anything outside their own scope.
-
-Global mixins should be avoided, as affecting every single component can lead to maintenance issues as an application grows. Injecting specific mixins to components as needed leads to more maintainable code.
-
-
-What is a single-file component?
-
-A single-file component is a file with a .vue extension that contains a Vue component. It contains the component’s template, logic, and styles all bundled together in one file. It consists of one <script> block, optional <template> and <style> blocks, and possible additional custom blocks.
-
-To use one, you need to set up Vue Loader for parsing the file (usually done as part of a webpack building pipeline). But this then also supports using non-default languages such as Sass or HTML templating languages with pluggable pre-processors.
-
-
-
-Describe data flow between components in a Vue.js app.
-
-
-
-
-
-Hide answer
-answer badge
-
-
-List the most common cause of memory leaks in Vue.js apps and how they can be solved.
-
-
-Memory leaks in Vue.js applications often come from using third-party libraries that create their own instances and/or manipulate the DOM. The v-if directive and the Vue Router destroy Vue component instances; however, cleaning up after any third party library should be done manually in the beforeDestroy() lifecycle hook.
-
-For example, let’s say we use a fictional library, PowerGraph.js, inside our component. It creates a graph instance that displays some data on the page:
-
-mounted() {
-  this.chart = new PowerGraph();
-}
-
-We need to call the graph instance’s destroy() method if it’s provided or implement our own cleanup method:
-
-beforeDestroy() {
-  this.chart.destroy();
-}
-
-If cleanup is not done before our component gets destroyed, then that memory is never going to be released. Hence, a memory leak.
-
-
-
-Explain the difference between slots and scoped slots.
-
-A slot is a placeholder in a child component that is filled with content passed from the parent. Content of a regular slot is compiled in the parent’s scope and then passed to the child component.
-
-Thus you can’t use child component properties in a slot’s content. But scoped slots allow you to pass child component data to the parent scope and then use that data in slot content.
