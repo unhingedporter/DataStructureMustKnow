@@ -53,5 +53,27 @@ var is function scope.
 let and const are block scope.Function scope is within the function.
 Block scope is within curly brackets.
 
+(function(){
+  {
+var b =9 ;
+console.trace(b);
+  } console.log("After block" + b)
+
+})()
+undefined
+console.trace() 9 debugger eval code:4:9
+    <anonymous> debugger eval code:4
+    <anonymous> debugger eval code:7
+After block9
+
+
+(function(){
+  {
+let b =9 ;
+console.trace(b);
+  } console.log("After block" + b)
+
+})()
+ReferenceError: b is not defined
 
 With the above explanation, I can surely tell that now you have total idea about the difference about let and var variables.

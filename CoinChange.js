@@ -28,4 +28,4 @@ class CoinChange {
 
 var cc = new CoinChange();
 
-console.log(cc.findPossibleCount([2,5,3,6], 2500, 10));
+console.log(cc.findPossibleCount([5,3,6,2], 2500, 10));

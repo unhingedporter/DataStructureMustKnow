@@ -1,0 +1,322 @@
+ Write a mul function which will produce the following outputs when invoked:
+
+console.log(mul(2)(3)(4)); // output : 24 
+console.log(mul(4)(3)(4)); // output : 48
+
+Below is the answer followed by an explanation to how it works:
+
+function mul (x) {
+    return function (y) { // anonymous function 
+        return function (z) { // anonymous function 
+            return x * y * z; 
+        };
+    };
+}
+
+
+ How do you check if an object is an array or not?
+
+ if( Object.prototype.toString.call( arrayList ) === '[object Array]' ) {
+    console.log('Array!');
+}
+
+
+if($.isArray(arrayList)){
+    console.log('Array');
+}else{
+  	console.log('Not an array');
+}
+
+
+Array.isArray(arrayList);
+
+
+What will be the output of the following code?
+
+var output = (function(x){
+    delete x;
+    return x;
+  })(0);
+  
+  console.log(output);
+
+The output would be 0. The delete operator is used to delete properties from an object. Here x is not an object but a local variable. delete operators don't affect local variables.
+
+
+ What will be the output of the following code?
+
+var x = 1;
+var output = (function(){
+    delete x;
+    return x;
+  })();
+  
+  console.log(output);
+
+The output would be 1. The delete operator is used to delete the property of an object. Here x is not an object, but rather it's the global variable of type number.
+
+
+What will be the output of the code below?
+
+var x = { foo : 1};
+var output = (function(){
+    delete x.foo;
+    return x.foo;
+  })();
+  
+  console.log(output);
+
+The output would be undefined. The delete operator is used to delete the property of an object. Here, x is an object which has the property foo, and as it is a self-invoking function, we will delete the foo property from object x. After doing so, when we try to reference a deleted property foo, the result isundefined.
+
+What will be the output of the code below?
+
+var Employee = {
+  company: 'xyz'
+}
+var emp1 = Object.create(Employee);
+delete emp1.company
+console.log(emp1.company);
+
+The output would be xyz. Here, emp1 object has company as its prototype property. The delete operator doesn't delete prototype property.
+
+emp1 object doesn't have company as its own property. You can test it console.log(emp1.hasOwnProperty('company')); //output : false. However, we can delete the company property directly from theEmployee object using delete Employee.company. Or, we can also delete the emp1 object using the __proto__ property delete emp1.__proto__.company.
+
+
+var trees = ["redwood","bay","cedar","oak","maple"];
+delete trees[3];
+
+When you run the code above and type console.log(trees); into your Chrome developer console, you will get
+["redwood", "bay", "cedar", undefined × 1, "maple"]. When you run the code in Firefox's browser console, you will get ["redwood", "bay", "cedar", undefined, "maple"]. Thus, it's clear that the Chrome browser has its own way of displaying uninitialised indexes in arrays. However, when you check trees[3] === undefined in both browsers, you will get similar output as true.
+
+Note: Please remember you do not need to check for the uninitialised index of array in trees[3] === 'undefined × 1', as it will give you an error. 'undefined × 1' is just way of displaying an array's uninitialised index in Chrome.
+
+
+What will be the output of the code below?
+
+var bar = true;
+console.log(bar + 0);   
+console.log(bar + "xyz");  
+console.log(bar + true);  
+console.log(bar + false);   
+
+The code will output 1, "truexyz", 2, 1. Here's a general guideline for addition operators:
+
+    Number + Number -> Addition
+    Boolean + Number -> Addition
+    Boolean + Number -> Addition
+    Number + String -> Concatenation
+    String + Boolean -> Concatenation
+    String + String -> Concatenation
+
+
+
+What will be the output of the code below?
+
+var z = 1, y = z = typeof y;
+console.log(y);  
+
+The output would be undefined. According to the associativity rule, operators with the same precedence are processed based on the associativity property of the operator. Here, the associativity of the assignment operator is Right to Left, so typeof y will evaluate first , which is undefined. It will be assigned to z, and then y would be assigned the value of z and then z would be assigned the value 1.
+
+What will be the output of the code below?
+
+// NFE (Named Function Expression 
+var foo = function bar(){ return 12; };
+typeof bar();  
+
+The output would be Reference Error. To make the code above work, you can re-write it as follows:
+
+Sample 1
+
+var bar = function(){ return 12; };
+typeof bar();  
+
+or
+
+Sample 2
+
+function bar(){ return 12; };
+typeof bar();  
+
+A function definition can have only one reference variable as its function name. In sample 1, bar's reference variable points to anonymous function. In sample 2, the function's definition is the name function.
+
+var foo = function bar(){ 
+    // foo is visible here 
+    // bar is visible here
+ 	console.log(typeof bar()); // Work here :)
+ };
+// foo is visible here
+// bar is undefined here
+
+var salary = "1000$";
+
+ (function () {
+     console.log("Original salary was " + salary);
+
+     var salary = "5000$";
+
+     console.log("My New Salary " + salary);
+})();
+
+The output would be undefined, 5000$. Newbies often get tricked by JavaScript's hoisting concept. In the code above, you might be expecting salary to retain its value from the outer scope until the point that salary gets re-declared in the inner scope. However, due to hoisting, the salary value was undefined instead. To understand this better, have a look of the code below:
+
+var salary = "1000$";
+
+(function () {
+    var salary = undefined;
+    console.log("Original salary was " + salary);
+
+    salary = "5000$";
+
+    console.log("My New Salary " + salary);
+})();
+
+salary variable is hoisted and declared at the top in the function's scope. The console.log inside returns undefined. After the console.log, salary is redeclared and assigned 5000$.
+
+
+Although typeof bar === "object" is a reliable way of checking if bar is an object, the surprising gotcha in JavaScript is that null is also considered an object!
+
+Therefore, the following code will, to the surprise of most developers, log true (not false) to the console:
+
+var bar = null;
+console.log(typeof bar === "object");  // logs true!
+
+What will the code below output to the console and why?
+
+(function(){
+  var a = b = 3;
+})();
+
+console.log("a defined? " + (typeof a !== 'undefined'));
+console.log("b defined? " + (typeof b !== 'undefined'));
+
+
+Since both a and b are defined within the enclosing scope of the function, and since the line they are on begins with the var keyword, most JavaScript developers would expect typeof a and typeof b to both be undefined in the above example.
+
+However, that is not the case. The issue here is that most developers incorrectly understand the statement var a = b = 3; to be shorthand for:
+
+var b = 3;
+var a = b;
+
+But in fact, var a = b = 3; is actually shorthand for:
+
+b = 3;
+var a = b;
+
+As a result (if you are not using strict mode), the output of the code snippet would be:
+
+a defined? false
+b defined? true
+
+But how can b be defined outside of the scope of the enclosing function? Well, since the statement var a = b = 3; is shorthand for the statements b = 3; and var a = b;, b ends up being a global variable (since it is not preceded by the var keyword) and is therefore still in scope even outside of the enclosing function.
+
+Note that, in strict mode (i.e., with use strict), the statement var a = b = 3; will generate a runtime error of ReferenceError: b is not defined, thereby avoiding any headfakes/bugs that might othewise result. (Yet another prime example of why you should use use strict as a matter of course in your code!)
+
+
+var myObject = {
+    foo: "bar",
+    func: function() {
+        var self = this;
+        console.log("outer func:  this.foo = " + this.foo);
+        console.log("outer func:  self.foo = " + self.foo);
+        (function() {
+            console.log("inner func:  this.foo = " + this.foo);
+            console.log("inner func:  self.foo = " + self.foo);
+        }());
+    }
+};
+myObject.func();
+
+uter func:  this.foo = bar 
+outer func:  self.foo = bar 
+inner func:  this.foo = undefined 
+inner func:  self.foo = bar 
+
+
+What is the significance of, and reason for, wrapping the entire content of a JavaScript source file in a function block?
+
+This is an increasingly common practice, employed by many popular JavaScript libraries (jQuery, Node.js, etc.). This technique creates a closure around the entire contents of the file which, perhaps most importantly, creates a private namespace and thereby helps avoid potential name clashes between different JavaScript modules and libraries.
+
+Another feature of this technique is to allow for an easily referenceable (presumably shorter) alias for a global variable. This is often used, for example, in jQuery plugins. jQuery allows you to disable the $ reference to the jQuery namespace, using jQuery.noConflict(). If this has been done, your code can still use $ employing this closure technique, as follows:
+
+(function($) { /* jQuery plugin code referencing $ */ } )(jQuery);
+
+
+
+What will the code below output? Explain your answer.
+
+console.log(0.1 + 0.2);
+console.log(0.1 + 0.2 == 0.3);
+
+
+
+An educated answer to this question would simply be: “You can’t be sure. it might print out 0.3 and true, or it might not. Numbers in JavaScript are all treated with floating point precision, and as such, may not always yield the expected results.”
+
+The example provided above is classic case that demonstrates this issue. Surprisingly, it will print out:
+
+0.30000000000000004
+false
+
+A typical solution is to compare the absolute difference between two numbers with the special constant Number.EPSILON:
+
+function areTheNumbersAlmostEqual(num1, num2) {
+	return Math.abs( num1 - num2 ) < Number.EPSILON;
+}
+console.log(areTheNumbersAlmostEqual(0.1 + 0.2, 0.3));
+
+
+Discuss possible ways to write a function isInteger(x) that determines if x is an integer.
+
+This may sound trivial and, in fact, it is trivial with ECMAscript 6 which introduces a new Number.isInteger() function for precisely this purpose. However, prior to ECMAScript 6, this is a bit more complicated, since no equivalent of the Number.isInteger() method is provided.
+
+The issue is that, in the ECMAScript specification, integers only exist conceptually; i.e., numeric values are always stored as floating point values.
+
+With that in mind, the simplest and cleanest pre-ECMAScript-6 solution (which is also sufficiently robust to return false even if a non-numeric value such as a string or null is passed to the function) would be the following use of the bitwise XOR operator:
+
+function isInteger(x) { return (x ^ 0) === x; } 
+
+The following solution would also work, although not as elegant as the one above:
+
+function isInteger(x) { return Math.round(x) === x; }
+
+Note that Math.ceil() or Math.floor() could be used equally well (instead of Math.round()) in the above implementation.
+
+Or alternatively:
+
+function isInteger(x) { return (typeof x === 'number') && (x % 1 === 0); }
+
+One fairly common incorrect solution is the following:
+
+function isInteger(x) { return parseInt(x, 10) === x; }
+
+While this parseInt-based approach will work well for many values of x, once x becomes quite large, it will fail to work properly. The problem is that parseInt() coerces its first parameter to a string before parsing digits. Therefore, once the number becomes sufficiently large, its string representation will be presented in exponential form (e.g., 1e+21). Accordingly, parseInt() will then try to parse 1e+21, but will stop parsing when it reaches the e character and will therefore return a value of 1. Observe:
+
+> String(1000000000000000000000)
+'1e+21'
+
+> parseInt(1000000000000000000000, 10)
+1
+
+> parseInt(1000000000000000000000, 10) === 1000000000000000000000
+false
+
+
+
+
+What is the output out of the following code? Explain your answer.
+
+var a={},
+    b={key:'b'},
+    c={key:'c'};
+
+a[b]=123;
+a[c]=456;
+
+console.log(a[b]);
+
+
+
+The output of this code will be 456 (not 123).
+
+The reason for this is as follows: When setting an object property, JavaScript will implicitly stringify the parameter value. In this case, since b and c are both objects, they will both be converted to "[object Object]". As a result, a[b] anda[c] are both equivalent to a["[object Object]"] and can be used interchangeably. Therefore, setting or referencing a[c] is precisely the same as setting or referencing a[b].
+
+

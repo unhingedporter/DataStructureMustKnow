@@ -44,7 +44,7 @@ class ClosestPair
 	public static void main(String args[]) 
 	{ 
 		ClosestPair ob = new ClosestPair(); 
-		int ar1[] = {1, 4, 5, 7,25}; 
+		int ar1[] = {1, 4, 6, 8,25}; 
 		int ar2[] = {10, 20, 30, 40}; 
 		int m = ar1.length; 
 		int n = ar2.length; 

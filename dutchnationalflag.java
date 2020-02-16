@@ -41,8 +41,8 @@ class countzot {
 
     /* Utility function to print array arr[] */
     static void printArray(int arr[], int arr_size) {
-        int i;
-        for (i = 0; i < arr_size; i++)
+        
+        for (int i = 0; i < arr_size; i++)
             System.out.print(arr[i] + " ");
         System.out.println("");
     }
