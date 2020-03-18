@@ -1,0 +1,601 @@
+Reference: https://medium.com/reverse-engineering-angular/angular-deep-dive-zone-js-how-does-it-monkey-patches-various-apis-9cc1c7fcc321
+
+
+To make this article any sense, one should know what is Zone.js and how does it work. This article will not discuss any details of that. For this, there are separate articles on the web. One can read here and here. You can also read a primer on the Zone.js for detailed information.
+
+However, to give little perspective, I would like to provide some overview.
+
+What is Zone.js or Zone?
+
+A Zone is an execution context that persists across async tasks which allows the creator of the zone to observe and control execution of the code within the zone. To give an oversimplified example, Angular uses Zone.js to create a Zone or execution contexts which is used to run Angular change detection cycle.
+
+In Angular, When we make a call to platformBrowserDynamic().bootstrapModule(AppModule) in our main.ts, module is instantiated. But before actual instantiation, an instance of NGZone is created.
+
+Now, in constructor of NGZone, Zone.js is loaded which creates a root zone. Further, a new child zone named ‘angular’ is created by calling zone.fork method. Here, angular defines all the callbacks as part of zone specifications which must be called whenever any async task is invoked in angular application.
+
+In these callbacks, angular emit events. Further, angular subscribes to these events and runs change detection logic by calling method tick().
+
+Now, the job of invoking callbacks specified in the zone specification lies on the Zone.js. To do this job, Zone.js monkey patches all the async APIs.
+
+What is Monkey patching?
+
+By definition, Monkey patching is basically extending or modifying the original API. Now, zone.js re-defines all the async APIs like browser apis which includes set/clearTimeOut, set/clearInterval, alert, XHR apis etc.
+
+Now, whenever we call any api like below in our angular application,
+
+    window.setTimeOut(()=>console.log(‘async task’),0);
+
+Instead of calling actual API, JS VM calls the re-defined version of this API which in turn invokes the call backs of ‘angular’ zone and hence helps in change detection.
+
+How does Zone.js monkey patch APIs?
+
+Let’s have a look on the source code of Zone.js.
+
+In build file, we can see that Zone.js is built by compiling rollup-main.ts.
+
+If we see rollup-main.ts, it basically imports 4 files.
+
+In zone import, all the core zone functions/variables are defined. In all other imports, definition of various monkey-patched APIs is given. Now, to monkey patch any API, Zone.__load_patch() function is called with 2 arguments.
+
+First argument is the identifier of the monkey-patched APIs and second is the patch function which when executed, replaces the actual browser API with the re-defined version. Following is the snippet of __load_patch function.
+
+Now, monkey patching logic depends on the API which is being patched. There are various easy APIs which we can study like alert. Further, there are very complex APIs like XHR. For the sake of this article, lets pick up the medium complexity API i.e. set/clearTimeOut.
+
+Monkey-patching set/clearTimeOut API
+
+Now, patch function of all timer apis is defined in browser.ts
+
+For patching set/clearTimeOut,
+
+    patchTimer(global, set, clear, ‘Timeout’)
+
+is called.
+
+In this function, another method patchMethod() of utils.ts is called which is responsible for actual monkey-patching.
+
+In patchMethod(), original api is saved in local variable i.e. delegate and the same is returned which is saved in setNative variable inside timers.ts.
+
+Now, as part of invoking patchMethod(), we are supposed to pass one function (patchFn) as argument which when executed should return the actual monkey patched API.
+
+Now, in case of set/clearTimeOut, we passed a function which is doing nothing but returning a function.
+
+Now, this function definition is executed every single time we call browser setTimeOut API. In this function, we are actually creating a macro task by calling other utils function i.e. scheduleMacroTaskWithCurrentZone. Here,we are passing the scheduling function. This scheduling function is called by Zone.js synchronously which in turn calls actual browser native API.
+
+Further, in the scheduling function itself, we are replacing the call back of timer function with the custom timer() function. This function actually calls the task.invoke method which in turn will call the callback of setTimeOut.
+
+Here we do not call the original call back so that Zone js can do so and perform all the tasks like switching the zone back to that of scheduling function zone, calling callbacks of zones etc.
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+Reference - https://blog.bitsrc.io/how-angular-uses-ngzone-zone-js-for-dirty-checking-faa12f98cd49
+
+Knowing when to update the UI is one of the important issues a JavaScript framework must address.
+
+Different JavaScript frameworks have different methods of refreshing the UI when a data state changes.
+
+Reactjs uses setState() method from the Component class to know that a property in the state object is being updated.
+
+class Component {
+    setState(state = {}) {
+        // assigns the new state to the state object
+        this.state = Object.assign(this.state, state)
+        // updates the UI
+        this.render()
+    }
+}
+
+AngularJS uses Scopes and Digest. Scopes are like plain JS objects but have added functionality that enables it to watch data properties for changes. $digest and $watch methods are implemented to execute a digest cycle and dirty checking.
+
+In Angular, Zone.js is used to detect when certain async operations occur to trigger a change detection cycle. In this post, we will be looking in-depth on how Zone.js is used by Angular for dirty checking and running UI updates.
+
+Tip: Use Bit to share and reuse your components between apps. Discover and play with components, and use them to build apps faster. Give it a try.
+Spinner components with Bit: Choose, play, use
+Component Discovery and Collaboration · Bit
+Bit is where developers share components and collaborate to build amazing software together. Discover components shared…
+bit.dev
+What is Zone.js?
+
+Before we demonstrate how Angular leverages Zone.js, let’s first see what Zone.js actually is, and what Angular does with it.
+
+Zone.js is an execution context that helps developers intercept and keep track of async operations. Zone works on the concept of associating each operation with a zone. Each zone can fork and create a child zone with a different context, no limits. Inside a zone, async operations are captured using different APIs, so that the developer can decide what to do with the interceptions.
+
+    We developed Zone.js as part of the Angular project. The original goal was not to control time but to know when async operations complete, so we can run Angular’s change detection and update the view. — Victor Savkin (Co-founder of Narwhal Technologies (nrwl.io) and member of Angular core team)
+
+Zone.js API
+
+Let’s go through the most commonly used Zone.js APIs:
+
+interface Zone {
+  // The parent Zone.
+  parent: Zone|null;
+  
+  //The Zone name (useful for debugging)
+  name: string;  //Returns a value associated with the `key`.
+  get(key: string): any;  //Used to create a child zone.
+  fork(zoneSpec: ZoneSpec): Zone;  //Wraps a callback function in a new function which will properly restore the current zone upon invocation.
+  wrap<F extends Function>(callback: F, source: string): F;  //Invokes a function in a given zone.
+  run<T>(callback: Function, applyThis?: any, applyArgs?: any[], source?: string): T;   //Invokes a function in a given zone and catches any exceptions.
+  runGuarded<T>(callback: Function, applyThis?: any, applyArgs?: any[], source?: string): T;  //Execute the Task by restoring the [Zone.currentTask] in the Task's zone.
+  runTask(task: Task, applyThis?: any, applyArgs?: any): any;  //Schedule a MicroTask.
+  scheduleMicroTask(
+      source: string, callback: Function, data?: TaskData,
+      customSchedule?: (task: Task) => void): MicroTask;  //Schedule a MacroTask.
+  scheduleMacroTask(
+      source: string, callback: Function, data?: TaskData, customSchedule?: (task: Task) => void,
+      customCancel?: (task: Task) => void): MacroTask;  //Schedule an EventTask.
+  scheduleEventTask(
+      source: string, callback: Function, data?: TaskData, customSchedule?: (task: Task) => void,
+      customCancel?: (task: Task) => void): EventTask;  //Schedule an existing Task.
+  scheduleTask<T extends Task>(task: T): T;  //Allows the zone to intercept canceling of scheduled Task.
+  cancelTask(task: Task): any;
+}
+
+parent
+
+Each zone has a parent zone in which it was created from but the only zone is active at any given time.
+name
+
+Each zone has a name associated with it. This is majorly used for debugging purposes.
+fork
+
+fork() is used to create a child zone. Forking a zone returns a new zone, which inherits from the parent zone. Also, forking a zone allows us to extend the returning zone's behavior.
+
+const childZone = Zone.current.fork({name: 'child_zone'})
+console.log(childZone.name) // child_zone
+
+This gives us a new zone childZone with the same power of the original zone Zone.current.
+
+The zone from which the child zone is created becomes the parent:
+
+const z = Zone.currentconst c1 = z.fork({ name: 'child1' })
+console.log(c1.parent.name) // <root>const c2 = c1.fork({ name: 'child2' })
+console.log(c2.parent.name) // child1
+
+fork takes ZoneSpec arg which defines sets of rules which the child zone should follow:
+
+interface ZoneSpec {
+  //The name of the zone. Useful when debugging Zones.
+  name: string;   //A set of properties to be associated with Zone. Use   properties?: {[key: string]: any};  //Allows the interception of zone forking.
+  onFork?:
+      (parentZoneDelegate: ZoneDelegate, currentZone: Zone, targetZone: Zone,
+       zoneSpec: ZoneSpec) => Zone;  //Allows interception of the wrapping of the callback.
+  onIntercept?:
+      (parentZoneDelegate: ZoneDelegate, currentZone: Zone, targetZone: Zone, delegate: Function,
+       source: string) => Function;  //Allows interception of the callback invocation.
+  onInvoke?:
+      (parentZoneDelegate: ZoneDelegate, currentZone: Zone, targetZone: Zone, delegate: Function,
+       applyThis: any, applyArgs?: any[], source?: string) => any;  //Allows interception of the error handling.
+  onHandleError?:
+      (parentZoneDelegate: ZoneDelegate, currentZone: Zone, targetZone: Zone,
+       error: any) => boolean;  //Allows interception of task scheduling.
+  onScheduleTask?:
+      (parentZoneDelegate: ZoneDelegate, currentZone: Zone, targetZone: Zone, task: Task) => Task;  onInvokeTask?:
+      (parentZoneDelegate: ZoneDelegate, currentZone: Zone, targetZone: Zone, task: Task,
+       applyThis: any, applyArgs?: any[]) => any;  //Allows interception of task cancellation.
+  onCancelTask?:
+      (parentZoneDelegate: ZoneDelegate, currentZone: Zone, targetZone: Zone, task: Task) => any;  //Notifies of changes to the task queue empty status.
+  onHasTask?:
+      (parentZoneDelegate: ZoneDelegate, currentZone: Zone, targetZone: Zone,
+       hasTaskState: HasTaskState) => void;
+}
+
+This provides a way to set up an interceptor of zone events.
+
+name, the name of the zone. properties is the key-value store associated with a zone, which is useful when sharing data between async operations.
+
+If you noticed, only name and properties are used to ID a zone, and all other properties are functions for intercepting different events.
+
+onFork function is executed when a zone is being forked.
+
+fork(targetZone: Zone, zoneSpec: ZoneSpec): AmbientZone {
+➥    return this._forkZS ? this._forkZS.onFork!(this._forkDlgt!, this.zone, targetZone, zoneSpec) :
+                            new Zone(targetZone, zoneSpec);
+    }
+
+This is how it runs in the Zone source code. When the fork method is called, it checks if the ZoneSpec object is present (remember that ZoneSpec is where we define hooks to capture Zone events). If so, it calls the onFork function property on the ZoneSpec arg.
+
+const z = Zone.current
+const parent = new Zone(z, {
+    name: 'parentZone',
+➥  onFork: (d, z, tZ, zS) => {
+        console.log('onFork called from `' + tZ.name + '` ZoneSpec')
+        return d.fork(tZ, zS)
+    }
+})
+const child = parent.fork({
+    name: 'childZone'
+})// Outputs
+onFork called from `parent` ZoneSpec
+
+onInvoke: This is called when a zone is run:
+
+const z = Zone.current
+const t = z.fork({
+    name: 't',
+➥  onInvoke: (d, z, tZ, zS)=>{
+        console.log('onInvoke called from `' + tZ.name + '` ZoneSpec')  
+    }
+})
+t.run(()=>{})//Outputs
+onInvoke called from `t` ZoneSpec
+
+Looking at the implementation:
+
+public run<T>(
+        callback: (...args: any[]) => T, applyThis?: any, applyArgs?: any[], source?: string): T {
+      _currentZoneFrame = {parent: _currentZoneFrame, zone: this};
+      try {
+➥      return this._zoneDelegate.invoke(this, callback, applyThis, applyArgs, source);
+      } finally {
+        _currentZoneFrame = _currentZoneFrame.parent!;
+      }
+    }
+
+The _zoneDelegate invoke method is called which calls the onInvoke hook in the ZoneSpec if defined:
+
+invoke(
+        targetZone: Zone, callback: Function, applyThis: any, applyArgs?: any[],
+        source?: string): any {
+➥    return this._invokeZS ? this._invokeZS.onInvoke!
+                              (this._invokeDlgt!, this._invokeCurrZone!, targetZone, callback,
+                               applyThis, applyArgs, source) :
+                              callback.apply(applyThis, applyArgs);
+    }
+
+onInvokeTask: This hook is executed when an async operation in the callback passed to a zone is executed.
+
+onScheduleTask: This is called when an async operation in a callback is about to be carried out.
+
+fork method actually creates a new Zone object. Something like this:
+
+fork(zSpec) {
+    return new Zone(zSpec)
+}
+
+During the fork-ing of a zone only the name property is required. All other properties are optional.
+run
+
+This method executes a function in a specified zone.
+
+function main() {
+    setTimeout(() => {}, 10)
+}
+const childZone = Zone.current.fork({name:'child_zone'});
+childZone.run(main);
+
+What we have here is just a simple function passed to zone.run method. This function will be executed inside the current zone.
+
+We touched the relevant APIs mostly used by devs when working with Zone, the other method are low-level rarely used so we won’t go into in this article.
+Ng in NgZone
+
+We’ve seen how Zone.js and it’s API works. Next, let’s see how NgZone wraps around Zone functionality to implement change detection.
+
+Angular uses Zone.js, Yes. But, Angular doesn’t encapsulate the whole framework. It only leverages the execution context to detect changes and async events so it could trigger UI update.
+
+    Yes, Zone and NgZone are used to automatically trigger change detection as a result of async operations. But since change detection is a separate mechanism it can successfully work without Zone and NgZone. — Max NgWizard K
+
+Change detection or dirty checking mechanism can actually run without Ng/Zone. Zone emits different interception events when an async operation is carried out, async operations like setTimeouts, XHRs, EventEmitter, DOM events are more likely used to change the value of data.
+
+Example:
+
+DOM events like click, submit, keydown-up, focus, blur, etc are always used by developers s to carry out an action which leads to data state mutation.
+
+<html>
+<div>
+    <p id="display"></p>
+    <button onclick="add()">Add</button>
+</div><script>
+var a = 0, b = 0, results = 0;
+const display = document.getElementById('display')
+display.innerHTML = resultsfunction add() {
+    results = a + b
+    display.innerHTML = results
+}
+</script>
+</html>
+
+Looking at the above code, we see that the onclick event is used to add two numbers and render the result on the DOM. When our app becomes large and complex, adding re-rendering code on every DOM events becomes messy and our code base may begin to fall apart.
+
+Since the async operations always results in changing of data in an app state, Zone.js hooks in and emit events when they are called. So, it becomes very easy to listen on these events and run your UI update method when an event is captured.
+
+It then becomes easy and simple for the developer as the role of capturing changes and updates has been abstracted away to an independent entity. All DOM events actions don’t have to carry their individual UI update function.
+
+NgZone is a wrapper around Zone.js, it extends some concepts of Zone.
+
+export class NgZone {
+  readonly hasPendingMicrotasks: boolean = false;
+  readonly hasPendingMacrotasks: boolean = false;  readonly isStable: boolean = true;  readonly onUnstable: EventEmitter<any> = new EventEmitter(false);  readonly onMicrotaskEmpty: EventEmitter<any> = new EventEmitter(false);  readonly onStable: EventEmitter<any> = new EventEmitter(false);  readonly onError: EventEmitter<any> = new EventEmitter(false);  constructor({enableLongStackTrace = false})  static isInAngularZone(): boolean   static assertInAngularZone(): void   static assertNotInAngularZone(): void   run<T>(fn: (...args: any[]) => T, applyThis?: any, applyArgs?: any[]): T   runTask<T>(fn: (...args: any[]) => T, applyThis?: any, applyArgs?: any[], name?: string): T   runGuarded<T>(fn: (...args: any[]) => T, applyThis?: any, applyArgs?: any[]): T   runOutsideAngular<T>(fn: (...args: any[]) => T): T 
+}
+
+As we see here, it implements different hooks for different events.
+
+    hasPendingMicrotasks: Set to true if a microtask is on the queue.
+    hasPendingMacrotasks: Set to true if a macrotask in on queue.
+    isStable: Used to check whether there are no outstanding microtask and macrotask in the queue.
+    onUnstable: This event gets fired when a code enters the Angular zone.
+    onMicrotaskEmpty: emits when there are no more microtasks enqueued.
+    onStable: This gets emitted when onMicrotaskEmpty runs and there are no microtasks on the queue.
+    onError: This gets fired when an error is caught.
+
+NgZone actually wrapped a forked zone, we can see it from the full implementation.
+
+class NgZone{
+    constructor(_a) {
+        ...
+        Zone.assertZonePatched();
+        var self = ((this));
+        self._nesting = 0;
+        self._outer = self._inner = Zone.current;
+        ...
+        forkInnerZoneWithAngularBehavior(self);
+    }
+}
+
+NgZone first asserts that Zone.js has been patched, then it assigns itself this to self. _inner property is created and assigned to the current zone, in turn, _outer property is created and assigned to _inner value.
+
+The outer zone is used by NgZone to run code outside the angular zone, it is often used when you don't want the change detection cycle to run.
+
+inner zone is used to run code inside the angular zone, this is where all our Angular code is executed when an async operation is caught change detection is triggered.
+
+forkInnerZoneWithAngularBehavior function forks a zone using NgZone instance passed to it:
+
+function forkInnerZoneWithAngularBehavior(zone) {
+    zone._inner = zone._inner.fork({
+        name: 'angular',
+        properties: { 'isAngularZone': true },
+        onInvokeTask: (delegate, current, target, task,applyThis, applyArgs) => {...},
+        onInvoke: (delegate, current, target, callback,
+            applyThis, applyArgs, source) => {...},
+        onHasTask:
+            (delegate, current, target, hasTaskState) => {...},
+        onHandleError: (delegate, current, target, error) => {...}
+    });
+}
+
+It creates a new forked zone from zone._inner zone created at NgZone constructor. The child zone is then, assigned to the zone._inner, so becomes the forked zone instead of the parent zone.
+
+During the forking of zone._inner zone ZoneSpec object arg was passed to the fork method. The ZoneSpec as we learned earlier is used to set name, properties and event hooks of a zone. With the event hooks, we can capture different events emitted by the zone.
+
+The name property is assigned to angular, that indicates we are in the Angular zone where all its code will be run. The properties object has a key isAngularZone set to true. Next, the event hooks are defined to run the change detection cycle when any event is captured.
+
+So, we now see that the NgZone will set up two zones inner and outer and assign them to itself on instantiation.
+
+Next, looking at run* methods defined in NgZone.
+
+run(fn, applyThis, applyArgs = []) {
+        return (this)._inner.run(fn, applyThis, applyArgs);
+    }
+
+We see that it uses the inner zone set up earlier to call the corresponding function in Zone, except for the method runOutsideAngular which uses the outer zone so the events defined in inner zone won't be called, it is actually running in another zone.
+
+runOutsideAngular(fn) {
+        return (this)._outer.run(fn);
+    }
+
+To better explain inner and outer zone, let’s implement something here:
+
+let i = o = Zone.current
+i = i.fork({
+    name: 'inner_zone',
+    onInvoke: () => console.log('inner onInvoke')
+})o.run(() => {})
+i.run(() => {})
+
+We did the same thing NgZone did. Assigned the current zone to i and o, then created a fork from i and assigned the child zone to i. o now becomes the parent of i. To test:
+
+let i = o = Zone.current
+i = i.fork({
+    name: 'inner_zone',
+    onInvoke: () => console.log('inner onInvoke')
+})
+console.log(i.parent === o) // true
+
+The event hooks of i will only be run when the i zone is executed. event hooks of o zone (if any) won't be run because they exist in different contexts.
+
+If we run only o.run(() => {}), inner onInvoke wont be printed. Running only i.run(() => {}) will print inner onInvoke.
+
+So, we have seen with this little implementation what it means when we want to run a code outside the Angular zone. Majorly, the runOutsideAngular method is used when a heavy operation is to be executed, that would avoid constantly triggering change detection.
+onMicrotaskEmpty
+
+Earlier we stated events that NgZone uses to know when to trigger change detection. onMicrotaskEmpty event is used to run change detection. As the name implies, it runs its subscribers whenever there are no more microtasks in the current stack frame. Its execution may enqueue more microtasks, which can make it run multiple times.
+
+this._zone.onMicrotaskEmpty.subscribe(
+        {next: () => { this._zone.run(() => { this.tick(); }); }});
+
+The event is emitted from the checkStable function:
+
+function checkStable(zone) {
+    if (zone._nesting == 0 && !zone.hasPendingMicrotasks && !zone.isStable) {
+        try {
+            zone._nesting++;
+➥          zone.onMicrotaskEmpty.emit(null);
+        } finally {
+            ...
+        }
+    }
+}
+
+Looking at the above code, change detection is run when there no pending microtasks and there are no outstanding microtasks and macrotasks.
+
+This function is triggered from the ZoneSpec event hooks defined earlier when the Angular zone was forked.
+
+    onHasTask
+    onInvoke
+    onInvokeTask
+
+Demonstration: NgZone on Node.js
+
+For demonstration, let’s run NgZone on a Node environment. to avoid the hassle of setting up a new Node project from scratch, you can use an existing Angular project.
+
+For this article, I’m using an existing Angular project. Create a zone.js at the root of the project.
+
+We start by creating a mock XMLHttpRequest, remember on execution Zone.js patches all async functions, XMLHttpRequest is one of the async classes it patches. We created a mock because XMLHttpRequest doesn’t exist on Node, so avoid patchXHR error we give Zone a mock of it.
+
+➥ class XMLHttpRequest {
+    send() {}
+    open() {}
+    abort() {}
+}
+➥ global.XMLHttpRequest = XMLHttpRequest
+
+There might be a better way of doing this, but for this demo this will do.
+
+Next, we require the Zone library and the NgZone class:
+
+class XMLHttpRequest {
+    send() {}
+    open() {}
+    abort() {}
+}
+global.XMLHttpRequest = XMLHttpRequest
+➥ require('zone.js/dist/zone')
+➥ const { NgZone } = require('@angular/core')
+
+Good! We have the NgZone class, we create an object from it:
+
+...
+require('zone.js/dist/zone')
+const { NgZone } = require('@angular/core')➥ const ngZ = new NgZone({ enableLongStackTrace: false })
+
+We created an instance of NgZone and assigned it to ngZ variable.
+
+Next, we implement and run our callback in the ngZ zone (Angular zone).
+
+...
+require('zone.js/dist/zone')
+const { NgZone } = require('@angular/core')const ngZ = new NgZone({ enableLongStackTrace: false })
+➥ ngZ.run(() => {
+    console.log('Inside Angular zone')
+})
+
+Remember, this is where Angular runs the whole of its code (ComponentFactories, NgModuleFactory etc), so any async operation will be picked up and executed within the zone.
+
+bootstrapModuleFactory<M>(moduleFactory: NgModuleFactory<M>, options?: BootstrapOptions):
+      Promise<NgModuleRef<M>> {
+    ...
+➥  return ngZone.run(() => {
+    ...
+      return _callAndReportToErrorHandler(exceptionHandler, ngZone !, () => {
+        ...
+        return initStatus.donePromise.then(() => {
+          this._moduleDoBootstrap(moduleRef);
+          return moduleRef;
+        });
+      });
+    });
+  }
+
+OK, if we run this:
+
+node zone.js
+
+We will get this on our screen:
+
+$ Inside Angular zone
+
+We subscribe to onMicrotaskEmpty Observable to pick up its event:
+
+...
+require('zone.js/dist/zone')
+const { NgZone } = require('@angular/core')const ngZ = new NgZone({ enableLongStackTrace: false })
+ngZ.run(() => {
+    console.log('Inside Angular zone')
+})
+➥ ngZ.onMicrotaskEmpty.subscribe({ next: () => { ngZ.run(() => { console.log('tick() called') }); } });
+
+This is where Angular runs its change detection mechanism when an onMicrotaskEmpty event is emitted. In the Angular, the this.tick() method is called. I changed it to print tick() method, so we could know when change detection is triggered.
+
+If we run our app again, we will still see:
+
+$ Inside Angular zone
+
+still printed. Why? because no async operation was run, so no event was emitted and tick() called doesn't get printed.
+
+To make our mock tick() method run, let's run an async operation inside our Angular zone.
+
+...
+require('zone.js/dist/zone')
+const { NgZone } = require('@angular/core')const ngZ = new NgZone({ enableLongStackTrace: false })
+ngZ.run(() => {
+    console.log('Inside Angular zone')
+➥  setTimeout(() => {}, 1000)
+})
+ngZ.onMicrotaskEmpty.subscribe({ next: () => { ngZ.run(() => { console.log('tick() called') }); } });
+
+We add setTimeout function to run a callback after 10 secs, this will trigger an onMicrotaskEmpty event and tick() called will be printed:
+
+$ Inside Angular zone
+$ tick() called
+
+Voila!! That’s it, our mock tick() method gets called, in Angular change detection cycle is triggered.
+
+We have run Angular NgZone on a Node environment to show how it really works on the browser.
+
+Summary
+
+In this section, we learned a lot. We saw how NgZone extended Zone.js functionality with a forked child zone. We saw in-depth how Angular implements ZoneSpec hooks to capture async events and trigger change detection cycle through ApplicationRef tick() method.
+
+Finally, we duplicated and ran NgZone in a Node environment to show how it works.
+Angular without Ng/Zone
+
+Angular can work without Ng/Zone. Angular incorporated to help with its async event interception. Zone.js has other responsibilities that devs can take advantage of:
+
+    Global Error handling
+    Application profiling
+    Stack traces tracking
+
+NgZone/Zone are independent of the change detection mechanism. Any entity can trigger change detection. So, it would be wrong to associate NgZone/Zone with change detection.
+
+We can disconnect NgZone from our app using NoopNgZone and run change detection from our components.
+
+platformBrowserDynamic().bootstrapModule(AppModule, {
+      ngZone: 'noop';
+})
+  .catch(err => console.log(err));
+
+Then, our components trigger change detection by injecting the ApplicationRef class and call the tick method:
+
+@Component({
+    selector: 'app-root',
+    template: `
+        {{title}} works!!!
+        <button (click)="changeTitle()">Change Title</button>
+    `
+})
+export class AppComponent {
+    title:any = 'App'
+➥  constructor(private appRef: ApplicationRef) {
+➥      this.appRef.tick()
+    }
+    changeTitle() {
+        this.title = 'Title Changed'
+➥       this.appRef.tick()
+    }
+}
+
+ApplicationRef’s tick method is used to trigger change detection. Without the execution of this.appRef.tick() code, the title property won't be updated on the view when the Change Title button is clicked.
+
+The point we are trying to prove here is that change detection mechanism is not tied to NgZone/Zone, see how we used tick method to update our views without NgZone. The use of NgZone/Zone.js automates the task of change detection, manually calling change detection like we did, will take its toll on us when the app grows and becomes complex.
+
+Summary
+
+We saw in this section, that NgZone/Zone isn’t coupled with change detection. They are two separate mechanisms that can run on their own.
+Conclusion
+
+First, we learned what Zone.js really is.
+
+    Zone.js is an execution context for tracking and intercepting async operations like:
+    DOM events (click, keydown, keyup, etc)
+    setTimeout, setInterval, etc.
+    XMLHttpRequest, etc
+    Zone could also be used for profiling, debugging, testing and error handling.
+
+We looked at the popular and useful APIs exposed by Zone. Next, we learned how NgZone wrapped Zone in a forked zone. We saw how Angular uses Observables to run the change detection when an async operation is intercepted by Zone.
+
+To demonstrate all our findings, we duplicated the NgZone implementation and ran it on a Node.js environment as it would run on a browser. It only ran our mock tick() method when an async operation is executed.
+
+I would say this has given us a deeper knowledge on how Zone and NgZone really works. Thanks for reading :) !!!
