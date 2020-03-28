@@ -15,3 +15,18 @@ Best tools that money can buy
 Testers
 Code screening
 Hallway usability testing 
+
+We seek a UI Software Engineer who is able to think outside of the box and come up with solutions quickly to help business in making time sensitive decisions, has strong communication and analytical skills, always drives for excellence and self motivated.
+Key Qualifications
+
+    In-depth understanding of data structures and algorithms
+    Experience in UI design, development for both Web bases and Mobile platforms
+    Proficient understanding of web markup, including HTML5, CSS3
+    Strong proficiency in JavaScript, including DOM manipulation and the JavaScript object model with understanding of React.js and its core principles or any other libraries
+    Familiarity with newer specifications of EcmaScript, Familiarity with RESTful APIs
+    Experience with data structure libraries (e.g., Immutable.js)
+    Experience with common front-end development and build tools such as Babel, Webpack, NPM, etc.
+    Basic knowledge of image authoring tools, to be able to crop, resize, or perform small adjustments on an image. Familiarity with tools such as Gimp or Photoshop is a plus.
+    Strong problem-solving and analytical abilities
+    Ability to rapidly learn new technologies
+    Strong written and oral communication skills

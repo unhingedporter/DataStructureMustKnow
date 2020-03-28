@@ -92,11 +92,6 @@ AngularJS uses Scopes and Digest. Scopes are like plain JS objects but have adde
 
 In Angular, Zone.js is used to detect when certain async operations occur to trigger a change detection cycle. In this post, we will be looking in-depth on how Zone.js is used by Angular for dirty checking and running UI updates.
 
-Tip: Use Bit to share and reuse your components between apps. Discover and play with components, and use them to build apps faster. Give it a try.
-Spinner components with Bit: Choose, play, use
-Component Discovery and Collaboration · Bit
-Bit is where developers share components and collaborate to build amazing software together. Discover components shared…
-bit.dev
 What is Zone.js?
 
 Before we demonstrate how Angular leverages Zone.js, let’s first see what Zone.js actually is, and what Angular does with it.
