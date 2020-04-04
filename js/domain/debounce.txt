@@ -39,9 +39,10 @@ Here’s an analogy using a real-world scenario:
 Suppose you’re working at your PC and also chatting with your friend Bill on a chat app (such as Telegram), who's telling you a story in bits and pieces (heh). You get push notifications every minute or so. Normally, you’d read every message as it comes in. But you're busy, so you can’t afford to switch context that often. What can you do?
 
     Ignore your notifications, and decide that you’ll check your messages only once every five minutes.
+    
     Ignore your notifications. When no new notifications have come in for the last five minutes, assume Bill is done with his story and then check your messages.
 
-The first approach is an example of throttling, while the second is an example of debouncing.
+The first approach is an example of throttling, while the seceond is an example of debouncing.
 
 Throttling code example 
 */
