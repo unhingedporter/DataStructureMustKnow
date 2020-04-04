@@ -43,5 +43,3 @@ class FindCommon {
         ob.findCommon(ar1, ar2, ar3);
     }
 }
-
-/* This code is contributed by Rajat Mishra */

@@ -8,19 +8,19 @@ import java.util.*;
 // representation 
 class Graph {
     private int V; // No. of vertices
-    private LinkedList<Integer> adj[]; // Adjacency Lists
+    private LinkedList adj[]; // Adjacency Lists
 
     // Constructor
     Graph(int v) {
-        V = v;
-        adj = new LinkedList[v];
+        this.V = v;
+        this.adj = new LinkedList[v];
         for (int i = 0; i < v; ++i)
-            adj[i] = new LinkedList();
+            this.adj[i] = new LinkedList();
     }
 
     // Function to add an edge into the graph
     void addEdge(int v, int w) {
-        adj[v].add(w);
+        this.adj[v].add(w);
     }
 
     // prints BFS traversal from a given source s
@@ -30,7 +30,7 @@ class Graph {
         boolean visited[] = new boolean[V];
 
         // Create a queue for BFS
-        LinkedList<Integer> queue = new LinkedList<Integer>();
+        LinkedList queue = new LinkedList();
 
         // Mark the current node as visited and enqueue it
         visited[s] = true;
@@ -47,7 +47,7 @@ class Graph {
             // Get all adjacent vertices of the dequeued vertex s
             // If a adjacent has not been visited, then mark it
             // visited and enqueue it
-            Iterator<Integer> i = adj[s].listIterator();
+            Iterator i = adj[s].listIterator();
             while (i.hasNext()) {
                 int n = i.next();
                 if (!visited[n]) {
@@ -74,4 +74,3 @@ class Graph {
         g.BFS(2);
     }
 }
-// This code is contributed by Aakash Hasija

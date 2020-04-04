@@ -1,3 +1,5 @@
+// Less probability
+
 /*
 Count number of squares in a rectangle
 
