@@ -45,7 +45,7 @@ class LinkedListIntersect {
         n2.next.next.next = n1.next.next.next;
         Print(n1);
         Print(n2);
-        System.out.println(MegeNode(n1, n2).data);
+        System.out.println(MergeNode(n1, n2).data);
     }
 
     // function to print the list
@@ -59,7 +59,7 @@ class LinkedListIntersect {
     }
 
     // function to find the intersection of two node
-    public static Node MegeNode(Node n1, Node n2) {
+    public static Node MergeNode(Node n1, Node n2) {
         // define hashset
         HashSet<Node> hs = new HashSet<Node>();
         while (n1 != null) {
