@@ -53,12 +53,32 @@ class Car {
     }
 }
 
-let car = new Car(44);
+class PhaseOneCar extends Car {
+
+    private isGPSEnable: boolean;
+    constructor(speed, isGPSEnabled = false) {
+        super(speed);
+        this.isGPSEnable = isGPSEnabled;
+    };
+
+    setGPSEnable(enableGPS): void {
+        this.isGPSEnable = enableGPS;
+    };
+
+    getGPSEnable(): boolean {
+        return !!this.isGPSEnable ? true : false;
+    };
+
+};
+
+
+let car = new PhaseOneCar(44, true);
 car.accelerate();
 car.accelerate();
 car.accelerate();
 car.throttle();
 console.log(car.getSpeed());
+console.log(car.getGPSEnable());
 console.log("Number of wheels in the car is " + Car.numberOfWheels());
 
 // we can export class, interface , varible ... by adding export

@@ -1,4 +1,5 @@
 JavaScript has a concurrency model based on an event loop, which is responsible for executing the code, collecting and processing events, and executing queued sub-tasks. This model is quite different from models in other languages like C and Java.
+
 Runtime concepts
 
 The following sections explain a theoretical model. Modern JavaScript engines implement and heavily optimize the described semantics.
@@ -22,9 +23,11 @@ function bar(x) {
 console.log(bar(7)) //returns 42
 
 When calling bar, a first frame is created containing bar's arguments and local variables. When bar calls foo, a second frame is created and pushed on top of the first one containing foo's arguments and local variables. When foo returns, the top frame element is popped out of the stack (leaving only bar's call frame). When bar returns, the stack is empty.
+
 Heap
 
 Objects are allocated in a heap which is just a name to denote a large (mostly unstructured) region of memory.
+
 Queue
 
 A JavaScript runtime uses a message queue, which is a list of messages to be processed. Each message has an associated function which gets called in order to handle the message.
@@ -32,6 +35,7 @@ A JavaScript runtime uses a message queue, which is a list of messages to be pro
 At some point during the event loop, the runtime starts handling the messages on the queue, starting with the oldest one. To do so, the message is removed from the queue and its corresponding function is called with the message as an input parameter. As always, calling a function creates a new stack frame for that function's use.
 
 The processing of functions continues until the stack is once again empty. Then, the event loop will process the next message in the queue (if there is one).
+
 Event loop
 
 The event loop got its name because of how it's usually implemented, which usually resembles:
@@ -105,13 +109,6 @@ Basically, the setTimeout needs to wait for all the code for queued messages to 
 Several runtimes communicating together
 
 A web worker or a cross-origin iframe has its own stack, heap, and message queue. Two distinct runtimes can only communicate through sending messages via the postMessage method. This method adds a message to the other runtime if the latter listens to message events.
-
-
-
-
-
-
-
 
 const s = new Date().getSeconds();
 

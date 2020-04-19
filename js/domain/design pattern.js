@@ -1,15 +1,14 @@
 // What is a Design Pattern ?
 
 //   In software engineering, a design pattern is a reusable solution for commonly occurring problems in software design.Design patterns represent the best practices used by the experienced software developers.
+
 // A design pattern can be thought of as a programming template.
 
 // The design patterns give software developers a common vocabulary to talk about.They show the intent of your code instantly to someone learning the code.
 
-
 // Module Pattern
 
 // A Module is a piece of self - contained code so we can update the Module without affecting the other parts of the code.Modules also allow us to avoid namespace pollution by creating a separate scope for our variables.We can also reuse modules in other projects when they are decoupled from other pieces of code.
-
 
 // After the code is executed, the myModule variable looks like this:
 
@@ -21,7 +20,6 @@ const myModule = {
 
 // So we can call the publicMethod() which will, in turn, call the privateMethod().For example:
 
-
 // Revealing Module Pattern
 
 // The Revealing Module pattern is a slightly improved version of the module pattern by Christian Heilmann.The problem with the module pattern is that we have to create new public functions just to call the private functions and variables.
@@ -30,13 +28,15 @@ const myModule = {
 const myRevealingModule = (function () {
 
   let privateVar = 'Peter';
-  const publicVar = 'Hello World'; function privateFunction() {
+  const publicVar = 'Hello World';
+  function privateFunction() {
     console.log('Name: ' + privateVar);
   }
 
   function publicSetName(name) {
     privateVar = name;
-  } function publicGetName() {
+  }
+  function publicGetName() {
     privateFunction();
   }  /** reveal methods and variables by assigning them to object     properties */return {
     setName: publicSetName,
@@ -49,23 +49,28 @@ const myRevealingModule = (function () {
 myRevealingModule.setName('Mark');// prints Name: Mark
 myRevealingModule.getName();
 
-
-
 // Singleton Pattern
 
 // A Singleton is an object which can only be instantiated only once.A singleton pattern creates a new instance of a class if one doesn’t exist.If an instance exists, it simply returns a reference to that object.Any repeated calls to the constructor would always fetch the same object.
 
 // Singleton pattern can be implemented using the constructor function.For example:
 
-let instance = null; function User() {
-  if (instance) {
-    return instance;
-  } instance = this;
-  this.name = 'Peter';
-  this.age = 25;
+let instance = null;
 
+function User() {
+  if (instance) {
+    instance.counter++;
+    console.log(instance.counter);
+    return instance;
+  }
+  this.counter = 0;
+  instance = this;
+  this.name = 'Saraswati';
+  this.age = 25;
   return instance;
-} const user1 = new User();
+}
+
+const user1 = new User();
 const user2 = new User();// prints true
 console.log(user1 === user2);
 

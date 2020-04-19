@@ -130,8 +130,7 @@ A promise either resolves or rejects. It can't emit multiple values. An observab
 
 Because of this, observables create a pub-sub relationship where the observable "pushes" updated values to its subscribers.
 
-Mateusz Podlasin explains these differences in more detail in his article Promises vs Observables. It's worth checking out, especially for supporting examples for each of these outlined differences.
-Conclusion
+Conclusion:
 
 Observables are functions that throw values. Observers subscribe to these functions and register callbacks to listen for updates. This results in lazy execution of async data streams popularized by Reactive programming.
 

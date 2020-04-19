@@ -176,6 +176,7 @@ diffs.forEach((diff) => {
 })
 
 Note that this is a really simplified and stripped - back version of how a virtual DOM could work and there are lot of cases I didn't cover here.
+
 The virtual DOM and frameworks
 
 It's more common to work with the virtual DOM via a framework, rather than interfacing with it directly as I showed in the example above.
@@ -201,4 +202,3 @@ const newList = React.createElement("ul", { className: "list" },
 setTimeout(() => ReactDOM.render(newList, document.body), 5000);
 
 Because React uses the virtual DOM, even though we are re - rendering the entire template, only the parts that actually change are updated.If we look at our developer tools when the change happens, we will see the specific elements and the specific parts of the elements that change.
-
