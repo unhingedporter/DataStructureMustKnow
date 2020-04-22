@@ -1,4 +1,5 @@
-var varVariable = “this is a var variable”;let letVariable = “this is a let variable”;
+var varVariable = “this is a var variable”;
+let letVariable = “this is a let variable”;
 
 Say, here we have two variables declared. let us see what output it actually gives you.
 
