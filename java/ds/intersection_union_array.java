@@ -2,6 +2,7 @@
 
 // Java program to find union and intersection 
 // using Hashing 
+
 import java.util.HashSet;
 
 class Test {
@@ -31,8 +32,8 @@ class Test {
 
     // Driver method to test the above function
     public static void main(String[] args) {
-        int arr1[] = { 7, 1, 5, 2, 3, 6 };
-        int arr2[] = { 3, 8, 6, 20, 7 };
+        int arr1[] = {7, 1, 5, 2, 3, 6};
+        int arr2[] = {3, 8, 6, 20, 7};
 
         System.out.println("Union of two arrays is : ");
         printUnion(arr1, arr2);
@@ -51,6 +52,14 @@ class Test {
 // package com.arrays.math;
 
 public class UnsortedIntersectionUnion {
+
+    public static void main(String args[]) {
+        int a[] = {7, 1, 5, 2, 3, 6};
+        int b[] = {3, 8, 6, 20, 7};
+
+        UnsortedIntersectionUnion uiu = new UnsortedIntersectionUnion();
+        uiu.findPosition(a, b);
+    }
 
     // Prints intersection of arr1[0..n1-1] and
     // arr2[0..n2-1]
@@ -92,11 +101,11 @@ public class UnsortedIntersectionUnion {
     private void placeZeros(int v, int[] ans, int zero) {
         if (zero == 2) {
             System.out.println("0");
-            int d[] = { 0 };
+            int d[] = {0};
             placeValue(d, ans, 0, 0, v);
         }
         if (zero == 1) {
-            int d[] = { 0 };
+            int d[] = {0};
             placeValue(d, ans, 0, 0, v);
         }
     }
@@ -125,14 +134,6 @@ public class UnsortedIntersectionUnion {
                 placeValue(a, ans, i, p, v);
             }
         }
-    }
-
-    public static void main(String args[]) {
-        int a[] = { 7, 1, 5, 2, 3, 6 };
-        int b[] = { 3, 8, 6, 20, 7 };
-
-        UnsortedIntersectionUnion uiu = new UnsortedIntersectionUnion();
-        uiu.findPosition(a, b);
     }
 }
 // This code is contributed by Mohanakrishnan S.

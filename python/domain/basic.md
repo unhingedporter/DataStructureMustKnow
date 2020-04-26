@@ -30,8 +30,8 @@
 
 - Strings are ordered sequences so we can use indexing and slicing to grab sub sections
     * Charecter A  d  i  t  i
-    *Index      0  1  2  3  4
-    *Reverse I  0 -4  -3 -2 -1
+    * Index   ----   0  1  2  3  4
+    * Reverse - 0 -4  -3 -2 -1
 
   - Slicing
     - [start:stop:step]
@@ -40,7 +40,6 @@
       * name = 'Saraswati'
       * name[0] = 'N' // Error Strings are immutable in Python
       * 'N' + name[1:] // one of the correct way of doing concatenation
-      * 
   - String methods
       * capitalize() -Converts the first character to upper case
       *  casefold() -	Converts string into lower case

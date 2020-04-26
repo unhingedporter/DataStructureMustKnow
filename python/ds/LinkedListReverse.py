@@ -23,7 +23,7 @@ class LinkedList:
     def reverse(self):
         prev = None
         current = self.head
-        while(current is not None):
+        while (current is not None):
             next = current.next
             current.next = prev
             prev = current
@@ -39,8 +39,9 @@ class LinkedList:
     # Utility function to print the linked LinkedList
     def printList(self):
         temp = self.head
-        while(temp):
-            print temp.data,
+        while (temp):
+            print
+            temp.data,
             temp = temp.next
 
 
@@ -51,10 +52,12 @@ llist.push(4)
 llist.push(15)
 llist.push(85)
 
-print "Given Linked List"
+print
+"Given Linked List"
 llist.printList()
 llist.reverse()
-print "\nReversed Linked List"
+print
+"\nReversed Linked List"
 llist.printList()
 
 # This code is contributed by Nikhil Kumar Singh(nickzuck_007)

@@ -4,6 +4,7 @@
 
 def spiralPrint(m, n, a):
     start_row_index = 0
+    start_col_index = 0
     l = 0
 
     ''' start_row_index - starting row index 
@@ -54,5 +55,3 @@ a = [[1, 2, 3, 4, 5, 6],
 R = 3
 C = 6
 spiralPrint(R, C, a)
-
-# This code is contributed by Nistart_row_indexita Tiwari.

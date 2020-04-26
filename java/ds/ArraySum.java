@@ -1,12 +1,7 @@
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 public class ArraySum {
-
-    public void printDuplicatePairs(Integer[] arr, int sum) {
-
-    }
 
     // returns true if there is triplet
     // with sum equal to 'sum' present
@@ -30,6 +25,50 @@ public class ArraySum {
 
         // If we reach here, then no triplet was found
         return false;
+    }
+
+    public static void printDuplicateElem(int arr[]) {
+        Set hs = new HashSet<Integer>();
+        for (int i = 0; i < arr.length; i++) {
+            if (hs.contains(arr[i])) {
+                System.out.println("Duplicate value " + arr[i]);
+            } else {
+                hs.add(arr[i]);
+            }
+        }
+    }
+
+    public static void main(String args[]) {
+        int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, -1, -2, -3, -4, -5, -6, -7, -8, 33, 35, 6, 1};
+        int sum = 12;
+        printDuplicateElem(arr);
+        find3Numbers(arr, arr.length, sum);
+
+    }
+
+    // https://medium.com/solvingalgo/solving-algorithmic-problems-find-a-duplicate-in-an-array-3d9edad5ad41#22de
+
+    /*
+     *
+     *
+     * We iterate over each element and mark its corresponding index by setting its
+     * sign to minus. If we already marked it as negative, it means its index is a
+     * duplicate.
+     *
+     * Let’s see a concrete step by step example:
+     *
+     * Input: [2, 3, 3, 1]* Index 0: Absolute value = 2 Put a minus sign to a[2] =>
+     * [2, 3, -3, 1]* Index 1: Absolute value = 3 Put a minus sign to a[3] => [2, 3,
+     * -3, -1]* Index 2: Absolute value = 3 As a[3] is already negative, it means 3
+     * is a duplicate
+     *
+     */
+
+    // A generic implementation for printing duplicate elem in unsorted integer
+    // array without range limitation
+
+    public void printDuplicatePairs(Integer[] arr, int sum) {
+
     }
 
     // This function assumes that there are at least
@@ -63,46 +102,6 @@ public class ArraySum {
         }
 
         return (maxA + maxB + maxC);
-    }
-
-    // https://medium.com/solvingalgo/solving-algorithmic-problems-find-a-duplicate-in-an-array-3d9edad5ad41#22de
-
-    /*
-     * 
-     * 
-     * We iterate over each element and mark its corresponding index by setting its
-     * sign to minus. If we already marked it as negative, it means its index is a
-     * duplicate.
-     * 
-     * Let’s see a concrete step by step example:
-     * 
-     * Input: [2, 3, 3, 1]* Index 0: Absolute value = 2 Put a minus sign to a[2] =>
-     * [2, 3, -3, 1]* Index 1: Absolute value = 3 Put a minus sign to a[3] => [2, 3,
-     * -3, -1]* Index 2: Absolute value = 3 As a[3] is already negative, it means 3
-     * is a duplicate
-     * 
-     */
-
-    // A generic implementation for printing duplicate elem in unsorted integer
-    // array without range limitation
-
-    public static void printDuplicateElem(int arr[]) {
-        Set hs = new HashSet<Integer>();
-        for (int i = 0; i < arr.length; i++) {
-            if (hs.contains(arr[i])) {
-                System.out.println("Duplicate value " + arr[i]);
-            } else {
-                hs.add(arr[i]);
-            }
-        }
-    }
-
-    public static void main(String args[]) {
-        int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, -1, -2, -3, -4, -5, -6, -7, -8, 33, 35, 6, 1 };
-        int sum = 12;
-        printDuplicateElem(arr);
-        find3Numbers(arr, arr.length, sum);
-
     }
 
 }

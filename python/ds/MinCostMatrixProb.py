@@ -4,8 +4,10 @@
 
 # A Naive recursive implementation of MCP(Minimum Cost Path) problem
 import sys
+
 R = 3
 C = 3
+
 
 # Returns cost of minimum cost path from (0,0) to (m, n) in mat[R][C]
 
@@ -16,9 +18,10 @@ def minCost(cost, m, n):
     elif (m == 0 and n == 0):
         return cost[m][n]
     else:
-        return cost[m][n] + min(minCost(cost, m-1, n-1),
-                                minCost(cost, m-1, n),
-                                minCost(cost, m, n-1))
+        return cost[m][n] + min(minCost(cost, m - 1, n - 1),
+                                minCost(cost, m - 1, n),
+                                minCost(cost, m, n - 1))
+
 
 # A utility function that returns minimum of 3 integers */
 

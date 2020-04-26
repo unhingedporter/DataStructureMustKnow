@@ -8,16 +8,16 @@ class InfixPlay {
     // Higher returned value means higher precedence
     static int Prec(char ch) {
         switch (ch) {
-        case '+':
-        case '-':
-            return 1;
+            case '+':
+            case '-':
+                return 1;
 
-        case '*':
-        case '/':
-            return 2;
+            case '*':
+            case '/':
+                return 2;
 
-        case '^':
-            return 3;
+            case '^':
+                return 3;
         }
         return -1;
     }
@@ -38,12 +38,12 @@ class InfixPlay {
             if (Character.isLetterOrDigit(c))
                 result += c;
 
-            // If the scanned character is an '(', push it to the stack.
+                // If the scanned character is an '(', push it to the stack.
             else if (c == '(')
                 stack.push(c);
 
-            // If the scanned character is an ')', pop and output from the stack
-            // until an '(' is encountered.
+                // If the scanned character is an ')', pop and output from the stack
+                // until an '(' is encountered.
             else if (c == ')') {
                 while (!stack.isEmpty() && stack.peek() != '(')
                     result += stack.pop();

@@ -1,4 +1,3 @@
-import java.util.Stack
 //Java implementation of SpecialStack
 // Note: here we use Stack class for Stack implementation
 

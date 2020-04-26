@@ -10,7 +10,7 @@ public class Permutation {
 
     /**
      * permutation function
-     * 
+     *
      * @param str string to calculate permutation for
      * @param l   starting index
      * @param r   end index
@@ -29,7 +29,7 @@ public class Permutation {
 
     /**
      * Swap Characters at position
-     * 
+     *
      * @param a string value
      * @param i position 1
      * @param j position 2

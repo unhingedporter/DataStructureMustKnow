@@ -16,6 +16,7 @@
 */
 
 // Java program to get intersection point of two linked list 
+
 import java.util.*;
 
 class Node {

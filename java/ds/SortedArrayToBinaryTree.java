@@ -24,6 +24,17 @@ class TreeNode {
 
 class BST {
 
+    public static void main(String args[]) {
+        int array[] = {1, 2, 8, 4, 5, 6, 7, 9, 12, 222, 223, 224, 225, 226};
+        BST bst = new BST();
+
+        TreeNode tn = bst.createBST(array, 0, array.length - 1);
+        bst.inOrder(tn);
+        System.out.println("-------------------------");
+
+        bst.preOrder(tn);
+    }
+
     public TreeNode createBST(int arr[], int low, int high) {
 
         if (low > high) {
@@ -58,16 +69,5 @@ class BST {
 
         System.out.print(node.data + " ");
         inOrder(node.right);
-    }
-
-    public static void main(String args[]) {
-        int array[] = { 1, 2, 8, 4, 5, 6, 7, 9, 12, 222, 223, 224, 225, 226 };
-        BST bst = new BST();
-
-        TreeNode tn = bst.createBST(array, 0, array.length - 1);
-        bst.inOrder(tn);
-        System.out.println("-------------------------");
-
-        bst.preOrder(tn);
     }
 }

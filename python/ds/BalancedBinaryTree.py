@@ -18,7 +18,8 @@ class Tree():
 
     def isBalanced(self, node: Node):
 
-        if(node == None or (node.left == None and node.right == None)):
+        # check for the empty input and leaf node
+        if (node == None or (node.left == None and node.right == None)):
             return 0
         else:
             leftSubtreeBalanceStatus = self.isBalanced(node.left)
@@ -52,4 +53,4 @@ if __name__ == '__main__':
     # root.left.left = n1
 
     print(
-        f'The Status for balance of the binary tree is { True if Tree().isBalanced(root)>0 else False}')
+        f'The Status for balance of the binary tree is {True if Tree().isBalanced(root) > 0 else False}')

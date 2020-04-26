@@ -22,12 +22,11 @@ def areAnagram(str1, str2):
     # Compare sorted strings
     for i in range(0, n1):
         if str1[i] != str2[i]:
-            return 0
+            return False
 
-    return 1
+    return True
 
 
-# Driver program to test the above function
 str1 = "test"
 str2 = "ttew"
 if areAnagram(str1, str2):
@@ -35,21 +34,18 @@ if areAnagram(str1, str2):
 else:
     print("The two strings are not anagram of each other")
 
-# This code is contributed by Bhavya Jain
-
-
 ##################################################################################
 
 # Python program to check if two strings are anagrams of
 # each other
 NO_OF_CHARS = 256
 
+
 # Function to check whether two strings are anagram of
 # each other
 
 
 def areAnagram(str1, str2):
-
     # Create two count arrays and initialize all values as 0
     count1 = [0] * NO_OF_CHARS
     count2 = [0] * NO_OF_CHARS
@@ -69,24 +65,27 @@ def areAnagram(str1, str2):
         return 0
 
     # Compare count arrays
+    # Xrange
+    # The variable storing the range created by range() takes more memory as compared to variable storing the range using xrange(). The basic reason for this is the return type of range() is list and xrange() is xrange() object.
+    # The function returns the generator object that can be used to display numbers only by looping. Only particular range is displayed on demand and hence called “lazy evaluation“.
     for i in xrange(NO_OF_CHARS):
         if count1[i] != count2[i]:
-            return 0
+            return False
 
-    return 1
+    return True
 
 
 # https://medium.com/human-in-a-machine-world/quicksort-the-best-sorting-algorithm-6ab461b5a9d0
 
 # Driver program to test the above functions
-str1 = "geeksforgeeks"
-str2 = "forgeeksgeeks"
+str1 = "Debit card"
+str2 = "bad credit"
 if areAnagram(str1, str2):
-    print "The two strings are anagram of each other"
+    print
+    "The two strings are anagram of each other"
 else:
-    print "The two strings are not anagram of each other"
-
-# This code is contributed by Bhavya Jain
+    print
+    "The two strings are not anagram of each other"
 
 
 # Python program for implementation of Quicksort Sort
@@ -97,20 +96,20 @@ else:
 # to left of pivot and all greater elements to right
 # of pivot
 def partition(arr, low, high):
-    i = (low-1)		 # index of smaller element
-    pivot = arr[high]	 # pivot
+    i = (low - 1)  # index of smaller element
+    pivot = arr[high]  # pivot
 
     for j in range(low, high):
 
         # If current element is smaller than the pivot
         if arr[j] < pivot:
-
             # increment index of smaller element
-            i = i+1
+            i = i + 1
             arr[i], arr[j] = arr[j], arr[i]
 
-    arr[i+1], arr[high] = arr[high], arr[i+1]
-    return (i+1)
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return (i + 1)
+
 
 # The main function that implements QuickSort
 # arr[] --> Array to be sorted,
@@ -122,21 +121,20 @@ def partition(arr, low, high):
 
 def quickSort(arr, low, high):
     if low < high:
-
         # pi is partitioning index, arr[p] is now
         # at right place
         pi = partition(arr, low, high)
 
         # Separately sort elements before
         # partition and after partition
-        quickSort(arr, low, pi-1)
-        quickSort(arr, pi+1, high)
+        quickSort(arr, low, pi - 1)
+        quickSort(arr, pi + 1, high)
 
 
 # Driver code to test above
 arr = [10, 7, 8, 9, 1, 5]
 n = len(arr)
-quickSort(arr, 0, n-1)
+quickSort(arr, 0, n - 1)
 print("Sorted array is:")
 for i in range(n):
     print("%d" % arr[i]),

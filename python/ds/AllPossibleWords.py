@@ -1,4 +1,3 @@
-
 # Print all valid words that are possible using Characters of Array
 
 # Given a dictionary and a character array, print all valid words that are possible using characters from the array.

@@ -3,6 +3,7 @@
 # traverses vertices reachable from s.
 from collections import defaultdict
 
+
 # This class represents a directed graph
 # using adjacency list representation
 
@@ -49,6 +50,7 @@ class Graph:
                     queue.append(i)
                     visited[i] = True
 
+
 # Driver code
 
 
@@ -65,5 +67,3 @@ g.addEdge(3, 3)
 print("Following is Breadth First Traversal"
       " (starting from vertex 2)")
 g.BFS(2)
-
-# This code is contributed by Neelam Yadav

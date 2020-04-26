@@ -1,4 +1,3 @@
-
 class Node {
 
     int data;
@@ -14,6 +13,18 @@ class Node {
 class LinkedList {
 
     Node head;
+
+    public static void main(String args[]) {
+
+        LinkedList ll = new LinkedList();
+
+        ll.insertAtBegin(22);
+        ll.insertAtBegin(222);
+        ll.insertAtBegin(2222);
+        ll.insertAtBegin(22222);
+        ll.insertAtEnd(4488, 0);
+        ll.printLinkedList();
+    }
 
     // Needs to implement location
     public void insertAtEnd(int n, int location) {
@@ -46,17 +57,5 @@ class LinkedList {
             System.out.println(node.data);
             node = node.next;
         }
-    }
-
-    public static void main(String args[]) {
-
-        LinkedList ll = new LinkedList();
-
-        ll.insertAtBegin(22);
-        ll.insertAtBegin(222);
-        ll.insertAtBegin(2222);
-        ll.insertAtBegin(22222);
-        ll.insertAtEnd(4488, 0);
-        ll.printLinkedList();
     }
 }

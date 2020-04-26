@@ -1,4 +1,3 @@
-
 # Group words with same set of characters
 
 # Given a list of words with lower cases. Implement a function to find all Words that have the same unique character set .
@@ -22,4 +21,3 @@
 
 # All words with same set of characters are printed
 # together in a line.
-

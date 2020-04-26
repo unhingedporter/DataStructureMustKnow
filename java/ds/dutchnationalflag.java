@@ -1,5 +1,5 @@
+// Java program to sort an array of 0, 1 and 2
 
-// Java program to sort an array of 0, 1 and 2 
 import java.io.*;
 
 class dutchnationalflag {
@@ -47,7 +47,7 @@ class dutchnationalflag {
 
     /* Driver function to check for above functions */
     public static void main(String[] args) {
-        int arr[] = { 1, 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1, 2 };
+        int arr[] = {1, 0, 1, 1, 0, 1, 2, 1, 2, 0, 0, 0, 1, 2};
         int arr_size = arr.length;
         sort012(arr, arr_size);
         System.out.println("Array after seggregation ");

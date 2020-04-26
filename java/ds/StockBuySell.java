@@ -1,77 +1,76 @@
 // Program to find best buying and selling days 
+
 import java.util.ArrayList;
 
 // Solution structure 
-class Interval { 
-	int buy, sell; 
-} 
+class Interval {
+    int buy, sell;
+}
 
-class StockBuySell { 
-	// This function finds the buy sell schedule for maximum profit 
-	void stockBuySell(int price[], int n) 
-	{ 
-		// Prices must be given for at least two days 
-		if (n == 1) 
-			return; 
+class StockBuySell {
+    public static void main(String args[]) {
+        StockBuySell stock = new StockBuySell();
 
-		int count = 0; 
+        // stock prices on consecutive days
+        int price[] = {100, 180, 260, 310, 40, 535, 695};
+        int n = price.length;
 
-		// solution array 
-		ArrayList<Interval> sol = new ArrayList<Interval>(); 
+        // fucntion call
+        stock.stockBuySell(price, n);
+    }
 
-		// Traverse through given price array 
-		int i = 0; 
-		while (i < n - 1) { 
-			// Find Local Minima. Note that the limit is (n-2) as we are 
-			// comparing present element to the next element. 
-			while ((i < n - 1) && (price[i + 1] <= price[i])) 
-				i++; 
+    // This function finds the buy sell schedule for maximum profit
+    void stockBuySell(int price[], int n) {
+        // Prices must be given for at least two days
+        if (n == 1)
+            return;
 
-			// If we reached the end, break as no further solution possible 
-			if (i == n - 1) 
-				break; 
+        int count = 0;
 
-			Interval e = new Interval(); 
-			e.buy = i++; 
-			// Store the index of minima 
+        // solution array
+        ArrayList<Interval> sol = new ArrayList<Interval>();
 
-			// Find Local Maxima. Note that the limit is (n-1) as we are 
-			// comparing to previous element 
-			while ((i < n) && (price[i] >= price[i - 1])) 
-				i++; 
+        // Traverse through given price array
+        int i = 0;
+        while (i < n - 1) {
+            // Find Local Minima. Note that the limit is (n-2) as we are
+            // comparing present element to the next element.
+            while ((i < n - 1) && (price[i + 1] <= price[i]))
+                i++;
 
-			// Store the index of maxima 
-			e.sell = i - 1; 
-			sol.add(e); 
+            // If we reached the end, break as no further solution possible
+            if (i == n - 1)
+                break;
 
-			// Increment number of buy/sell 
-			count++; 
-		} 
+            Interval e = new Interval();
+            e.buy = i++;
+            // Store the index of minima
 
-		// print solution 
-		if (count == 0) 
-			System.out.println("There is no day when buying the stock "
-							+ "will make profit"); 
-		else
-			for (int j = 0; j < count; j++) 
-				System.out.println("Buy on day: " + sol.get(j).buy 
-								+ "	 "
-								+ "Sell on day : " + sol.get(j).sell); 
+            // Find Local Maxima. Note that the limit is (n-1) as we are
+            // comparing to previous element
+            while ((i < n) && (price[i] >= price[i - 1]))
+                i++;
 
-		return; 
-	} 
+            // Store the index of maxima
+            e.sell = i - 1;
+            sol.add(e);
 
-	public static void main(String args[]) 
-	{ 
-		StockBuySell stock = new StockBuySell(); 
+            // Increment number of buy/sell
+            count++;
+        }
 
-		// stock prices on consecutive days 
-		int price[] = { 100, 180, 260, 310, 40, 535, 695 }; 
-		int n = price.length; 
+        // print solution
+        if (count == 0)
+            System.out.println("There is no day when buying the stock "
+                    + "will make profit");
+        else
+            for (int j = 0; j < count; j++)
+                System.out.println("Buy on day: " + sol.get(j).buy
+                        + "	 "
+                        + "Sell on day : " + sol.get(j).sell);
 
-		// fucntion call 
-		stock.stockBuySell(price, n); 
-	} 
-} 
+        return;
+    }
+}
 
 // This code has been contributed by Mayank Jaiswal 

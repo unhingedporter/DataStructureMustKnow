@@ -13,10 +13,12 @@ class Tree():
 
     def height(self, node: Node):
 
-        if(node == None or (node.left == None and node.right == None)):
+        if node is None or (node.left is None and node.right is None):
             return 0
         else:
-            return max(self.height(node.left), self.height(node.right)) + 1
+            left_sub_tree_height = self.height(node.left)
+            right_sub_tree_height = self.height(node.right)
+            return max(left_sub_tree_height, right_sub_tree_height) + 1
 
 
 n = Node(15)
