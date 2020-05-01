@@ -14,8 +14,9 @@ Optimization over plain recursion:
         Tabulation (Bottom up)
     
     Application:
-        Bellman Ford Algorth (shortest path from sorce to destinatioj)
+        Bellman Ford Algorithm (shortest path from sorce to destinatioj)
         Floyd - Shortest distance between vertices of different graph
         Diff Utitlity - Longest common seubsequence
         Search Cloud words (Edit distance)
         Resource Allocatin (0-1 Knapsack)
+        

@@ -12,6 +12,17 @@ class DynamicProgram:
         else:
             return self.fib(n - 1) + self.fib(n - 2)
 
+            #                    4
+            #
+            #           /                  \
+            #       3            +            2
+            #       /                         \
+            #   2       +     1             1 + 0
+            #   /              |            |   |
+            # 1  + 0            0           1    0
+            # |     |
+            # 1     0
+
     # DP Tabular based  problem bottom up
     # don't use recursion
     def fib(self, n):

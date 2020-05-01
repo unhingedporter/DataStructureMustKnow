@@ -30,4 +30,15 @@ Basic knowledge of image authoring tools, to be able to crop, resize, or perform
 Strong problem-solving and analytical abilities
 Ability to rapidly learn new technologies
 Strong written and oral communication skills
-   
+
+
+7+ years experience developing rich UI/Front-end for user-facing web applications.
+4+ years experience in architecture, design and development of systems using Java in a Unix environment
+Strong experience with AngularJS, Bootstrap, jQuery, JavaScript, HTML DOM, HTML5, CSS3, single page web application and client side MVC architecture.
+Experience with data-driven web development, including strong knowledge of JSON and AJAX.
+Extensive use of APIs and deep understanding of HTTP and REST architecture.
+Experience in developing secure web applications and knowledge of application vulnerabilities such as Cross Site Scripting (XSS), Cross Site Request Forgery (CSRF) etc.
+Experience building test automation frameworks and business use-case testing
+Experience with web services development using Java and the JEE stack (Spring, Hibernate, Log4J, SQL, Oracle, Tomcat).
+Experience with relational database is useful and desired, but not required.
+Experience with online ad industry is useful and desired, but not required.
