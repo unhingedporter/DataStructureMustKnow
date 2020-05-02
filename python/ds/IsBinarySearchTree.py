@@ -34,7 +34,7 @@ class BinaryTree():
         #     return False
         # check for every subtree with its opposite sibling counterpart
         return self.isBinarySearchTree(root.left, left, root) and \
-               self.isBinarySearchTree(root.right, root, right)
+            self.isBinarySearchTree(root.right, root, right)
 
 
 #         # Root

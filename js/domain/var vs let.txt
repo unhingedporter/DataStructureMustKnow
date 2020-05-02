@@ -3,7 +3,9 @@ let letVariable = “this is a let variable”;
 
 Say, here we have two variables declared. let us see what output it actually gives you.
 
-console.log(window.varVariable); //this is a var variableconsole.log(window.letVariable); //undefined
+console.log(window.varVariable); //this is a var variable *only global variables will show 
+
+console.log(window.letVariable); //undefined
 
 Thus let variables cannot be accessed in the window object because they cannot be globally accessed.
 Block

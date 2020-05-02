@@ -42,3 +42,46 @@ Experience building test automation frameworks and business use-case testing
 Experience with web services development using Java and the JEE stack (Spring, Hibernate, Log4J, SQL, Oracle, Tomcat).
 Experience with relational database is useful and desired, but not required.
 Experience with online ad industry is useful and desired, but not required.
+
+
+Flipkart++:
+
+Data Structures:
+
+•       Array
+
+•       Linked List
+
+•       Binary Tree, Binary Search Tree, Tree traversal
+
+•       Heap
+
+•       Hash Table
+
+•       Stack
+
+•       Queue
+
+•       Trie
+
+•       Graph (both directed and undirected)
+
+ 
+
+Algorithms:
+
+•       Depth First Search
+
+•       Breadth First Search
+
+•       Sorting
+
+•       Bubble Sort
+
+•       Merge Sort
+
+•       Quick Sort
+
+•       Radix/Bucket Sort
+
+•       Traversals (On multiple data structures)  

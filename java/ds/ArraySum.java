@@ -39,9 +39,9 @@ public class ArraySum {
     }
 
     public static void main(String args[]) {
-        int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, -1, -2, -3, -4, -5, -6, -7, -8, 33, 35, 6, 1};
+        int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, -1, -2, -3, -4, -5, -6, -7, -8, 33, 35, 6, 1 };
         int sum = 12;
-        printDuplicateElem(arr);
+        // printDuplicateElem(arr);
         find3Numbers(arr, arr.length, sum);
 
     }
@@ -67,41 +67,42 @@ public class ArraySum {
     // A generic implementation for printing duplicate elem in unsorted integer
     // array without range limitation
 
-    public void printDuplicatePairs(Integer[] arr, int sum) {
+    // public void printDuplicatePairs(Integer[] arr, int sum) {
 
-    }
+    // }
 
     // This function assumes that there are at least
     // three elements in arr[].
-    int maxTripletSum(int arr[], int n) {
-        // Initialize Maximum, second maximum and third
-        // maximum element
+    // int maxTripletSum(int arr[], int n) {
+    // // Initialize Maximum, second maximum and third
+    // // maximum element
 
-        int maxA = Integer.MIN_VALUE, maxB = Integer.MIN_VALUE, maxC = Integer.MIN_VALUE;
+    // int maxA = Integer.MIN_VALUE, maxB = Integer.MIN_VALUE, maxC =
+    // Integer.MIN_VALUE;
 
-        for (int i = 0; i < n; i++) {
+    // for (int i = 0; i < n; i++) {
 
-            // Update Maximum, second maximum and third
-            // maximum element
-            if (arr[i] > maxA) {
-                maxC = maxB;
-                maxB = maxA;
-                maxA = arr[i];
-            }
+    // // Update Maximum, second maximum and third
+    // // maximum element
+    // if (arr[i] > maxA) {
+    // maxC = maxB;
+    // maxB = maxA;
+    // maxA = arr[i];
+    // }
 
-            // Update second maximum and third maximum
-            // element
-            else if (arr[i] > maxB) {
-                maxC = maxB;
-                maxB = arr[i];
-            }
+    // // Update second maximum and third maximum
+    // // element
+    // else if (arr[i] > maxB) {
+    // maxC = maxB;
+    // maxB = arr[i];
+    // }
 
-            // Update third maximum element
-            else if (arr[i] > maxC)
-                maxC = arr[i];
-        }
+    // // Update third maximum element
+    // else if (arr[i] > maxC)
+    // maxC = arr[i];
+    // }
 
-        return (maxA + maxB + maxC);
-    }
+    // return (maxA + maxB + maxC);
+    // }
 
 }

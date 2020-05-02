@@ -44,8 +44,18 @@
    #### Diff between array and list in python
 *   Arrays and lists, in Python, have the same way of storing data. But, arrays can hold only a single data type elements whereas lists can hold any data type elements.
 
-   #### 
-*       
+   #### Python class definition syntax
+*   While it might not be syntactically incorrect to use the empty parentheses in a class definition, parentheses after a class definition are used to indicate inheritance, e.g:
+
+   class A(baseClass):
+      ...
+
+   In Python, the preferred syntax for a class declaration without any base classes is simply:
+
+   class A:
+      ...
+
+   Don't use parentheses unless you are subclassing other classes.
    #### 
 *       
    #### 
