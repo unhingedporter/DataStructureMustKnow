@@ -1,11 +1,13 @@
-# Binary Search based Python3 
-# program to find number of 
-# rotations in a sorted and 
-# rotated array. 
+# Binary Search based Python3
+# program to find number of
+# rotations in a sorted and
+# rotated array.
 
-# Returns count of rotations for 
-# an array which is first sorted 
-# in ascending order, then rotated 
+# Returns count of rotations for
+# an array which is first sorted
+# in ascending order, then rotated
+
+
 def countRotations(arr, low, high):
     # This condition is needed to
     # handle the case when array
@@ -20,7 +22,7 @@ def countRotations(arr, low, high):
 
     # Find mid
     # (low + high)/2
-    mid = low + (high - low) / 2;
+    mid = low + (high - low) / 2
     mid = int(mid)
 
     # Check if element (mid+1) is
@@ -37,12 +39,12 @@ def countRotations(arr, low, high):
     # Decide whether we need to go
     # to left half or right half
     if (arr[high] > arr[mid]):
-        return countRotations(arr, low, mid - 1);
+        return countRotations(arr, low, mid - 1)
 
     return countRotations(arr, mid + 1, high)
 
 
-# Driver code 
+# Driver code
 arr = [15, 18, 2, 3, 6, 12]
 n = len(arr)
 print(countRotations(arr, 0, n - 1))

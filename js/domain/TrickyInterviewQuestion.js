@@ -53,6 +53,9 @@ the branch of linguistics and logic concerned with meaning.
 
         //-----------------------------------------------------------------------------------------
         polyfill, event - delegation, async - defer, how http look like
+polyfill
+event population
+async
 
 
 

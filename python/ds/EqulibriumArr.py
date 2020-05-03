@@ -1,10 +1,10 @@
 # no need of prefix sum
 
+
 class ArrayOper:
 
     def __init__(self):
         pass
-
 
     def find_sub_array_zero_sum(self, arr):
         """
@@ -17,7 +17,7 @@ class ArrayOper:
         2) Or prefix sum becomes 0.
         """
 
-        prefix_sum=[]
+        prefix_sum = []
         sum = 0
         for iterator in range(len(arr)):
             sum += arr[iterator]
@@ -27,7 +27,7 @@ class ArrayOper:
             if 0 in prefix_sum:
                 print(f'Sub array contains 0 at {iterator}')
 
-    def check_equilibrium(self,arr):
+    def check_equilibrium(self, arr):
         """
         Equilibrium index of an array is an index such that the sum of elements at lower indexes is equal to the sum of elements at higher indexes
 
@@ -37,19 +37,17 @@ class ArrayOper:
         for elem in arr:
             sum += elem
 
-
         total_sum = sum
         sum = 0
         for iterator in range(len(arr)):
             sum += arr[iterator]
-            if(total_sum - sum ==0):
+            if(total_sum - sum == 0):
                 print(f'Equilibrium index exist at index{iterator} ')
 
 
 if __name__ == '__main__':
-    arr= [-7, 1, 5, 2, -4, 3, 0];
+    arr = [-7, 1, 5, 2, -4, 3, 0]
     print(f'The status of arr {arr} is {ArrayOper().check_equilibrium(arr)}')
 
-    arr=[1, 4, -2, -2, 5, -4, 3,-5]
+    arr = [1, 4, -2, -2, 5, -4, 3, -5]
     ArrayOper().find_sub_array_zero_sum(arr)
-

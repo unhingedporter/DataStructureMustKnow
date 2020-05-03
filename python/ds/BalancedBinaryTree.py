@@ -28,7 +28,7 @@ class Tree():
             if abs(leftSubtreeBalanceStatus - rightSubtreeBalanceStatus) > 1:
                 return -1
             else:
-                return 1 + self.isBalanced(node.left)
+                return 1 + max(self.isBalanced(node.left), self.isBalanced(node.right))
 
             # return max(, self.isBalanced(node.right)) + 1
 

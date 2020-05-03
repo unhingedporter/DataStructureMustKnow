@@ -1,16 +1,17 @@
-# Python3 program to find largest 
-# pair sum in a given array 
+# Python3 program to find largest
+# pair sum in a given array
 
-# Function to return largest pair 
-# sum. Assumes that there are 
-# at-least two elements in arr[] 
+# Function to return largest pair
+# sum. Assumes that there are
+# at-least two elements in arr[]
+
+
 def findLargestSumPair(arr, n):
     # Initialize first and second
     # largest element
     if arr[0] > arr[1]:
         first = arr[0]
         second = arr[1]
-
     else:
         first = arr[1]
         second = arr[0]
@@ -35,10 +36,9 @@ def findLargestSumPair(arr, n):
     return (first + second)
 
 
-# Driver program to test above function */ 
+# Driver program to test above function */
 arr = [12, 34, 10, 6, 40]
 n = len(arr)
-print("Max Pair Sum is",
-      findLargestSumPair(arr, n))
+print("Max Pair Sum is", findLargestSumPair(arr, n))
 
 # This code is contributed by Smitha Dinesh Semwal

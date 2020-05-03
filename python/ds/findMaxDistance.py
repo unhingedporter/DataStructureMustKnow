@@ -1,8 +1,9 @@
-# Python3 code to calculate the maximum 
-# distance between any city and its nearest station 
+# distance between any city and its nearest station
 
-# Function to calculate the maximum 
-# distance between any city and its nearest station 
+# Function to calculate the maximum
+# distance between any city and its nearest station
+
+
 def findMaxDistance(numOfCities, station):
     # Initialize boolean list
     hasStation = [False] * numOfCities

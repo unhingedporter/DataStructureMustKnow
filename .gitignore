@@ -1,3 +1,10 @@
 .vscode/launch.json
 .vscode/settings.json
 *.class
+.idea/DSMustKnow.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/libraries/R_User_Library.xml
+.idea/DSMustKnow.iml
