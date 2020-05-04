@@ -61,7 +61,13 @@ async
 
 //-----------------------------------------------------------------------------------------
 
+var x = {
+    y: 10
+};
+console.log(x.hasOwnProperty("y")); //true
+console.log(x.hasOwnProperty("z")); //false
 
+However, it does not look at the prototype chain of the object.
 
 //-----------------------------------------------------------------------------------------
 

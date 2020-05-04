@@ -398,3 +398,196 @@ obj2.b;
 obj2.a;
 // returns 'first', from SubObjMaker.prototype, because SubObjMaker.prototype 
 // was created with the ObjMaker function, which assigned a for us
+
+
+Automatic Semicolon Insertion
+function getPerson() {
+  return 
+  {
+    firstname: 'Sarwaswati'
+  }
+}
+
+console.log(getPerson()); //undefined because 'return;', watch out!
+
+
+
+----------------------------------------------------------------------------------------
+localStorage and sessionStorage accomplish the exact same thing and have the same API, but with sessionStorage the data is persisted only until the window or tab is closed, while with localStorage the data is persisted until the user manually clears the browser cache or until your web app clears the data.
+
+----------------------------------------------------------------------------------------
+typeof window.sessionStorage !== 'undefined'
+
+But, one problem is that some older versions of Firefox may throw a security exception error when this code is executed in the Firefox browser. So if we want to avoid that security exception from being thrown, we can simply wrap this piece of code inside a try catch block. And if we do that then our code could look like this:
+
+/*we define the isThereSessionStorage variable
+  which will store either true or false
+*/
+
+var isThereSessionStorage = (function() {
+  try {
+    return typeof window.sessionStorage !== 'undefined';
+  } catch (e) {
+    return false;
+  }
+})(); 
+
+if(!isThereSessionStorage)
+// our polyfill code goes here.... 
+
+
+
+
+----------------------------------------------------------------------------------------
+
+Currying
+
+Currying is an advanced technique of working with functions. It’s used not only in JavaScript, but in other languages as well.
+
+Currying is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c).
+
+Currying doesn’t call a function. It just transforms it.
+
+Let’s see an example first, to better understand what we’re talking about, and then practical applications.
+
+We’ll create a helper function curry(f) that performs currying for a two-argument f. In other words, curry(f) for two-argument f(a, b) translates it into a function that runs as f(a)(b):
+
+
+
+
+
+
+
+
+function curry(f) { // curry(f) does the currying transform
+  return function(a) {
+    return function(b) {
+      return f(a, b);
+    };
+  };
+}
+
+// usage
+function sum(a, b) {
+  return a + b;
+}
+
+let curriedSum = curry(sum);
+
+alert( curriedSum(1)(2) ); // 3
+
+*
+Currying? What for?
+
+To understand the benefits we need a worthy real-life example.
+
+For instance, we have the logging function log(date, importance, message) that formats and outputs the information. In real projects such functions have many useful features like sending logs over the network, here we’ll just use alert:
+
+function log(date, importance, message) {
+  alert(`[${date.getHours()}:${date.getMinutes()}] [${importance}] ${message}`);
+}
+
+Let’s curry it!
+
+log = _.curry(log);
+
+After that log works normally:
+
+log(new Date(), "DEBUG", "some debug"); // log(a, b, c)
+
+…But also works in the curried form:
+
+log(new Date())("DEBUG")("some debug"); // log(a)(b)(c)
+
+Now we can easily make a convenience function for current logs:
+
+// logNow will be the partial of log with fixed first argument
+let logNow = log(new Date());
+
+// use it
+logNow("INFO", "message"); // [HH:mm] INFO message
+
+Now logNow is log with fixed first argument, in other words “partially applied function” or “partial” for short.
+
+Currying is a transform that makes f(a,b,c) callable as f(a)(b)(c). JavaScript implementations usually both keep the function callable normally and return the partial if the arguments count is not enough.
+
+Currying allows us to easily get partials. As we’ve seen in the logging example, after currying the three argument universal function log(date, importance, message) gives us partials when called with one argument (like log(date)) or two arguments (like log(date, importance)).
+
+
+----------------------------------------------------------------------------------------
+
+call() apply() bind()
+
+    To change what this keyword is.
+    function currying : creating a copy of a function but with some preset parameters.
+    function borrowing : var args = Array.prototype.slice.call(arguments);
+
+function.call(person, 'en', 'es');
+function.apply(person, ['en', 'es']);
+
+//function currying
+function multiply(a, b) {
+  return a*b;
+}
+
+var multipleByTwo = multiply.bind(this, 2);
+multipleByTwo(4);
+
+----------------------------------------------------------------------------------------
+
+
+    So, when is a good choice to not use strict mode?
+
+When you are running old (or third party) code that you haven't had time to update yet.
+
+Strict mode is simply better. It isn't on by default because it would break old code that was not written with it in mind.
+
+
+
+----------------------------------------------------------------------------------------
+
+Web Vulnerability
+
+    Cross-Site Scripting (XSS) : hacker injects browser side code into the web application. When the end-user run the injected code, cookie or session or other sensitive information can be delivered to hacker.
+
+    Cross Origin Resource Sharing (CORS) : If you set Access-Control-Allow-Origin to *, it can allow anyone to send a request to your server, potentially revealing sensitive information in the response.
+
+Cross-site scripting
+
+In this section, we'll explain what cross-site scripting is, describe the different varieties of cross-site scripting vulnerabilities, and spell out how to find and prevent cross-site scripting.
+What is cross-site scripting (XSS)?
+
+Cross-site scripting (also known as XSS) is a web security vulnerability that allows an attacker to compromise the interactions that users have with a vulnerable application. It allows an attacker to circumvent the same origin policy, which is designed to segregate different websites from each other. Cross-site scripting vulnerabilities normally allow an attacker to masquerade as a victim user, to carry out any actions that the user is able to perform, and to access any of the user's data. If the victim user has privileged access within the application, then the attacker might be able to gain full control over all of the application's functionality and data.
+How does XSS work?
+
+Cross-site scripting works by manipulating a vulnerable web site so that it returns malicious JavaScript to users. When the malicious code executes inside a victim's browser, the attacker can fully compromise their interaction with the application.
+Cross-site scripting
+What are the types of XSS attacks?
+
+There are three main types of XSS attacks. These are:
+
+    Reflected XSS, where the malicious script comes from the current HTTP request.
+    Stored XSS, where the malicious script comes from the website's database.
+    DOM-based XSS, where the vulnerability exists in client-side code rather than server-side code.
+What can XSS be used for?
+
+An attacker who exploits a cross-site scripting vulnerability is typically able to:
+
+    Impersonate or masquerade as the victim user.
+    Carry out any action that the user is able to perform.
+    Read any data that the user is able to access.
+    Capture the user's login credentials.
+    Perform virtual defacement of the web site.
+    Inject trojan functionality into the web site.
+
+
+----------------------------------------------------------------------------------------
+
+Memory Leak
+
+1: Accidental global variables 2: Forgotten timers or callbacks
+
+----------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------
