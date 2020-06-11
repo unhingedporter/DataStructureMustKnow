@@ -17,6 +17,10 @@ class Queue {
         this.q.push(elem);
     }
 
+    peek() {
+        return this.q.length > 0 ? this.q[0] : null;
+    }
+
     deque() {
         return this.q.length > 0 ? this.q.shift() : null;
     }
@@ -30,37 +34,42 @@ class Queue {
 class TreeTraversal {
 
 
-    // printAllNodeAtLevel(root) {
+    printAllNodeAtLevel(root) {
+        var level = 0;
+        if (!root) {
+            return;
+        }
 
-    //     if (!root) {
-    //         return;
-    //     }
+        var queue = new Queue();
+        queue.enqueu(root);
+        queue.enqueu(null);
+        while (!queue.isEmpty()) {
+            var elem = queue.deque();
+            if (!elem) {
+                level++;
+                console.log(`Level ${level} - `);
+                queue.enqueu(null);
+                if (queue.peek() == null) {
+                    break; //Two null encountered
+                }
+                else continue;
+            }
 
-    //     var queue = new Queue();
-    //     queue.enqueu(root);
+            process.stdout.write(`${elem.value} ,`);
 
-    //     while (!queue.isEmpty()) {
+            if (!!elem.left) {
+                queue.enqueu(elem.left);
+            }
 
-
-    //         var elem = queue.deque();
-
-    //         if (!!elem.left) {
-    //             queue.enqueu(elem.left);
-    //         }
-
-    //         if (!!elem.right) {
-    //             queue.enqueu(elem.right);
-    //         }
-
-
-    //         while ()
-
-
-
-    //     }
+            if (!!elem.right) {
+                queue.enqueu(elem.right);
+            }
 
 
-    // }
+        }
+
+
+    }
 
     traversalBFS(root) {
 
@@ -133,6 +142,7 @@ class TreeTraversal {
     main() {
         var treeRoot = this.createTree();
         this.traversalBFS(treeRoot);
+        this.printAllNodeAtLevel(treeRoot);
     }
 }
 
