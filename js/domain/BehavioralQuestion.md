@@ -35,3 +35,19 @@ Think Big
 
 Thinking small is a self - fulfilling prophecy.Leaders create and communicate a bold direction that inspires results.They think differently and look around corners for ways to serve customers.s
 
+    ##### What do you do to stay motivated?
+      
+    * Why it’s effective: In terms of must-ask behavioral questions, this one might take the cake. In any job, staying motivated is key to avoiding burnout, sticking with the job, and delivering best results. If the candidate’s cause for motivation is likely to be volatile – like the constant hope of a promotion, or the ability to shape big company decisions, it may be cause for pause. In addition, if their source of motivation is tied to your company’s culture and values – like care for the environment, or providing excellent service to customers – it can be a sign they’re a good fit.
+  
+    ##### What is one project you're proud of?
+    
+    * Why it’s effective: This is one of the main chances during the interview for the candidate to shine. It gives them a chance to promote their work and the role they played in bringing that work to life. It’s also important to listen – how do they promote themselves? Do they give more credit to themselves or others? This question gives a window into both how the candidate works and promotes their work.
+
+    ##### What is the biggest compliment you have received in your current role?
+
+    * Why it’s effective: This is a much better twist to the questions “what is your greatest strength?” This grounds the candidate’s self-assessment in the real-world context of not only how well the performed in their current role, but what attracted other people notice and compliment. It is likely that what the candidate was appreciated for in their current role will similarly be an asset in their new role.
+
+    ##### Tell me about a time that you had a disagreement with your manager.
+
+    *   Why it’s effective: Just as there is a wide array of managerial styles, there is similarly a way of responding to different managerial styles. Some employees may jump to complete every task a manager mentions, while others may be more likely to challenge their manager and suggest areas for improvement. This question can sheds light on how the candidate will interact with their manager and resolve difficulties with them. When seeking to match a candidate with a certain manager or team, this is an invaluable question to determine their fit. 
+

@@ -1,0 +1,176 @@
+Summary
+
+There are 8 basic data types in JavaScript.
+
+    number for numbers of any kind: integer or floating-point, integers are limited by ±253.
+    bigint is for integer numbers of arbitrary length.
+    string for strings. A string may have zero or more characters, there’s no separate single-character type.
+    boolean for true/false.
+    null for unknown values – a standalone type that has a single value null.
+    undefined for unassigned values – a standalone type that has a single value undefined.
+    object for more complex data structures.
+    symbol for unique identifiers.
+
+
+Object with const can be changed
+
+Please note: an object declared as const can be modified.
+
+For instance:
+
+
+
+
+
+
+const user = {
+  name: "John"
+};
+
+user.name = "Pete"; // (*)
+
+alert(user.name); // Pete
+
+It might seem that the line (*) would cause an error, but no. The const fixes the value of user, but not its contents.
+
+The const would give an error only if we try to set user=... as a whole.
+
+
+Property names limitations
+
+As we already know, a variable cannot have a name equal to one of language-reserved words like “for”, “let”, “return” etc.
+
+But for an object property, there’s no such restriction:
+
+// these properties are all right
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+};
+
+
+There’s a minor gotcha with a special property named __proto__. We can’t set it to a non-object value:
+
+let obj = {};
+obj.__proto__ = 5; // assign a number
+alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
+
+
+Ordered like an object
+
+Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order they were added? Can we rely on this?
+
+The short answer is: “ordered in a special fashion”: integer properties are sorted, others appear in creation order. The details follow.
+
+
+let codes = {
+  "49": "Germany",
+  "41": "Switzerland",
+  "44": "Great Britain",
+  // ..,
+  "1": "USA"
+};
+
+for (let code in codes) {
+  alert(code); // 1, 41, 44, 49
+}
+The object may be used to suggest a list of options to the user. If we’re making a site mainly for German audience then we probably want 49 to be the first.
+
+But if we run the code, we see a totally different picture:
+
+    USA (1) goes first
+    then Switzerland (41) and so on.
+
+The phone codes go in the ascending sorted order, because they are integers. So we see 1, 41, 44, 49.
+
+On the other hand, if the keys are non-integer, then they are listed in the creation order, for instance:
+
+
+
+
+
+
+
+
+let user = {
+  name: "John",
+  surname: "Smith"
+};
+user.age = 25; // add one more
+
+// non-integer properties are listed in the creation order
+for (let prop in user) {
+  alert( prop ); // name, surname, age
+}
+
+
+For instance, we can use it to merge several objects into one:
+
+
+
+
+
+
+
+
+let user = { name: "John" };
+
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+// copies all properties from permissions1 and permissions2 into user
+Object.assign(user, permissions1, permissions2);
+
+// now user = { name: "John", canView: true, canEdit: true }
+
+If the copied property name already exists, it gets overwritten:
+
+let user = { name: "John" };
+
+Object.assign(user, { name: "Pete" });
+
+alert(user.name); // now user = { name: "Pete" }
+
+We also can use Object.assign to replace for..in loop for simple cloning:
+
+let user = {
+  name: "John",
+  age: 30
+};
+
+let clone = Object.assign({}, user);
+
+
+There’s a standard algorithm for deep cloning that handles the case above and more complex cases, called the Structured cloning algorithm(https://html.spec.whatwg.org/multipage/structured-data.html#safe-passing-of-structured-data).
+
+We can use recursion to implement it. Or, not to reinvent the wheel, take an existing implementation, for instance _.cloneDeep(obj) from the JavaScript library lodash.
+
+
+Writing doesn’t use prototype
+
+The prototype is only used for reading properties.
+
+Write/delete operations work directly with the object.
+------------------------------------------------------------------------------- 
+
+this is not affected by prototypes at all.
+
+No matter where the method is found: in an object or its prototype. In a method call, this is always the object before the dot.
+
+    In JavaScript, all objects have a hidden [[Prototype]] property that’s either another object or null.
+    We can use obj.__proto__ to access it (a historical getter/setter, there are other ways, to be covered soon).
+    The object referenced by [[Prototype]] is called a “prototype”.
+    If we want to read a property of obj or call a method, and it doesn’t exist, then JavaScript tries to find it in the prototype.
+    Write/delete operations act directly on the object, they don’t use the prototype (assuming it’s a data property, not a setter).
+    If we call obj.method(), and the method is taken from the prototype, this still references obj. So methods always work with the current object even if they are inherited.
+    The for..in loop iterates over both its own and its inherited properties. All other key/value-getting methods only operate on the object itself.
+
+----------------------------------------------------------------------------
+
+
+
+
+
+References:
+https://javascript.info/object

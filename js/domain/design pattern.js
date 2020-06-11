@@ -81,20 +81,28 @@ console.log(user1 === user2);
 
 // The factory pattern is used to create objects without exposing the instantiation logic.This pattern can be used when we need to generate a different object depending upon a specific condition.For example:
 
-class Car {
-  constructor(options) {
-    this.doors = options.doors || 4;
+class Frame {
+    constructor(options){
+      this.doors = options.doors || 4;
     this.state = options.state || 'brand new';
     this.color = options.color || 'white';
-  }
-} class Truck {
+    }
+
+
+}
+
+class Car extends Frame {
   constructor(options) {
-    this.doors = options.doors || 4;
-    this.state = options.state || 'used';
-    this.color = options.color || 'black';
+    super(options);
+    this.carrier = options.carries || false;
+  }
+} class Truck extends Frame {
+  constructor(options) {
+    super(options);
+    this.isMilitary = options.isMilitary || false
   }
 } class VehicleFactory {
-  createVehicle(options) {
+   createVehicle(options) {
     if (options.vehicleType === 'car') {
       return new Car(options);
     } else if (options.vehicleType === 'truck') {

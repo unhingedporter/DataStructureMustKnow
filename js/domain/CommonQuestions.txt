@@ -190,8 +190,8 @@ What will the code below output to the console and why?
   var a = b = 3;
 })();
 
-console.log("a defined? " + (typeof a !== 'undefined'));
-console.log("b defined? " + (typeof b !== 'undefined'));
+console.log("a defined? " + (typeof a !== 'undefined')); // False
+console.log("b defined? " + (typeof b !== 'undefined')); // True
 
 
 Since both a and b are defined within the enclosing scope of the function, and since the line they are on begins with the var keyword, most JavaScript developers would expect typeof a and typeof b to both be undefined in the above example.
@@ -413,6 +413,8 @@ console.log(getPerson()); //undefined because 'return;', watch out!
 
 
 ----------------------------------------------------------------------------------------
+In reality, the only true difference between prototype and __proto__ is that the former is a property of a class constructor, while the latter is a property of a class instance.
+----------------------------------------------------------------------------------------
 localStorage and sessionStorage accomplish the exact same thing and have the same API, but with sessionStorage the data is persisted only until the window or tab is closed, while with localStorage the data is persisted until the user manually clears the browser cache or until your web app clears the data.
 
 ----------------------------------------------------------------------------------------
@@ -434,7 +436,23 @@ var isThereSessionStorage = (function() {
 
 if(!isThereSessionStorage)
 // our polyfill code goes here.... 
+----------------------------------------------------------------------------------------
+Polyfill for the session storage:
 
+Refer: https://gist.github.com/juliocesar/926500
+
+// I mean, seriously, localStorage is supported even by your mum. How about instead of
+// casing the feature out, you give users in-memory (stale) storage instead?
+// If they close your application, they deserve to lose data anyway.
+
+ window.localStorage = {
+    _data       : JSON.parse(document.cookie.replace(/(?:(?:^|.*;\s*)localStorage\s*\=\s*([^;]*).*$)|^.*$/, "$1") || '{}'),
+    _save       : function() { document.cookie = "localStorage=" + JSON.stringify(this._data) + "; expires=Tue, 19 Jan 2038 03:14:07 GMT; path=/"; },
+    setItem     : function(id, val) { this._data[id] = String(val); this._save(); },
+    getItem     : function(id) { return this._data.hasOwnProperty(id) ? this._data[id] : null; },
+    removeItem  : function(id) { delete this._data[id]; this._save(); },
+    clear       : function() { this._data = {}; this._save(); }
+};
 
 
 
@@ -518,9 +536,9 @@ Currying allows us to easily get partials. As we’ve seen in the logging exampl
 
 call() apply() bind()
 
-    To change what this keyword is.
-    function currying : creating a copy of a function but with some preset parameters.
-    function borrowing : var args = Array.prototype.slice.call(arguments);
+To change what this keyword is.
+function currying : creating a copy of a function but with some preset parameters.
+function borrowing : var args = Array.prototype.slice.call(arguments);
 
 function.call(person, 'en', 'es');
 function.apply(person, ['en', 'es']);
