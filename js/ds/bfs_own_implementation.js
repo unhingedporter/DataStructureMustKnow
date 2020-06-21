@@ -13,7 +13,6 @@ class Queue {
     }
 
     enqueu(elem) {
-        // this.q.unshift(elem);
         this.q.push(elem);
     }
 

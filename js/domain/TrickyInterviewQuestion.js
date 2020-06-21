@@ -701,9 +701,100 @@ Interview Questions
 
 //-----------------------------------------------------------------------------------------
 
+The Number.EPSILON property represents the difference between 1 and the smallest floating point number greater than 1.
 
+You do not have to create a Number object to access this static property (use Number.EPSILON).
+
+Polyfill
+
+if (Number.EPSILON === undefined) {
+    Number.EPSILON = Math.pow(2, -52);
+}
+
+Refer: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/EPSILON
+Examples
+Testing equality
+
+x = 0.2;
+y = 0.3;
+z = 0.1;
+equal = (Math.abs(x - y + z) < Number.EPSILON);
+
+
+Note: Never use Number.EPSILON for exact equal comparison by difference. I hope you got me.
 //-----------------------------------------------------------------------------------------
+In JavaScript, it is nothing but a single global object which will contain all our functions, methods, variables and all that. Here ‘MYAPPLICATION‘ is acted as a JavaScript namespace and the only global object which contains all other items.
+Hide   Copy Code
+
+var MYAPPLICATION = {
+    calculateTax: function (item) {
+        return item * 1.40;
+    },
+    product: function (cost) {
+        this.cost = cost;
+        this.getCost = function(){
+                          return this.cost;
+                       };
+    },
+    doTaxCalculations: function () {
+        var p = new MYAPPLICATION.product(100);
+        alert(this.calculateTax(p.getCost()));
+    }
+}
+
+Nested JavaScript Namespace
+
+It is nothing but a namespace inside a namespace, which provides better modularization for complex JavaScript application.
+Hide   Copy Code
+
+var MYNESTEDAPPLICATION = {
+
+    MODEL: {
+        product: function (price) {
+			         this.price = price;
+			        this.getCost = function(){
+			             return this.price;
+			         };
+			     }
+    },
+    LOGIC: {
+        calculateTax: function (item) {
+            return item * 1.40;
+        },
+        doCalculations: function () {
+            var p = new MYNESTEDAPPLICATION.MODEL.product(100);
+            alert(this.calculateTax(p.getCost()));
+        }
+    }
+}
+
+Using Module
+
+MYAPP.MODEL.PRODUCTS.product = function(cost) {
+
+    //cost is the private variable
+    var cost = cost;
+    return {
+        isTaxable: true,
+        getCost: function(){
+            return cost;
+        }
+    };
+};
+
+Do your naming convention in such a manner that it will be self explanatory and
+not conflict other Library. May be I am not that good at those.
 //-----------------------------------------------------------------------------------------
+Named Function Expression
+
+Another special case is the assignment of named functions.
+
+var foo = function bar() {
+    bar(); // Works
+}
+bar(); // ReferenceError
+
+Here, bar is not available in the outer scope, since the function only gets assigned to foo; however, inside of bar, it is available. This is due to how name resolution in JavaScript works, the name of the function is always made available in the local scope of the function itself.
 
 
 //-----------------------------------------------------------------------------------------

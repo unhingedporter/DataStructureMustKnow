@@ -3,7 +3,8 @@
 class TrieNode {
 
     constructor() {
-        this.child = [];
+        this.key = '';
+        this.child = {};
         this.isEndofWord = false;
     }
 }
@@ -22,6 +23,10 @@ class Trie {
         return char.charCodeAt(0) - 'a'.charCodeAt(0);
     }
 
+    numToChar(num) {
+        return String.fromCharCode(num);
+    }
+
     search(str) {
 
     }
@@ -30,11 +35,10 @@ class Trie {
     printAllTrie() {
         var crawl = this.root;
 
-        for (var i = 0; i < crawl.child.length; i++) {
+        for (let [key, values] of Object.entries(crawl.child)) {
             var counter = 0;
-            while (crawl.child[i].length > 0 && !!crawl.child[counter]) {
-
-                console.log(crawl.child[counter])
+            while (!!crawl.child[key] && !!crawl.child[key].child && !!crawl.child[counter]) {
+                console.log(crawl.child[key][counter]);
                 crawl = crawl.child[counter];
             }
         }
@@ -43,17 +47,13 @@ class Trie {
     insert(str) {
 
         var crawl = this.root;
-
         for (var i = 0; i < str.length; i++) {
-
             var char = this.charToNum(str[i]);
-            if (!crawl.child.includes(char)) {
+            if (!crawl.child[char]) {
                 crawl.child[char] = this.getNode();
             } else {
                 crawl = crawl.child[char];
-
             }
-
         }
         crawl.child.isEndofWord = true;
     }
@@ -71,4 +71,4 @@ trie.insert('Baby');
 trie.insert('BabyPapaya');
 trie.insert('Papaya');
 trie.insert('Papaya');
-trie.printAllTrie()
+trie.printAllTrie();

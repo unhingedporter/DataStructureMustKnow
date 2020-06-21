@@ -26,7 +26,7 @@ var minDepth = function (root) {
 
     console.log(leftTreeHeight + "----" + rightTreeHeight);
 
-    console.log(1 + Math.min.call(this, leftTreeHeight, rightTreeHeight));
+    // console.log(1 + Math.min.call(this, leftTreeHeight, rightTreeHeight));
     return 1 + Math.min.call(this, leftTreeHeight, rightTreeHeight);
 
 };

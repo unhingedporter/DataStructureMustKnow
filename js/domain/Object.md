@@ -12,6 +12,8 @@ console.log(target);
 console.log(returnedTarget);
 // expected output: Object { a: 1, b: 4, c: 5 }
 
+console.log(target === returnedTarget)
+// true 
 Syntax
 
 Object.assign(target, ...sources)
@@ -228,6 +230,9 @@ Object.is(NaN, 0/0);         // true
 
 Caveats: Not reusable for deep comparison
 
+
+Note:
+In JavaScript, every primitive gets it’s own memory space when declared. When assigned a value, that value goes into the memory space.
 --------------------------------------------------------------------------------------------------
     Deep comparing objects:
     Known issues (well, they have very low priority, probably you'll never notice them):

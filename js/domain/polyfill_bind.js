@@ -24,7 +24,7 @@ var empInfo = printEmployeeInfo.poly_bind(employee, '15l')();
 
 var poly_bind = function (...arg1) {
     var func = this;
-    var bindObj = arg1.splice(1);
+    var bindObj = arg1.splice(1, 1);
     return function (...arg2) {
         func.apply(arg1[0], [...arg1, ...arg2])
     }
