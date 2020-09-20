@@ -9,7 +9,7 @@ class ArrayOper:
     def find_sub_array_zero_sum(self, arr):
         """
         Given an array of positive and negative numbers, find if there is a sub array (of size at-least one) with 0 sum.
-
+        Test case - [1,9,5,2,1,-8,0]
         If we consider all prefix sums, we can
         notice that there is a subarray with 0
         sum when :

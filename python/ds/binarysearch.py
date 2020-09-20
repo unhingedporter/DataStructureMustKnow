@@ -1,11 +1,13 @@
-# Python Program for recursive binary search. 
+# Python Program for recursive binary search in an array
 
-# Returns index of x in arr if present, else -1 
+# Returns index of x in arr if present, else -1
+
+
 def binarySearch(arr, low, high, x):
     # Check base case
     if high >= low:
-        mid = low + (high - low) / 2
         # better than (low + high)/2 to prevent overflow condition
+        mid = low + (high - low) / 2
 
         # If element is present at the middle itself
         if arr[mid] == x:
@@ -30,7 +32,7 @@ def binarySearch(arr, low, high, x):
 arr = [2, 3, 4, 10, 40]
 x = 10
 
-# Function call 
+# Function call
 result = binarySearch(arr, 0, len(arr) - 1, x)
 
 if result != -1:

@@ -233,6 +233,9 @@ Caveats: Not reusable for deep comparison
 
 Note:
 In JavaScript, every primitive gets it’s own memory space when declared. When assigned a value, that value goes into the memory space.
+
+
+The important thing to understand here is that the variables, obj1 and obj2 (which could be an Object, Array or Function) each contain only a reference to a location in memory. Not the value of the object.
 --------------------------------------------------------------------------------------------------
     Deep comparing objects:
     Known issues (well, they have very low priority, probably you'll never notice them):

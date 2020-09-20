@@ -1,4 +1,4 @@
- Write a mul function which will produce the following outputs when invoked:
+Write a mul function which will produce the following outputs when invoked:
 
 console.log(mul(2)(3)(4)); // output : 24 
 console.log(mul(4)(3)(4)); // output : 48
@@ -251,8 +251,6 @@ What will the code below output? Explain your answer.
 console.log(0.1 + 0.2);
 console.log(0.1 + 0.2 == 0.3);
 
-
-
 An educated answer to this question would simply be: “You can’t be sure. it might print out 0.3 and true, or it might not. Numbers in JavaScript are all treated with floating point precision, and as such, may not always yield the expected results.”
 
 The example provided above is classic case that demonstrates this issue. Surprisingly, it will print out:
@@ -303,9 +301,6 @@ While this parseInt-based approach will work well for many values of x, once x b
 > parseInt(1000000000000000000000, 10) === 1000000000000000000000
 false
 
-
-
-
 What is the output out of the following code? Explain your answer.
 
 var a={},
@@ -316,8 +311,6 @@ a[b]=123;
 a[c]=456;
 
 console.log(a[b]);
-
-
 
 The output of this code will be 456 (not 123).
 

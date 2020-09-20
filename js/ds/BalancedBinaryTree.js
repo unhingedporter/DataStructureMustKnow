@@ -12,25 +12,27 @@
  */
 
 var height = function (root) {
-    if (!root) {
-        return 0;
-    }
+  if (!root) {
+    return 0;
+  }
 
-    return 1 + Math.max.call({}, height(root.left), height(root.right))
-}
+  return 1 + Math.max.call({}, height(root.left), height(root.right));
+};
 var isBalanced = function (root) {
+  if (!root) {
+    return true;
+  }
 
-    if (!root) {
-        return true;
-    }
+  var leftSubTree = height(root.left);
+  var rightSubTree = height(root.right);
 
-    var leftSubTree = height(root.left);
-    var rightSubTree = height(root.right);
+  if (
+    Math.abs(leftSubTree - rightSubTree) <= 1 &&
+    isBalanced(root.left) &&
+    isBalanced(root.right)
+  ) {
+    return true;
+  }
 
-    if (Math.abs(leftSubTree - rightSubTree) <= 1 && isBalanced(root.left) && isBalanced(root.right)) {
-        return true
-    }
-
-    return false
-
+  return false;
 };

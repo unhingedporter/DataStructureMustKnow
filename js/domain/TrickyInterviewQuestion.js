@@ -354,8 +354,8 @@ if (typeof (EventSource) !== "undefined") {
 }
 
 Below are the list of events available for server sent events
-Event 	Description
-onopen 	It is used when a connection to the server is opened
+Event 	    Description
+onopen 	    It is used when a connection to the server is opened
 onmessage 	This event is used when a message is received
 onerror 	It happens when an error occurs
 
@@ -365,6 +365,7 @@ purpose of race method in promise ?
     Promise.race() method will return the promise instance which is firstly resolved or rejected.Let's take an example of race() method where promise2 is resolved first
 
 var promise1 = new Promise(function (resolve, reject) {
+    console.log(resolve, typeof (resolve))
     setTimeout(resolve, 500, 'one');
 });
 var promise2 = new Promise(function (resolve, reject) {
@@ -691,13 +692,15 @@ Interview Questions
 //-----------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------
 
+Explain the concept of ES6 Promises to a 5-year-old.
+What are the advantages of using ES6 maps over objects? What about using ES6 sets over arrays?
+//-----------------------------------------------------------------------------------------
+phone interview questions were same as mentioned many times here: flatten array, optimize a function, implement a simple Observable.
 
 //-----------------------------------------------------------------------------------------
-
-
+Flatten Array, Create Emitter
 //-----------------------------------------------------------------------------------------
-//-----------------------------------------------------------------------------------------
-
+ Basic JS questions about closure, map funciton, forEach function, apply function, call function, DOM tree, difference between array and object.
 
 //-----------------------------------------------------------------------------------------
 
