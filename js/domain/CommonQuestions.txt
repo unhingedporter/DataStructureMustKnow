@@ -43,7 +43,7 @@ var output = (function(x){
 The output would be 0. The delete operator is used to delete properties from an object. Here x is not an object but a local variable. delete operators don't affect local variables.
 
 
- What will be the output of the following code?
+What will be the output of the following code?
 
 var x = 1;
 var output = (function(){

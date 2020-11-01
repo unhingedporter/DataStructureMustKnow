@@ -1,5 +1,3 @@
-
-
 class Anagram {
 
 
@@ -16,7 +14,7 @@ class Anagram {
         for (let [key, value] of Object.entries(strArr)) {
 
 
-            var sortedVal = value.split('').sort();//.join('');
+            var sortedVal = value.split('').sort(); //.join('');
 
             if (hashAnagram[sortedVal]) {
                 var existingVal = hashAnagram[sortedVal];
@@ -29,8 +27,6 @@ class Anagram {
         }
 
         return Object.values(hashAnagram);
-
-
 
     }
 

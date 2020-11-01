@@ -1,5 +1,3 @@
-
-
 class Node {
 
     constructor(val) {
@@ -30,18 +28,18 @@ class LinkedList {
         var fast_pointer = this.head;
 
         while (slow_pointer && fast_pointer && fast_pointer.next) {
-
             slow_pointer = slow_pointer.next;
             fast_pointer = fast_pointer.next.next;
-
         }
 
         console.log(`The middle value is ${slow_pointer.value}`);
 
     }
 
+
     reverse() {
-        var prev = null, current = this.head;
+        var prev = null,
+            current = this.head;
         while (current.next) {
             var next = current.next;
             current.next = prev;

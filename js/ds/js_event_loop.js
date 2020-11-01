@@ -2,6 +2,7 @@
 Why is Node.js Single-threaded?
 
 Node.js is single-threaded for async processing. By doing async processing on a single-thread under typical web loads, more performance and scalability can be achieved as opposed to the typical thread-based implementation.
+
 Explain callback in Node.js.
 
 A callback function is called after a given task. It allows other code to be run in the meantime and prevents any blocking.  Being an asynchronous platform, Node.js heavily relies on callback. All APIs of Node are written to support callbacks.
@@ -9,14 +10,11 @@ What is callback hell in Node.js?
 
 Callback hell is the result of heavily nested callbacks that make the code not only unreadable but also difficult to maintain. 
 
-
-
 What is Event-driven programming?
 
 Event-driven programming is building our application based on and respond to events. When an event occurs, like click or keypress, we are running a callback function which is registered to the element for that event.
 
 Event driven programming follows mainly a publish-subscribe pattern.
-
 
 What is Event loop in Node.js work? And How does it work?
 
@@ -26,7 +24,7 @@ Whenever we are call setTimeout, http.get and fs.readFile, Node.js runs this ope
 
 So all the callback functions are queued in an loop, and will run one-by-one when the response has been received.
 
- What is REPL in Node.js?
+What is REPL in Node.js?
 
 REPL means Read-Eval-Print-Loop. It is a virtual environment that comes with Node.js. We can quickly test our JavaScript code in the Node.js REPL environment.
 
@@ -83,25 +81,25 @@ All Node JS applications uses “Single Threaded Event Loop Model” architectur
 //Javascript event loop:
 
 for (var i = 0; i < 100; i++) {
-  setTimeout(function () {
-    console.log(i);
-  }, 0);
+    setTimeout(function() {
+        console.log(i);
+    }, 0);
 }
 
 for (var i = 0; i < 100; i++) {
-  setTimeout(
-    (function (i) {
-      console.log(i);
-    })(i),
-    0
-  );
+    setTimeout(
+        (function(i) {
+            console.log(i);
+        })(i),
+        0
+    );
 }
 
 // How else can the JavaScript code below be written using Node.Js to produce the same output?
 
 console.log("first");
-setTimeout(function () {
-  console.log("second");
+setTimeout(function() {
+    console.log("second");
 }, 0);
 console.log("third");
 
@@ -114,7 +112,7 @@ console.log("third");
 // In Node.js version 0.10 or higher, setImmediate(fn) will be used in place of setTimeout(fn,0) since it is faster. As such, the code can be written as follows:
 
 console.log("first");
-setImmediate(function () {
-  console.log("second");
+setImmediate(function() {
+    console.log("second");
 });
 console.log("third");

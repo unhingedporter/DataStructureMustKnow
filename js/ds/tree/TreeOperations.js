@@ -8,6 +8,7 @@ class TreeNode {
 
 
 class Queue {
+
     constructor() {
         this.actualQueue = [];
     }
@@ -30,6 +31,7 @@ class Queue {
 }
 
 class TreeNodeHd {
+
     constructor(node, horizontalDistance) {
         this.node = node;
         this.horizontalDistance = horizontalDistance;
@@ -51,8 +53,8 @@ class TreeOperations {
                                                 
                                     /                                \
                                 50000                               150000
-                            /           \                     /                 \
-                        25000            75000             125000                175000
+                            /           \                       /                 \
+                        25000            75000               125000             175000
                     /        \          /    \              /     \             /     \
                 10000        40000   60000    90000      110000   140000    160000     300000
         */
@@ -215,7 +217,6 @@ class TreeOperations {
         }
 
         return 1 + this.getSize(node.left) + this.getSize(node.right);
-
     };
 
     getHeight(node) {
@@ -252,15 +253,15 @@ class TreeOperations {
                 }
                 sum = 0
                 queue.enqueu(null);
-
             }
-            sum += elem.value;
-
 
             if (!elem) {
                 return;
             }
 
+            sum += elem.value;
+
+            // Won't consider 0 but it does not matter for now as it is just sum :P
             if (!!elem.left) {
                 queue.enqueu(elem.left);
             }
@@ -326,6 +327,18 @@ class TreeOperations {
     }
 
     findCommonAncestor() {
+
+    }
+
+    invertTree() {
+
+    }
+
+    /* https://leetcode.com/problems/path-sum/
+    Given a binary tree and a sum, determine if the tree has a root-to-leaf path 
+    such that adding up all the values along the path equals the given sum.
+     */
+    hasPathSum(root, sum) {
 
     }
 

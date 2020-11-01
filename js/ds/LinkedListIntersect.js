@@ -7,8 +7,6 @@ class Node {
     }
 }
 
-
-
 var head = new Node(5);
 var n1 = new Node(50);
 var n2 = new Node(500);
