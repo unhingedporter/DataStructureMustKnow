@@ -54,6 +54,32 @@ class StockSpan {
     // { 100, 80, 60, 70, 60, 75, 85 }, then the span values , for corresponding 7 days are 
     // { 1, 1, 1, 2, 1, 4, 6 }
 
+
+    // Time complexity - O(n)
+    getPreviousGreaterInArr() {
+
+        var stockSpan = [1];
+        var stack = new Stack();
+        stack.push(0);
+
+        for (var stockPriceIterator = 1; stockPriceIterator < this.stockPriceList.length; stockPriceIterator++) {
+
+
+            while (!stack.isEmpty() && this.stockPriceList[stack.peek()] <= this.stockPriceList[stockPriceIterator]) {
+                stack.pop();
+            }
+
+            if (stack.isEmpty()) {
+                // No previous greater element found
+                console.log(-1);
+            } else {
+                // Previous greater element
+                console.log(this.stockPriceList[stockPriceIterator] + " ==> previous greater " + this.stockPriceList[stack.peek()])
+            }
+            stack.push(stockPriceIterator);
+        }
+    }
+
     // Time complexity - O(n)
     getStockSpanList() {
 
@@ -82,3 +108,5 @@ class StockSpan {
 var num = new StockSpan([100, 80, 60, 70, 60, 75, 85]);
 
 num.getStockSpanList();
+console.log("Previous greater element is");
+num.getPreviousGreaterInArr();
