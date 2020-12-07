@@ -20,7 +20,7 @@ What is Event loop in Node.js work? And How does it work?
 
 The Event loop handles all async callbacks. Node.js (or JavaScript) is a single-threaded, event-driven language. This means that we can attach listeners to events, and when a said event fires, the listener executes the callback we provided.
 
-Whenever we are call setTimeout, http.get and fs.readFile, Node.js runs this operations and further continue to run other code without waiting for the output. When the operation is finished, it receives the output and runs our callback function.
+Whenever we call setTimeout, http.get and fs.readFile, Node.js runs this operations and further continue to run other code without waiting for the output. When the operation is finished, it receives the output and runs our callback function.
 
 So all the callback functions are queued in an loop, and will run one-by-one when the response has been received.
 
@@ -109,7 +109,8 @@ console.log("third");
 // third
 // second
 
-// In Node.js version 0.10 or higher, setImmediate(fn) will be used in place of setTimeout(fn,0) since it is faster. As such, the code can be written as follows:
+// In Node.js version 0.10 or higher, setImmediate(fn) will be used in place
+// of setTimeout(fn,0) since it is faster. As such, the code can be written as follows:
 
 console.log("first");
 setImmediate(function() {

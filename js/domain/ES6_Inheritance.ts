@@ -1,6 +1,5 @@
 // interface allows us to create contracts other classes / objects have to create.
 
-
 interface User {
     username: string,
     password: string,
@@ -22,7 +21,6 @@ let numArray: Array<number>; // This array will only accepts numbers
 numArray = [1, 2, 3, 4, 5];
 
 //create a class
-
 
 class Car {
     engineName: string;

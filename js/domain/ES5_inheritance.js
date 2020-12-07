@@ -7,8 +7,8 @@
 // For Ex:
 
 function Person(fName, lName) {
-  this.firstName = fName;
-  this.lastName = lName;
+    this.firstName = fName;
+    this.lastName = lName;
 }
 
 // In above example Person is a function which takes two parameters, fName, lName and bind those to the this reference. When we use new keyword while calling Person function, the person function itself work as class and its constructor function. It create its own scope and this refer to that scope.
@@ -17,7 +17,7 @@ var p1 = new Person('unhinged ', 'potter');
 
 // In the above example p1 is the instance of class Person and we are passing two values to constructor function of class Person. The code in constructor function bind fName and lName values to firstName and lastName properties respectively of newly created scope of the Person class.
 
-//     Using prototype Object
+//  Using prototype Object
 
 // A prototype object is the shared space of a class instances. When any property of method of class is being accessed, JS interpreter first lookup that property in that object if it is not available, then it lookup into its prototype, if it is not there, then lookup into its parent’s prototype and so on.
 
@@ -25,19 +25,19 @@ var p1 = new Person('unhinged ', 'potter');
 
 // For Ex:
 
-Person.prototype.getFullName = function () {
-  return this.firstName + ' ' + this.lastName;
+Person.prototype.getFullName = function() {
+    return this.firstName + ' ' + this.lastName;
 };
 
 // In the above example, method getFullName is created on prototype of Person. When we try to access p1.getFullName(), JS engine first try to access that property on that object, as it is not available on p1, it goes to __proto__ and try to access that property, once JS engine found getFullName, it execute it in that context.
 
-p1.hasOwnProperty('firstName');  // Returns true
-p1.hasOwnProperty('lastName');   // Returns true
+p1.hasOwnProperty('firstName'); // Returns true
+p1.hasOwnProperty('lastName'); // Returns true
 p1.hasOwnProperty('getFullName'); // Returns false
 
 // In the above example, p1 has its own properties firstName and lastName as they are exist on that object, but it doesn’t has method getFullName as it is not exist on that object but exist on its prototype.
 
-//     Inheritance basics
+//   Inheritance basics
 
 // Inheritance is inheriting features of one class by another class. Inheritance supports reusability, when we want to create new class, when there is another class with some features, we create another class which derives from that class and add extra features over it.
 
@@ -60,14 +60,14 @@ p1.hasOwnProperty('getFullName'); // Returns false
 // Create Person as base class.
 
 function Person(fName, lName) {
-  this.firstName = fName;
-  this.lastName = lName;
+    this.firstName = fName;
+    this.lastName = lName;
 }
 
 // Create methods on prototype of the Person class
 
-Person.prototype.getFullName = function () {
-  return this.firstName + ' ' + this.lastName;
+Person.prototype.getFullName = function() {
+    return this.firstName + ' ' + this.lastName;
 }
 
 // Create child class
@@ -75,8 +75,8 @@ Person.prototype.getFullName = function () {
 // Create Employee class and call its base class with required parameters.
 
 function Employee(fName, lName, eId) {
-  Person.call(this, fName, lName);
-  this.empId = eId;
+    Person.call(this, fName, lName);
+    this.empId = eId;
 }
 
 // In the above example, we are executing constructor of Person class from the constructor function of Employee class in Employee class’s scope. It is similar to calling super.
@@ -99,8 +99,8 @@ Employee.prototype.constructor = Employee;
 
 // Add methods on prototype of child class
 
-Employee.prototype.getEmpInfo = function () {
-  return [this.empId, this.firstName, this.lastName];
+Employee.prototype.getEmpInfo = function() {
+    return [this.empId, this.firstName, this.lastName];
 }
 
 // Now we can create instance of Employee class and can access properties and methods of Person class too from that instance.

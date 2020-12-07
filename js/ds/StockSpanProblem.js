@@ -25,7 +25,6 @@ class Stack {
     }
 
     pop() {
-        // console.log(this._stack.length);
         if (this._stack.length === 0) {
             return;
         } else {
@@ -97,6 +96,8 @@ class StockSpan {
             var span = stack.isEmpty() ? stockPriceIterator + 1 : stockPriceIterator - stack.peek();
 
             console.log(span);
+
+            // can be improved
             stack.push(stockPriceIterator);
         }
 
@@ -108,5 +109,5 @@ class StockSpan {
 var num = new StockSpan([100, 80, 60, 70, 60, 75, 85]);
 
 num.getStockSpanList();
-console.log("Previous greater element is");
+console.log("Previous greater element are");
 num.getPreviousGreaterInArr();

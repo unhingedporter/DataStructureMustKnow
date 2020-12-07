@@ -36,8 +36,6 @@ class Anagram {
         console.log(`The anagram processor is ${JSON.stringify(this.anagramProcessor(arr))}`);
     }
 
-
-
 }
 
 var anagram = new Anagram();

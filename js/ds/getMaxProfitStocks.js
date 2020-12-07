@@ -1,4 +1,4 @@
-var get_max_profit = function (stock_prices) {
+var get_max_profit = function(stock_prices) {
 
     //  # Calculate the max profit
 
@@ -8,7 +8,7 @@ var get_max_profit = function (stock_prices) {
 
     console.log(stock_prices);
     // find local maxima 
-    var maximum_profit = 0; // Assume no losses :P 
+    var maximum_profits = 0; // Assume no losses :P 
     var start = 0;
     for (var i = 0; i < stock_prices.length - 1; i++) {
 
