@@ -18,11 +18,6 @@ Please note: an object declared as const can be modified.
 
 For instance:
 
-
-
-
-
-
 const user = {
   name: "John"
 };
@@ -34,7 +29,6 @@ alert(user.name); // Pete
 It might seem that the line (*) would cause an error, but no. The const fixes the value of user, but not its contents.
 
 The const would give an error only if we try to set user=... as a whole.
-
 
 Property names limitations
 
@@ -75,6 +69,7 @@ let codes = {
 for (let code in codes) {
   alert(code); // 1, 41, 44, 49
 }
+
 The object may be used to suggest a list of options to the user. If we’re making a site mainly for German audience then we probably want 49 to be the first.
 
 But if we run the code, we see a totally different picture:
@@ -85,13 +80,6 @@ But if we run the code, we see a totally different picture:
 The phone codes go in the ascending sorted order, because they are integers. So we see 1, 41, 44, 49.
 
 On the other hand, if the keys are non-integer, then they are listed in the creation order, for instance:
-
-
-
-
-
-
-
 
 let user = {
   name: "John",
@@ -104,18 +92,9 @@ for (let prop in user) {
   alert( prop ); // name, surname, age
 }
 
-
 For instance, we can use it to merge several objects into one:
 
-
-
-
-
-
-
-
 let user = { name: "John" };
-
 let permissions1 = { canView: true };
 let permissions2 = { canEdit: true };
 
@@ -141,11 +120,9 @@ let user = {
 
 let clone = Object.assign({}, user);
 
-
 There’s a standard algorithm for deep cloning that handles the case above and more complex cases, called the Structured cloning algorithm(https://html.spec.whatwg.org/multipage/structured-data.html#safe-passing-of-structured-data).
 
 We can use recursion to implement it. Or, not to reinvent the wheel, take an existing implementation, for instance _.cloneDeep(obj) from the JavaScript library lodash.
-
 
 Writing doesn’t use prototype
 
@@ -167,9 +144,6 @@ No matter where the method is found: in an object or its prototype. In a method 
     The for..in loop iterates over both its own and its inherited properties. All other key/value-getting methods only operate on the object itself.
 
 ----------------------------------------------------------------------------
-
-
-
 
 
 References:

@@ -122,7 +122,22 @@ class LinkedList {
     }
 
     detectYShape() {
+        /*
 
+                Method 1(Simply use two loops) 
+                Use 2 nested for loops. The outer loop will be for each node of the 1st list and inner loop will be for 2nd list. In the inner loop, check if any of nodes of the 2nd list is same as the current node of the first linked list. The time complexity of this method will be O(M * N) where m and n are the numbers of nodes in two lists.
+                
+                Method 2 (Mark Visited Nodes) 
+                This solution requires modifications to basic linked list data structure. Have a visited flag with each node. Traverse the first linked list and keep marking visited nodes. Now traverse the second linked list, If you see a visited node again then there is an intersection point, return the intersecting node. This solution works in O(m+n) but requires additional information with each node. A variation of this solution that doesn’t require modification to the basic data structure can be implemented using a hash. Traverse the first linked list and store the addresses of visited nodes in a hash. Now traverse the second linked list and if you see an address that already exists in the hash then return the intersecting node.
+               
+                Method 3(Using difference of node counts) 
+
+                Get count of the nodes in the first list, let count be c1.
+                Get count of the nodes in the second list, let count be c2.
+                Get the difference of counts d = abs(c1 – c2)
+                Now traverse the bigger list from the first node till d nodes so that from here onwards both the lists have equal no of nodes 
+                Then we can traverse both the lists in parallel till we come across a common node. (Note that getting a common node is done by comparing the address of the nodes)
+        */
     }
 
     isPalindrome() {
@@ -153,7 +168,34 @@ class LinkedList {
     }
 
     rotateLeft() {
-
+        // To rotate a linked list by k, we can first make the linked list circular and then moving k-1 steps forward from head node, making it null and make kth node as head.
+        /*
+        static void rotate( int k)
+        {
+            if (k == 0)
+                return;
+        
+            // Let us understand the below
+            // code for example k = 4 and
+            // list = 10.20.30.40.50.60.
+            Node current = head;
+        
+            // Traverse till the end.
+            while (current.next != null)
+                current = current.next;
+        
+            current.next = head;
+            current = head;
+        
+            // traverse the linked list to k-1 position which
+            // will be last element for rotated array.
+            for (int i = 0; i < k - 1; i++)
+                current = current.next;
+        
+            // update the head_ref and last element pointer to null
+            head = current.next;
+            current.next = null;
+        } */
     }
 
 }
