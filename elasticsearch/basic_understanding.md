@@ -1,5 +1,3 @@
-// todo : Add a fair draft
-
 To create an index:
 
 curl -X PUT "localhost:9200/twitter?pretty" -H 'Content-Type: application/json' -d'
@@ -24,10 +22,8 @@ for health check up
 
 Elastic search uses rest architecture.
 
-
-
 Data in: documents and indices
-edit
+
 
 #### Inverted Indexing working process
 
@@ -85,14 +81,14 @@ edit
                 Term 	Document
                 Anger 	1,2
                 Leads 	1,2,3
-                
+                               
                 From the preceding table, the words anger and leads exist both in document1 and document2. To support phrase search along with the document, we also need to record the position of the word in the document. The inverted index with word position is shown here:
-                Term 	Document
-                Fear 	1:1
-                Anger 	1:3, 2:1
-                Hate 	2:3, 3:1
+                Term 	    Document
+                Fear 	    1:1
+                Anger 	    1:3, 2:1
+                Hate 	    2:3, 3:1
                 Suffering 	3:3
-                Leads 	1:2, 2:2, 3:2
+                Leads 	    1:2, 2:2, 3:2
                 
                 Now, since we have the information regarding the position of the word, we can search if a document has the terms in the same order as the query.
                 Term 	Document
@@ -100,8 +96,6 @@ edit
                 leads 	1:2, 2:2
                 
                 Since document2 has anger as the first word and leads as the second word, the same order as the query, document2 would be a better match than document1. With the inverted index, any query on the documents is just a simple lookup. This is just an introduction to inverted index; in real life, it’s much more complicated, but the fundamentals remain the same. When the documents are indexed into Elasticsearch, documents are processed into the inverted index.
-
-                Yosemite national park may be closed for the weekend due to forecast of substantial rainfall    
 
 #### How lucene search works
 

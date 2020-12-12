@@ -1,67 +1,66 @@
-Images for a website are typically stored in individual files. Some of these images may be related or may be variations of the same image, such as a plain button and a highlighted button. When a user opens the webpage their browser has to request each of these files, resulting in a slower experience.
+### CSS Sprite:
 
-With CSS sprites, multiple images are combined into a single image called a sprite sheet. Instead of downloading several files, the user downloads a single file and displays the necessary image (or sprite) by offsetting the file. This removes the overhead of having to request multiple files at the cost of having to download one larger file.
-How CSS Sprites Work
+   - Images for a website are typically stored in individual files. Some of these images may be related or may be variations of the same image, such as a plain button and a highlighted button. When a user opens the webpage their browser has to request each of these files, resulting in a slower experience.
 
-A web developer merges several images into a single sprite sheet, placing them in a grid-like pattern. When a particular image is required, the CSS references the sprite sheet, offsets it by the index of the desired sprite, then defines the size of the sprite in pixels.
+   - With CSS sprites, multiple images are combined into a single image called a sprite sheet. Instead of downloading several files, the user downloads a single file and displays the necessary image (or sprite) by offsetting the file. This removes the overhead of having to request multiple files at the cost of having to download one larger file.
+   
+   * How CSS Sprites Work
 
-CSS sprites are commonly used in situations where a web page uses multiple images that have the same size, (e.g. for buttons or logos). Each button references the same sprite sheet but accesses an image by offsetting the sheet by a certain number of pixels. The desired image is then “framed” on the webpage.
-How to Create A CSS Sprite Sheet
+        - A web developer merges several images into a single sprite sheet, placing them in a grid-like pattern. When a particular image is required, the CSS references the sprite sheet, offsets it by the index of the desired sprite, then defines the size of the sprite in pixels.
 
-There are many tools that will automate building sprite sheets, but creating a sprite sheet can be done in any image editing program.
+        - CSS sprites are commonly used in situations where a web page uses multiple images that have the same size, (e.g. for buttons or logos). Each button references the same sprite sheet but accesses an image by offsetting the sheet by a certain number of pixels. The desired image is then “framed” on the webpage.
 
-Create a grid of pixels. A grid will not only help with positioning images, but also in referencing images.
-Add the images. Small images might fit in a single cell, while larger images will take up multiple cells. Most sprite sheets group images by size.
-Add the CSS. There are three attributes used to create a sprite in CSS: width, height and background. Width and height define the size of the image, while background defines the sprite sheet and the location of the desired sprite (in pixels).
-Add the element to the page. An img tag with a placeholder image can reference the CSS sprite by ID or by class. When the page is loaded, the placeholder image will be replaced by the sprite.
+* How to Create A CSS Sprite Sheet
 
-Example of CSS Sprites
+    - There are many tools that will automate building sprite sheets, but creating a sprite sheet can be done in any image editing program.
 
-Amazon’s redesign in October 2014 introduced a concise sprite sheet consisting of only a few icons: the site logo, search button, shopping cart icon and navigation arrows. When a shopper visits amazon.com, a copy of the sprite sheet is cached onto their computer and reused throughout the site. Using a sprite sheet instead of separate images saves Amazon from having to process over 30 additional HTTP requests per session.
+    Create a grid of pixels. A grid will not only help with positioning images, but also in referencing images.
+    Add the images. Small images might fit in a single cell, while larger images will take up multiple cells. Most sprite sheets group images by size.
+    Add the CSS. There are three attributes used to create a sprite in CSS: width, height and background. Width and height define the size of the image, while background defines the sprite sheet and the location of the desired sprite (in pixels).
+    Add the element to the page. An img tag with a placeholder image can reference the CSS sprite by ID or by class. When the page is loaded, the placeholder image will be replaced by the sprite.
 
-Other major service providers including Apple, Google, and Facebook make extensive use of CSS sprites. For services that handle millions of users, reducing the number of requests is a key strategy for increasing responsiveness.
-Benefits of CSS Sprites
+* Example of CSS Sprites
 
-CSS sprites reduce overall page load time while giving enterprises more control over the performance of their website.
+    - Amazon’s redesign in October 2014 introduced a concise sprite sheet consisting of only a few icons: the site logo, search button, shopping cart icon and navigation arrows. When a shopper visits amazon.com, a copy of the sprite sheet is cached onto their computer and reused throughout the site. Using a sprite sheet instead of separate images saves Amazon from having to process over 30 additional HTTP requests per session.
 
-Users experience faster page load times since images appear as soon as the sprite sheet is downloaded.
-Enterprises see greater throughput and lower resource usage as fewer HTTP requests are made, reducing the amount of network congestion.
+    - Other major service providers including Apple, Google, and Facebook make extensive use of CSS sprites. For services that handle millions of users, reducing the number of requests is a key strategy for increasing responsiveness.
 
-Conclusion
+* Benefits of CSS Sprites
 
-When it comes to increasing web performance, reducing the number of downloads is a strategy that enterprises depend on. For web services with millions of users, a sprite sheet could mean the difference between one million and one hundred million downloads.
+    - CSS sprites reduce overall page load time while giving enterprises more control over the performance of their website.
+
+    - Users experience faster page load times since images appear as soon as the sprite sheet is downloaded.
+    - Enterprises see greater throughput and lower resource usage as fewer HTTP requests are made, reducing the amount of network congestion.
+
+* A small practical example
+    - Instead of using three separate images, we use this single image ("img_navsprites.gif"):
+
+        navigation images
+
+        With CSS, we can show just the part of the image we need.
+
+        In the following example the CSS specifies which part of the "img_navsprites.gif" image to show:
+
+        #home {
+        width: 46px;
+        height: 44px;
+        background: url(img_navsprites.gif) 0 0;
+        }
+
+
+        Example explained:
+
+            <img id="home" src="img_trans.gif"> - Only defines a small transparent image because the src attribute cannot be empty. The displayed image will be the background image we specify in CSS
+            width: 46px; height: 44px; - Defines the portion of the image we want to use
+            background: url(img_navsprites.gif) 0 0; - Defines the background image and its position (left 0px, top 0px)
+
+* Conclusion
+
+    - When it comes to increasing web performance, reducing the number of downloads is a strategy that enterprises depend on. For web services with millions of users, a sprite sheet could mean the difference between one million and one hundred million downloads.
 
 From: https://www.maxcdn.com/one/visual-glossary/css-sprites/?utm_source=text
 
-
-
-
-
-
-Instead of using three separate images, we use this single image ("img_navsprites.gif"):
-
-navigation images
-
-With CSS, we can show just the part of the image we need.
-
-In the following example the CSS specifies which part of the "img_navsprites.gif" image to show:
-
-#home {
-  width: 46px;
-  height: 44px;
-  background: url(img_navsprites.gif) 0 0;
-}
-
-
-Example explained:
-
-    <img id="home" src="img_trans.gif"> - Only defines a small transparent image because the src attribute cannot be empty. The displayed image will be the background image we specify in CSS
-    width: 46px; height: 44px; - Defines the portion of the image we want to use
-    background: url(img_navsprites.gif) 0 0; - Defines the background image and its position (left 0px, top 0px)
-
-CSS Interview Questions
-
-A list of top frequently asked CSS interview questions and answers are given below.
+### Copied CSS Interview Questions that may not have worth to be asked in interview
 
 1) What is CSS?
 
