@@ -48,7 +48,8 @@ Between the Web browser and the server, numerous computers and machines relay th
     authentication (to control access to different resources)
     logging (allowing the storage of historical information)
 
-Basic aspects of HTTP
+### Basic aspects of HTTP 
+
 HTTP is simple
 
 HTTP is generally designed to be simple and human readable, even with the added complexity introduced in HTTP/2 by encapsulating HTTP messages into frames. HTTP messages can be read and understood by humans, providing easier testing for developers, and reduced complexity for newcomers.

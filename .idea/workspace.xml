@@ -2,77 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48d7dcf6-4cb5-461e-9cae-e647cf4a17ef" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/FAQ.md" beforeDir="false" afterPath="$PROJECT_DIR$/css/FAQ.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/elasticsearch/basic_understanding.md" beforeDir="false" afterPath="$PROJECT_DIR$/elasticsearch/basic_understanding.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/img" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/domain/webrtc.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/javascript-interview-questions" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/BehavioralQuestion.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/CommonQuestions.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/ES5_inheritance.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/ES6_Inheritance.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/ES6_Inheritance.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/EmitterClass.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/GenericThoughtRecruiters.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/Http_internal.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/IsIdenticalTree.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/JS_Basics.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/Object.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/PromiseSimple.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/SortAnArrayBasedOnOther.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/TreeMinDepth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/TrickyInterviewQuestion.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/WebSockets or Server-Sent Events.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/Zonejs.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/angular.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/companies/facebook/data_structure.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/companies/facebook/sde data structure.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/companies/facebook/technical.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/companies/facebook/testPractice.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/debounce.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/design pattern.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/eventloop.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/https_internal.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/observable.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/polyfill_bind.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/this_js_keyword.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/var vs let.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/virtual_dom.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/domain/vue.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/Anagram.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/BalancedBinaryTree.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/CoinChange.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/EditMinimumDistance.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/GayleLaakamnMcDowell/Array/Array.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/GayleLaakamnMcDowell/Array/tree.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/LeftmostStringRepeating.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/LinkedList.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/LinkedListIntersect.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/LongestSubstring.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/SortAlgo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/SortAlgo.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/StockSpanProblem.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/StringRotationDetection.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/StringSearchAnagramPermutation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/Sum/ThreeSum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/Sum/TwoSum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/Sum/linkedlistsum.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/Tree.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/TreeMaxDepth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/TreeMinDepth.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/Trie.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/Trie.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/add_two_num_linked_list.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/amazon.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/bfs_own_implementation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/binaryarraysort.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/getMaxProfitStocks.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/js_event_loop.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/relationship.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/sort/sortoperation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/ds/tree/TreeOperations.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/ds/dynamicprogramming.md" beforeDir="false" afterPath="$PROJECT_DIR$/python/ds/dynamicprogramming.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/random thoughts" beforeDir="false" afterPath="$PROJECT_DIR$/random thoughts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/javascript/domain/Http_internal.md" beforeDir="false" afterPath="$PROJECT_DIR$/javascript/domain/Http_internal.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,5 +44,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
