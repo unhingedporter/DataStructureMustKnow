@@ -11,7 +11,7 @@
 
         Expected time complexity: O(n)
     
-        The idea is to use an auxiliary array. We maintain two pointers one to leftmost or smallest element and other to rightmost or largest element. We more both pointers toward each other and alternatively copy elements at these pointers to an auxiliary array. Finally, we copy auxiliary array back to the original array.
+        The idea is to use an auxiliary array. We maintain two pointers one to leftmost or smallest element and other to rightmost or largest element. We move both pointers toward each other and alternatively copy elements at these pointers to an auxiliary array. Finally, we copy auxiliary array back to the original array.
         Below image is a dry run of the above approach: 
     
     -  Solution that requires O(n) time and O(1) extra space is discussed. The idea is to use multiplication and modular trick to store two elements at an index.
@@ -57,19 +57,18 @@
     * Equilibrium Point in an array is a position such that the sum of elements before it is equal to the sum of elements after it.
         * Expected Time Complexity: O(N)
         * Expected Auxiliary Space: O(1)
-    
-    Algorithm:
-        - Go with  prefix sum
-        -   1) Initialize leftsum  as 0
-            2) Get the total sum of the array as sum
-            3) Iterate through the array and for each index i, do following.
-                a)  Update sum to get the right sum.  
+        * Algorithm:
+            - Either Go with  prefix sum
+            - Initialize leftsum  as 0
+            - Get the total sum of the array as sum
+            - Iterate through the array and for each index i, do following.
+                -  Update sum to get the right sum.  
                     sum = sum - arr[i] 
                 // sum is now right sum
-                b) If leftsum is equal to sum, then return current index. 
+                - If leftsum is equal to sum, then return current index. 
                 // update leftsum for next iteration.
-                c) leftsum = leftsum + arr[i]
-            4) return -1 
+                - leftsum = leftsum + arr[i]
+            - return -1 
             // If we come out of loop without returning then
             // there is no equilibrium index
 
@@ -119,12 +118,15 @@
 
     - Given an unsorted array of size N. Find the first element in array such that all of its left elements are smaller and all right elements to it are greater than it.
       -  Note: Left and right side elements can be equal to required element. And extreme elements cannot be required element.
-      -  Input:
-        The first line of input contains an integer T denoting the number of test cases. Then T test cases follow. Each test case consists of two lines. First line of each test case contains an Integer N denoting size of array and the second line contains N space separated array elements.
-        
-      -  Output:
-        For each test case, in a new line print the required element. If no such element present in array then print -1.
-         
+       
+    * An Efficient Solution can solve this problem in O(n) time using O(n) extra space. Below is the detailed solution.
+
+        * Create two arrays leftMax[] and rightMin[].
+        * Traverse input array from left to right and fill leftMax[] such that leftMax[i]   contains a maximum element from 0 to i-1 in the input array.
+        * Traverse input array from right to left and fill rightMin[] such that rightMin[i] contains a minimum element from to n-1 to i+1 in the input array.
+        * Traverse input array. For every element arr[i], check if arr[i] is greater than leftMax[i] and smaller than rightMin[i]. If yes, return i.
+
+
 * Trapping rain water 
     
     - Given an array arr[] of N non-negative integers representing height of blocks at index i as Ai where the width of each block is 1. Compute how much water can be trapped in between blocks after raining.
@@ -132,3 +134,42 @@
         |  |
         |_|
         We can trap 2 units of water in the middle gap.
+
+* Convert array into Zig-Zag fashion
+
+    - Given an array Arr (distinct elements) of size N. Rearrange the elements of array in zig-zag fashion. The converted array should be in form a < b > c < d > e < f. The relative order of elements is same in the output i.e you have to iterate on the original array only.
+    - Input:
+        - N = 7
+        - Arr[] = {4, 3, 7, 8, 6, 2, 1}
+        - Output: 3 7 4 8 2 6 1
+        - Explanation: 3 < 7 > 4 < 8 > 2 < 6 > 1
+    - Expected Time Complexity: O(N)
+    - Expected Auxiliary Space: O(1)
+    * Naive Solution
+        - A Simple Solution is to first sort the array. After sorting, exclude the first element, swap the remaining elements in pairs. (i.e. keep arr[0] as it is, swap arr[1] and arr[2], swap arr[3] and arr[4], and so on). 
+        - Time complexity: O(N log N) since we need to sort the array first.
+    * Efficient Solution
+        - Maintain a flag for representing which order(i.e. < or >) currently we need.
+    If the current two elements are not in that order then swap those elements otherwise not.
+
+* Spirally traversing the matrix 
+    - Given a matrix of size R*C. Traverse the matrix in spiral form.
+        - Input:
+        - R = 4, C = 4
+        - matrix[][] = {{1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15,16}}
+        - Output: 
+            - 1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10
+
+* Largest Number formed from an Array 
+
+    - Given a list of non negative integers, arrange them in such a manner that they form the largest number possible.The result is going to be very large, hence return the result in the form of a string.
+    - Input: 
+    - N = 5
+    - Arr[] = {3, 30, 34, 5, 9}
+    - Output: 9534330
+    - Explanation: Given numbers are {3, 30, 34,
+5, 9}, the arrangement 9534330 gives the
+largest value.
