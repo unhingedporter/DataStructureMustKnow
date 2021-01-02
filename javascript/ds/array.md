@@ -11,8 +11,7 @@
 
         Expected time complexity: O(n)
     
-        The idea is to use an auxiliary array. We maintain two pointers one to leftmost or smallest element and other to rightmost or largest element. We move both pointers toward each other and alternatively copy elements at these pointers to an auxiliary array. Finally, we copy auxiliary array back to the original array.
-        Below image is a dry run of the above approach: 
+        The idea is to use an auxiliary array. We maintain two pointers one to leftmost or smallest element and other to rightmost or largest element. We move both pointers toward each other and alternatively copy elements at these pointers to an auxiliary array. Finally, we copy auxiliary array back to the original array. 
     
     -  Solution that requires O(n) time and O(1) extra space is discussed. The idea is to use multiplication and modular trick to store two elements at an index.
         * Works only for positive integers**
