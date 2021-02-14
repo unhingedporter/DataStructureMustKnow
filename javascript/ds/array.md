@@ -1,6 +1,43 @@
 
 ## Array
 
+
+* Advantages 
+
+    - Random access 
+    - Cache friendliness
+
+
+    Insert -> At end o(1)
+            At middle O(n)
+
+    Delete -> At end o(1)
+            At middle O(n)           
+
+    Search -> Need more discussion
+
+* Reverse an array
+
+    while(low<high){
+        swap(arr[low], arr[high])
+        low++;
+        high--;
+    }
+
+* Rotate an array 
+
+    Time complexity : 0(n)
+    Space Complexity: o(1)
+
+    ar[] = [1,1,1,1,1,222,33,55]
+
+    - First reverse element 0 to d-1
+    - reverse d to n
+    - Reverse whole array to get rotate element
+
+
+
+
 * Rearrange an array in maximum minimum form   
     - Given a sorted array of positive integers, rearrange the array alternately i.e first element should be maximum value, second minimum value, third second max, fourth second min and so on. 
 
@@ -70,6 +107,7 @@
             - return -1 
             // If we come out of loop without returning then
             // there is no equilibrium index
+    * Naive approach: Calculate prefixSum and suffixSum. check for every element prefixSum[i-1] = suffixSum[i+1]
 
 
 * Given an array A of positive integers. Your task is to find the leaders in the array. 
@@ -88,6 +126,7 @@
     Algorithm:
      * Scan all the elements from right to left in an array and keep track of maximum till now. When maximum changes its value, print it.
      * Use stack to store if the order is important
+     * Time complexity: O(n)
 
 * Minimal platform
     - Given arrival and departure times of all trains that reach a railway station. Find the minimum number of platforms required for the railway station so that no train is kept waiting.
@@ -111,7 +150,7 @@
         - Explanation: We can buy stock on day 
             0, and sell it on 3rd day, which will 
             give us maximum profit. Now, we buy 
-            stock on day 4 and sell it on day 6.
+            stock on day 4 and sell it on day 6. Find pair of local minima and local maxima. Add subtraction of these values
 
 * Element with left side smaller and right side greater
 
@@ -129,10 +168,15 @@
 * Trapping rain water 
     
     - Given an array arr[] of N non-negative integers representing height of blocks at index i as Ai where the width of each block is 1. Compute how much water can be trapped in between blocks after raining.
-    - Structure is like below:
+    - Structure is like below: [3,0,1,2,5]
         |  |
         |_|
         We can trap 2 units of water in the middle gap.
+        Output would be: 3+2+1 = 6
+    - For every element, find max on left and right side. Take minimum of these two and subtract from the number itself. Add all these values to get cubic capacity
+    - Time complexity O(n)
+        - Create two array LeftMax and RightMax: 0(n)
+        - Auxiliary space 0(n)
 
 * Convert array into Zig-Zag fashion
 
@@ -172,3 +216,65 @@
     - Explanation: Given numbers are {3, 30, 34,
 5, 9}, the arrangement 9534330 gives the
 largest value.
+
+* Window Sliding Technique:
+
+    - arr[] =  [1,8,30,-5,20,7]
+    - Find sum of first window and preserve start and end index of the window
+    - Add next element and remove one element
+    - Time complexity: O(n)
+
+    * Print M N-Fibonacci number
+
+    * Count distinct element in every window of size k
+        - Combination of window sliding technique and hashing
+        
+    * Given an unsorted array of non negative integers, find if there is a subarray with given
+        // sum 
+
+            
+        There are two approaches to solve it
+        a. Window Sliding Technique
+        Sum every number till the time it either matches the given sum or exceeds it. In the latter case
+        just delete some elements from starting
+        Note: it will handle only non negative integers
+            arr = [1,4,20,3,10,5]
+            sum = 33
+            o/p: yes
+
+        b. Hashing: Check sum with prefix sum
+        
+* Prefix sum
+
+    - Array [] = [2,8,3,9,6,5,4]
+    - Queries 
+        - getSum(0,2)  
+        - getSum(1,4)
+        - getSum(2,6)
+        - Perform as efficient as (O(1)) it can be (if needed do precomputation)
+    - Prefix sum array consist of array with summation from o to i th element at i th position
+    - return l === 0? prefix_sum[r] : prefix_sum[r] - prefix_sum[l-1]
+
+    - Given n ranges, find the maximum appearing element in their ranges
+
+         Start   [1 , 2 , 5 , 15]
+         End     [5 , 8,  7 , 18]
+
+         Output: 5 
+
+        - initialize an array of lenght max num with 0 
+        - arr[l[i]]++
+        - arr[r[i]+1]--
+        - Calculate prefix sum
+        - Maximum element in the array is the answer
+
+    - Check if an array can be divided into three parts with equal sum
+
+    - Check if there is a subarray with 0 sum
+
+    - Find the longest subarray with equal 0s and 1s.
+
+
+    
+
+

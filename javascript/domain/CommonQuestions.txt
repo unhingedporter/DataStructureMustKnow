@@ -129,13 +129,18 @@ Sample 1
 
 var bar = function(){ return 12; };
 typeof bar();  
-
+"number"
+typeof bar
+"function"
 or
 
 Sample 2
 
 function bar(){ return 12; };
 typeof bar();  
+"number"
+typeof bar
+"function"
 
 A function definition can have only one reference variable as its function name. In sample 1, bar's reference variable points to anonymous function. In sample 2, the function's definition is the name function.
 
@@ -462,13 +467,6 @@ Currying doesn’t call a function. It just transforms it.
 Let’s see an example first, to better understand what we’re talking about, and then practical applications.
 
 We’ll create a helper function curry(f) that performs currying for a two-argument f. In other words, curry(f) for two-argument f(a, b) translates it into a function that runs as f(a)(b):
-
-
-
-
-
-
-
 
 function curry(f) { // curry(f) does the currying transform
   return function(a) {

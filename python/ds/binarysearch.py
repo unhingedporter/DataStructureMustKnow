@@ -2,7 +2,6 @@
 
 # Returns index of x in arr if present, else -1
 
-
 def binarySearch(arr, low, high, x):
     # Check base case
     if high >= low:
@@ -41,3 +40,21 @@ if result != -1:
 else:
     print
     "Element is not present in array"
+
+# Some problem based on binary search 
+
+#  Given a sorted array with repetition. Find leftmost element in O(log(n))
+
+#  Given a sorted array with repetition. Find total number of occurrence of an element in O(log(n))
+
+#  Easiest question: Given a sorted array(with 0's and 1's) with repetition. Find total number of occurrence of an element in O(log(n))
+
+#  Given a sorted array(with infinite size**) with repetition. Find an element in O(log(n))
+
+#  Given a sorted and rotated array. Find a given element in O(log(n))
+
+#  Given a sorted and rotated array. Find maximum/minimum element in O(log(n))
+
+#  Peak element: Not smaller than neighbour
+
+#  Square root (floor of square root)

@@ -53,13 +53,12 @@ class StockSpan {
     // { 100, 80, 60, 70, 60, 75, 85 }, then the span values , for corresponding 7 days are 
     // { 1, 1, 1, 2, 1, 4, 6 }
 
-
     // Time complexity - O(n)
     getPreviousGreaterInArr() {
 
         var stockSpan = [1];
         var stack = new Stack();
-        stack.push(0);
+        stack.push(stockPriceList[0]);
 
         for (var stockPriceIterator = 1; stockPriceIterator < this.stockPriceList.length; stockPriceIterator++) {
 

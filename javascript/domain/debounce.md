@@ -51,7 +51,7 @@ Throttling code example
 
 <pre>
 function throttle(func, throttleWait) {
-  return function (args) {
+  return function (...args) {
     let context = this;
     let previousCall = this.lastCall;
     this.lastCall = Date.now();

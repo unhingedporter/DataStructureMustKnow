@@ -1,3 +1,4 @@
+/*
 <body>
     <div id="rootA">
         <div>
@@ -32,6 +33,7 @@
 </body>
 </html >
 
+*/
 
 
 
@@ -65,14 +67,14 @@ while (elemATraversal.length) {
 function Emitter() {
     this.emitter = {};
 }
-var subscription = function (eventName, callback, eventlisteners, key) {
+var subscription = function(eventName, callback, eventlisteners, key) {
     this.event = eventName;
     this.callback = callback;
     this.eventlisteners = eventlisteners;
     this.key = key;
 }
 
-Emitter.prototype.subscribe(eventName, callback){
+Emitter.prototype.subscribe(eventName, callback) {
 
     if (!this.emitter[eventName]) {
         this.emitter[eventName] = [];
@@ -82,11 +84,11 @@ Emitter.prototype.subscribe(eventName, callback){
     return subscription;
 }
 
-Emitter.prototype.emit(eventName, ...args){
+Emitter.prototype.emit(eventName, ...args) {
 
     if (this.emitter[eventName]) {
 
-        this.emitter[eventName].forEach(function (value) {
+        this.emitter[eventName].forEach(function(value) {
             this.emitter[eventName].callback.apply(this, args);
         });
     }
@@ -94,14 +96,14 @@ Emitter.prototype.emit(eventName, ...args){
 
 }
 
-Emitter.prototype.release(eventName){
+Emitter.prototype.release(eventName) {
 
 }
 
 var obj = new Emitter();
-obj.subscribe('event_name', function () { })
+obj.subscribe('event_name', function() {})
 
-var sayHello = function (msg) {
+var sayHello = function(msg) {
     console.log(msg);
 }
 
@@ -114,12 +116,12 @@ for (var i = 0; i < 10; i++) {
     amy.speak('some random garbled text' + i);
 }
 
-var debounce = function (func, wait) {
+var debounce = function(func, wait) {
     let timeout;
-    return function (msg) {
+    return function(msg) {
         var context = this;
         clearInterval(timeout);
-        timeout = setTimeout(function () {
+        timeout = setTimeout(function() {
             func.call(context, msg);
         }, wait);
     }
