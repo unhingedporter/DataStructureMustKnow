@@ -169,9 +169,7 @@ var salary = "1000$";
 (function () {
     var salary = undefined;
     console.log("Original salary was " + salary);
-
     salary = "5000$";
-
     console.log("My New Salary " + salary);
 })();
 
@@ -198,7 +196,6 @@ What will the code below output to the console and why?
 console.log("a defined? " + (typeof a !== 'undefined')); // False
 console.log("b defined? " + (typeof b !== 'undefined')); // True
 
-
 Since both a and b are defined within the enclosing scope of the function, and since the line they are on begins with the var keyword, most JavaScript developers would expect typeof a and typeof b to both be undefined in the above example.
 
 However, that is not the case. The issue here is that most developers incorrectly understand the statement var a = b = 3; to be shorthand for:
@@ -220,7 +217,6 @@ But how can b be defined outside of the scope of the enclosing function? Well, s
 
 Note that, in strict mode (i.e., with use strict), the statement var a = b = 3; will generate a runtime error of ReferenceError: b is not defined, thereby avoiding any headfakes/bugs that might othewise result. (Yet another prime example of why you should use use strict as a matter of course in your code!)
 
-
 var myObject = {
     foo: "bar",
     func: function() {
@@ -239,7 +235,6 @@ outer func:  this.foo = bar
 outer func:  self.foo = bar 
 inner func:  this.foo = undefined 
 inner func:  self.foo = bar 
-
 
 What is the significance of, and reason for, wrapping the entire content of a JavaScript source file in a function block?
 
