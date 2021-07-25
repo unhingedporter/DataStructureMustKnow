@@ -41,7 +41,7 @@ var search = function () {
 
     var mid = Math.floor(low + (high - low) / 2);
 
-    if (arr[mid] === elem && (mid === arr.lenght || arr[mid + 1] !== elem)) {
+    if (arr[mid] === elem && (mid === arr.length || arr[mid + 1] !== elem)) {
       return { elem, key: mid };
     } else if (arr[mid] <= elem) {
       return rightMostBinarySearch(arr, mid + 1, high, elem);
