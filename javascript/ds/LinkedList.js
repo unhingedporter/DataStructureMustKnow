@@ -55,6 +55,11 @@ class LinkedList {
 
     NthfromLast() {
 
+        // initialize two pointers
+        // traverse one pointer initially nth places
+        // traverse both pointers after that
+
+
     }
 
     sort() {

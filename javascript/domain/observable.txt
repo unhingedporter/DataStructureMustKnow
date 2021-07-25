@@ -103,27 +103,32 @@ Reactive Programming
 Observables implement reactive programming principles. Reactive programming is a programming paradigm involving async data streams and the propagation of change.
 
 Observables represent these streams of data. Observers represent the registered callbacks used for listening or "subscribing" to changes in these streams.
+
 Javascript Observables vs Promises
 
 Those more experienced with Promises may ask "Why Observables?". After all, Promises are designed around handling async activity in a graceful way.
 
 Everything you can do with a Promise you can do with an Observable. Everything you can do with an Observable you can't necessarily do with a Promise. Here are some of the key differences between Observables and Promises in JavaScript:
+
 Eager vs Lazy
 
 A promise will execute at the moment it's defined. When a promise has been initialized, it represents a process that has already started happening.
 
 An observable defines a function that's executed only when subscribe() is called. You have to call subscribe() on an observable before the code will actually execute. This saves resources as observables only execute when they are subscribed to.
+
 Cancel vs no cancel
 
 While some Promise libraries implement cancel functionality, the inherit JavaScript Promise is not cancellable. Just like you can subscribe to an observer, you can also unsubscribe.
 Always Async vs Sometimes Async
 
 A promise always resolves or rejects itself based on some async activity. While observables are often used with async activity (such as the Angular HTTP request client), observables can also be used for sync activities as well. For example, you can use an observable to iterate through the elements in an array.
+
 Multicast vs Unicast
 
 Promises are multicast. This means any reference to the promise will receive the same resolved value. Observables are unicast by default. For every observer that subscribes to an observable, a separate instance of the observable function is executed.
 
 Things can be done to make observables multicast. The RxJs library implements a share() method for sharing the same observable instance across all subscribers. Remember that observables are unicast by nature.
+
 Push vs Pull
 
 A promise either resolves or rejects. It can't emit multiple values. An observable can call next() multiple times.
