@@ -9,7 +9,7 @@ var search = function () {
       return -1;
     }
 
-    var mid = Math.round(low + (high - low) / 2);
+    var mid = Math.floor(low + (high - low) / 2);
 
     if (arr[mid] === elem) {
       return { elem, mid };
@@ -24,7 +24,7 @@ var search = function () {
       return -1;
     }
 
-    var mid = Math.round(low + (high - low) / 2);
+    var mid = Math.floor(low + (high - low) / 2);
 
     if (arr[mid] === elem && (mid === 0 || arr[mid - 1] !== elem)) {
       return { elem, key: mid };
