@@ -15,7 +15,7 @@ function debounce(func, wait) {
 }
 
 function sayHello() {
-  console.log('My name is', this.name)
+  console.log('My name is', this.name + new Date().getMilliseconds())
 }
 
 const amy = {
@@ -23,7 +23,22 @@ const amy = {
   speak: debounce(sayHello),
 }
 
+console.log(new Date().getMilliseconds());
 amy.speak()
+console.log(new Date().getMilliseconds());
+
+amy.speak()
+console.log(new Date().getMilliseconds());
+amy.speak()
+console.log(new Date().getMilliseconds());
+amy.speak()
+console.log(new Date().getMilliseconds());
+amy.speak()
+console.log(new Date().getMilliseconds());
+amy.speak()
+
+ 
+
 // 'My name is Saraswati'
 
 // Refer https://medium.com/@griffinmichl/implementing-debounce-in-javascript-eab51a12311e

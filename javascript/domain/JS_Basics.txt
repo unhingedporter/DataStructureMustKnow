@@ -171,6 +171,56 @@ map(function callbackFn(element, index, array){ ... })
 map(function callbackFn(element, index, array) { ... }, thisArg)
 
 
+var a = [[1, 2, 3], 4, [5, [6, 7]] ]
+
+
+var k = [];
+var flattening = function(elem){
+
+
+
+for(var iterator = 0 ; iterator < elem.length; iterator++){
+
+
+if(Array.isArray(elem[iterator])){
+ return flattening(elem[iterator])
+} else {
+  console.log("pushing element at " + elem[iterator]);
+  k.push(elem[iterator]);
+}
+//k = k.concat(elem[iterator]);
+}
+return k;
+}
+
+console.log(flattening(a))
+
+    You have an in-memory tree data structure. each node can have multiple children (can be more than 2). it's not search or balanced.
+https://www.geeksforgeeks.org/microsoft-interview-experience-set-162-front-end-developer/
+
+
+
+design outlook 
+
+
+
+
+}
+
+
+a.map(function(element, index, array){
+var m = [];
+if(Array.isArray(element)){
+ m = m.concat(element)
+} else {
+m.push(element)
+}
+
+return m;
+
+})
+
+
 
 
 

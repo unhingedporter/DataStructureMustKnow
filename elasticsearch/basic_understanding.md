@@ -24,6 +24,71 @@ Elastic search uses rest architecture.
 
 Data in: documents and indices
 
+# Open Source - Pay for support
+
+# ELK Stack - Elastic search, log and Kibana - Owned by Elastic company 
+
+# Lucene - Full feature text search engine written in Java
+
+# Store as JSON documents
+
+BKT tree
+
+
+GET /customers/_search 
+{
+    query:{
+        match_all: {}
+    }
+}
+
+
+
+curl -XPUT 'localhost:9200/companydatabase?pretty' -H 'Content-Type: application/json' -d' {"mappings" : { "employees" : { "properties" : { "FirstName" : { "type" : "text" }, "LastName" : { "type" : "text" }, "Designation" : { "type" : "text" }, "Salary" : { "type" : "integer" }, "DateOfJoining" : { "type" : "date", "format": "yyyy-MM-dd" }, "Address" : { "type" : "text" }, "Gender" : { "type" : "text" }, "Age" : { "type" : "integer" }, "MaritalStatus" : { "type" : "text" }, "Interests" : { "type" : "text" }}}}}' 
+
+
+
+1
+
+
+1
+2
+	
+curl -XPUT 'localhost:9200/c2?pretty' -H 'Content-Type: application/json' 
+2                                                                                                                                                                                                                           
+	
+curl -XPUT 'localhost:9200/employee?pretty' -H 'Content-Type: application/json' -d' {"mappings" : { "properties" : { "FirstName" : { "type" : "text" }, "LastName" : { "type" : "text" }, "Designation" : { "type" : "text" }, "Salary" : { "type" : "long" }, "DateOfJoining" : { "type" : "date", "format": "yyyy-MM-dd" }, "Address" : { "type" : "text" }, "Gender" : { "type" : "text" }, "Age" : { "type" : "text" }, "MaritalStatus" : { "type" : "text" }, "Interests" : { "type" : "text" }}}}' 
+curl -XPUT 'localhost:9200/companydatabase2/_bulk' -H 'Content-Type: application/json' --data-binary @Employees50K.json
+
+CURL -XGET 'localhost:9200/companydatabase/_search?size=10'
+
+
+term:{
+    firstname:{
+        value: "huff dale"
+    }
+}
+
+multi_match:{
+    "query": "ford",
+    "fields":["firstname", "address"]
+} 
+
+match_phrase:{
+    "address" : "downtown red"
+}
+
+wildcard
+
+wildcard:{
+    firstname:
+    {
+        "value":"h*ll"
+    }
+}
+
+
+leaf query 
 
 #### Inverted Indexing working process
 

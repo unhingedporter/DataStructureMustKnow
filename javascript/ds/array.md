@@ -35,9 +35,6 @@
     - reverse d to n
     - Reverse whole array to get rotate element
 
-
-
-
 * Rearrange an array in maximum minimum form   
     - Given a sorted array of positive integers, rearrange the array alternately i.e first element should be maximum value, second minimum value, third second max, fourth second min and so on. 
 
@@ -277,4 +274,12 @@ largest value.
 
     
 
+printStr("ABC");
 
+void printStr(str, curr = "", index = 0){
+    if(str.length === index){
+        console.log(curr);
+    }
+    printStr(str, curr, index+1);
+    printStr(str, curr + str.charCodeAt[index], index+1);
+}
