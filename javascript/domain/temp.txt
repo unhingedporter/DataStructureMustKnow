@@ -1,0 +1,11 @@
+Outlook mail client using native js
+    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_tabs
+    
+Playing with tree -- create, search and sort
+
+
+  // Overlapping interval merge
+
+  // Output of hoisting
+
+  // flatten array 

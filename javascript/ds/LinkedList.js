@@ -1,7 +1,6 @@
 class Node {
 
     constructor(val) {
-        // this.left = this.right = null;
         this.next = null;
         this.value = val;
     }
@@ -36,19 +35,28 @@ class LinkedList {
 
     }
 
+    // 1->2->3->4->5->6->7->8->9->null
+    // 9->8->7->6->5->4->3->2->1->null
 
-    reverse() {
+    // 1->2
+    // null<-1
+
+    reverse(head){
+
         var prev = null,
-            current = this.head;
-        while (current.next) {
+        current = head;
+
+        while(current != null){            
             var next = current.next;
             current.next = prev;
             prev = current;
             current = next;
         }
-        this.head = prev;
-    }
+       // this.head = prev;
+        
+        return prev;
 
+    }
     pairwiseSwap() {
 
     }

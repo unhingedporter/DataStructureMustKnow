@@ -32,11 +32,8 @@
     ar[] = [1,1,1,1,1,222,33,55]
 
     - First reverse element 0 to d-1
-    - reverse d to n
+    - Reverse d to n
     - Reverse whole array to get rotate element
-
-
-
 
 * Rearrange an array in maximum minimum form   
     - Given a sorted array of positive integers, rearrange the array alternately i.e first element should be maximum value, second minimum value, third second max, fourth second min and so on. 
@@ -72,6 +69,13 @@
                 - arr[i] +=  arr[min_index] % max_element * max_element
                 - min_index++
 
+        - Count of Smaller Numbers After Self 
+        Input [5,2,6,1]
+                [5,7,13,14]
+                [14,9,7,1]
+
+        Output: [2,1,1,0]
+
 * Given an array of integers. Find the Inversion Count in the array. 
     - Inversion Count: For an array, inversion count indicates how far (or close) the array is from being sorted. If array is already sorted then the inversion count is 0. If an array is sorted in the reverse order then the inversion count is the maximum. 
         Formally, two elements a[i] and a[j] form an inversion if a[i] > a[j] and i < j.
@@ -86,7 +90,7 @@
         * The idea is similar to merge sort, divide the array into two equal or almost equal halves in each step until the base case is reached.
         * Create a function merge that counts the number of inversions when two halves of the array are merged, create two indices i and j, i is the index for first half   and j is an index of the second half. if a[i] is greater than a[j], then there are (mid – i) inversions. because left and right subarrays are sorted, so all the  remaining elements in left-subarray (a[i+1], a[i+2] … a[mid]) will be greater than a[j].
         * Create a recursive function to divide the array into halves and find the answer by summing the number of inversions is the first half, number of inversion in the second half and the number of inversions by merging the two.
-        * The base case of recursion is when there is only one element in the given half.
+            * The base case of recursion is when there is only one element in the given half.
         * Print the answer
 
 * Given an array A of N positive numbers. The task is to find the first Equilibium Point in the array. 
@@ -194,7 +198,7 @@
     * Efficient Solution
         - Maintain a flag for representing which order(i.e. < or >) currently we need.
     If the current two elements are not in that order then swap those elements otherwise not.
-
+    After sort 1,2,3,4,6,7,8
 * Spirally traversing the matrix 
     - Given a matrix of size R*C. Traverse the matrix in spiral form.
         - Input:

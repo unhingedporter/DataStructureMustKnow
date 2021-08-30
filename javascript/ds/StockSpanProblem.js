@@ -54,14 +54,11 @@ class StockSpan {
     // { 1, 1, 1, 2, 1, 4, 6 }
 
     // Time complexity - O(n)
-    getPreviousGreaterInArr() {
-
-        var stockSpan = [1];
+    getPreviousGreaterInArr() { 
         var stack = new Stack();
-        stack.push(stockPriceList[0]);
-
+        stack.push(1);
+        console.log(1); // 1 is default for first element
         for (var stockPriceIterator = 1; stockPriceIterator < this.stockPriceList.length; stockPriceIterator++) {
-
 
             while (!stack.isEmpty() && this.stockPriceList[stack.peek()] <= this.stockPriceList[stockPriceIterator]) {
                 stack.pop();
@@ -81,7 +78,7 @@ class StockSpan {
     // Time complexity - O(n)
     getStockSpanList() {
 
-        var stockSpan = [1];
+      
         var stack = new Stack();
         stack.push(1);
         console.log(1); // 1 is default for first element

@@ -166,3 +166,85 @@ makeApiCall()
   });
 
 
+  //------------------------------------------------------------------------------------------------------------
+
+var promise1 = new Promise(function(resolve, reject){
+
+    setTimeout(function(){
+        resolve('1')
+    }, 500);
+});
+
+var promise2 = new Promise(function(resolve, reject){
+
+    setTimeout(function(){
+        resolve('2')
+    }, 500);
+});
+
+var promise3 = new Promise(function(resolve, reject){
+
+    setTimeout(function(){
+        resolve('3')
+    }, 500);
+});
+
+var promise4 = new Promise(function(resolve, reject){
+
+    setTimeout(function(){
+        resolve('4')
+    }, 3000);
+});
+
+var promise5 = new Promise(function(resolve, reject){
+    setTimeout(function(){
+        resolve('5')
+    }, 100);
+});
+
+var promiseCollection = [promise1,promise2, promise3, promise4, promise5];
+
+Promise.all(promiseCollection).then(function(response){
+    console.log('All')
+    console.log(response)
+},
+function(response){
+    console.log('All Reject')
+    console.log(response)
+});
+
+Promise.allSettled(promiseCollection).then(function(response){
+    console.log('All Settled')
+    console.log(response)
+},function(response){
+    console.log('All Settled Reject')
+    console.log(response)
+});
+
+Promise.race(promiseCollection).then(function(response){
+    console.log('race')
+    console.log(response)
+},function(response){
+    console.log('Race reject')
+    console.log(response)
+});
+
+ 
+ 
+
+var executeSequentially = function(tasks) {
+  if (tasks && tasks.length > 0) {
+    var task = tasks.shift();
+
+    return task.then(function(output) {
+      return executeSequentially(tasks).then(function(outputs) {
+        outputs.push(output);
+        return Promise.resolve(outputs);  
+      });
+    });
+  }
+
+  return Promise.resolve([]);
+};
+
+executeSequentially(promiseCollection)

@@ -243,7 +243,7 @@ class TreeOperations {
     }
   }
 
-  isChildrenSumsingleNode(root) {
+  isChildrenSumSingleNode(root) {
     if (!root) {
       return 0;
     }

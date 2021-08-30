@@ -68,6 +68,7 @@ However, it does not look at the prototype chain of the object.
 
 //-----------------------------------------------------------------------------------------
 
+/*
 
 JavaScript is always synchronous and single - threaded.If you're executing a JavaScript block of code on a page then no other JavaScript on that page will currently be executed.
 
@@ -79,7 +80,7 @@ Describing JavaScript as asynchronous is perhaps misleading.It's more accurate t
 
 jQuery has an option on Ajax calls to make them synchronously(with the async: false option).Beginners might be tempted to use this incorrectly because it allows a more traditional programming model that one might be more used to.The reason it's problematic is that this option will block all JavaScript on the page until it finishes, including all event handlers and timers.
 
-
+*/
 
 //-----------------------------------------------------------------------------------------
 
@@ -187,9 +188,9 @@ promise2
 setTimeout
 */
 
-Microtasks are usually scheduled for things that should happen straight after the currently executing script, such as reacting to a batch of actions, or to make something async without taking the penalty of a whole new task.The microtask queue is processed after callbacks as long as no other JavaScript is mid - execution, and at the end of each task.Any additional microtasks queued during microtasks are added to the end of the queue and also processed.Microtasks include mutation observer callbacks, and as in the above example, promise callbacks.
+// Microtasks are usually scheduled for things that should happen straight after the currently executing script, such as reacting to a batch of actions, or to make something async without taking the penalty of a whole new task.The microtask queue is processed after callbacks as long as no other JavaScript is mid - execution, and at the end of each task.Any additional microtasks queued during microtasks are added to the end of the queue and also processed.Microtasks include mutation observer callbacks, and as in the above example, promise callbacks.
 
-Once a promise settles, or if it has already settled, it queues a microtask for its reactionary callbacks.This ensures promise callbacks are async even if the promise has already settled.So calling.then(yey, nay) against a settled promise immediately queues a microtask.This is why promise1 and promise2 are logged after script end, as the currently running script must finish before microtasks are handled.promise1 and promise2 are logged before setTimeout, as microtasks always happen before the next task.
+// Once a promise settles, or if it has already settled, it queues a microtask for its reactionary callbacks.This ensures promise callbacks are async even if the promise has already settled.So calling.then(yey, nay) against a settled promise immediately queues a microtask.This is why promise1 and promise2 are logged after script end, as the currently running script must finish before microtasks are handled.promise1 and promise2 are logged before setTimeout, as microtasks always happen before the next task.
 
 
 

@@ -1,6 +1,5 @@
 var arr = [
-  2, 3, 3, 4, 4, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 88, 1000, 10000,
-  1000000,
+  5,7,7,8,8,10
 ];
 
 var search = function () {
@@ -78,6 +77,6 @@ var search = function () {
 };
 
 console.log(search().binarySearch(arr, 0, arr.length, 6));
-console.log(search().leftMostBinarySearch(arr, 0, arr.length, 6));
-console.log(search().rightMostBinarySearch(arr, 0, arr.length, 6));
+console.log(search().leftMostBinarySearch(arr, 0, arr.length, 8));
+console.log(search().rightMostBinarySearch(arr, 0, arr.length, 8));
 console.log(search().countOccurrences(arr, 6));
