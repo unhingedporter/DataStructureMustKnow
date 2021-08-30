@@ -281,4 +281,12 @@ largest value.
 
     
 
+printStr("ABC");
 
+void printStr(str, curr = "", index = 0){
+    if(str.length === index){
+        console.log(curr);
+    }
+    printStr(str, curr, index+1);
+    printStr(str, curr + str.charCodeAt[index], index+1);
+}

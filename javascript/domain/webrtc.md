@@ -25,7 +25,8 @@ In order to communicate with another peer via a web browser, each person’s web
 One of the biggest challenges associated with browser-based peer-to-peer communications is knowing how to locate and establish a network socket connection with another web browser in order to bidirectionally transmit data. We’ll go through the difficulties, associated with establishing this connection.
 
 When your web application needs some data or a resource, it fetches it from some server and that’s it. If you, however, want to create a peer-to-peer video chat, by directly connecting to someone else’s browser — you don’t know the address since the other browser is not a known web server. So, in order to establish a p2p connection, more is needed.
-Firewalls and NAT Traversal
+
+##### Firewalls and NAT Traversal
 
 Your computer doesn’t typically have a static public IP address assigned. The reason is that your computer is sitting behind a firewall and a network access translation device (NAT).
 
