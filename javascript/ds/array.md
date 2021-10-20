@@ -220,6 +220,21 @@
     - Explanation: Given numbers are {3, 30, 34,
 5, 9}, the arrangement 9534330 gives the
 largest value.
+        var largestNumber = function(nums) {
+           
+            var uniqueArr =  new Set(nums);
+            
+            if(uniqueArr.size === 1 && nums[0] === 0){        
+                return `${nums[0]}`;
+            }
+            
+            return nums.sort((a,b)=>{            
+                var temp = `${a}${b}`;
+                b = `${b}${a}`             
+                a = temp;
+                return b - a;                        
+            }).join('')
+        };
 
 * Window Sliding Technique:
 

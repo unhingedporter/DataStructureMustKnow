@@ -48,6 +48,7 @@
             - First “azxxzy” is reduced to “azzy”. 
             The string “azzy” contains duplicates, 
             so it is further reduced to “ay”.
+        - Can be done either with signature match or stack approach
 
 * Check if string is rotated by two places
 

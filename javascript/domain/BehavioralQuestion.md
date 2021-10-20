@@ -9,10 +9,11 @@
 * Leadership Principles
 Refer for one of the best examples: https://www.amazon.jobs/en/principles
 
-Customer Obsession
+- Customer Obsession
 
 Leaders start with the customer and work backwards.They work vigorously to earn and keep customer trust.Although leaders pay attention to competitors, they obsess over customers.
-    Ownership
+
+- Ownership
 
 Leaders are owners.They think long term and don’t sacrifice long - term value for short - term results.They act on behalf of the entire company, beyond just their own team.They never say “that’s not my job."
 Invent and Simplify
@@ -24,7 +25,8 @@ Leaders are right a lot.They have strong judgment and good instincts.They seek d
 Learn and Be Curious
 
 Leaders are never done learning and always seek to improve themselves.They are curious about new possibilities and act to explore them.
-Hire and Develop the Best
+
+- Hire and Develop the Best
 
 Leaders raise the performance bar with every hire and promotion.They recognize exceptional talent, and willingly move them throughout the organization.Leaders develop leaders and take seriously their role in coaching others.We work on behalf of our people to invent mechanisms for development like Career Choice.
 Insist on the Highest Standards
@@ -63,18 +65,18 @@ Technical debt isn't inherently bad. But, like financial debt, it can cause seri
 
 - Should you avoid technical debt?
 
-        Ultimately, most technical debt comes from a lack of long-term thinking. The people in charge want or need results in the short term. It’s not until much later that they consider the (often hidden) costs of forcing those results.
+    Ultimately, most technical debt comes from a lack of long-term thinking. The people in charge want or need results in the short term. It’s not until much later that they consider the (often hidden) costs of forcing those results.
 
-        Technical debt isn’t inherently bad. But, like financial debt, it can cause serious problems if you don’t pay it back.
+    Technical debt isn’t inherently bad. But, like financial debt, it can cause serious problems if you don’t pay it back.
 
-        This is because choosing the easy option over the best one is a short-term fix. In the long term, the weaker option leads to weaker software. It might not be able to support the growth of your business, or new functionality that you want to add. 
-        Can you ever embrace technical debt?
+    This is because choosing the easy option over the best one is a short-term fix. In the long term, the weaker option leads to weaker software. It might not be able to support the growth of your business, or new functionality that you want to add.
+    Can you ever embrace technical debt?
 
-        However, being open to accruing a little technical debt can be beneficial. (That is, if you manage and understand it from the outset.)
+    However, being open to accruing a little technical debt can be beneficial. (That is, if you manage and understand it from the outset.)
 
-        After all, ‘quick and easy’ coding can help you get something to market sooner to nurture your customer base. Plus, it can act as a placeholder for a planned feature or cost that you want to defer until next month.
+    After all, ‘quick and easy’ coding can help you get something to market sooner to nurture your customer base. Plus, it can act as a placeholder for a planned feature or cost that you want to defer until next month.
 
-        You needn’t run screaming from every easy option, forever deferring your software deadline because it’s not perfect yet. ‘Done is better than perfect’ is an approach that has merit for a reason.
+    You needn’t run screaming from every easy option, forever deferring your software deadline because it’s not perfect yet. ‘Done is better than perfect’ is an approach that has merit for a reason.
 
-        So, you don’t always need to avoid technical debt. What you should avoid is taking out a technical loan without planning or consideration. Instead, be aware of costs and time you’ll put aside to pay it back.
+    So, you don’t always need to avoid technical debt. What you should avoid is taking out a technical loan without planning or consideration. Instead, be aware of costs and time you’ll put aside to pay it back.
 

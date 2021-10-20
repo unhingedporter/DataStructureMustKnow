@@ -38,6 +38,34 @@ console.log(new Date().getMilliseconds());
 amy.speak()
 
  
+ var debounce = function(func, wait){
+    let context = this;
+    clearInterval(clearTimeout);
+    var clearTimeout = setTimeout( 
+        function(param){
+            func.apply([this, ...param]);
+        }, wait);
+}
+
+var debounce = function(func, wait){
+    let timeout;
+    return function(...args){
+        let context = this;
+        clearTimeout(timeout);
+        timeout = setTimeout(function(){
+            func.apply(context,  [args]);
+        }, wait);
+    }
+}
+
+var printMyAlisaName= function(str){
+        console.log(str);
+};
+var debouncedAlisa = debounce(printMyAlisaName,100);
+
+for(var i=0; i<100; i++){
+    debouncedAlisa(i)
+}
 
 // 'My name is Saraswati'
 
@@ -89,3 +117,31 @@ throttledLogger([1, 2, 3]);
 </pre>
 
 // "My args are 1, 2, 3" - logged only once
+
+
+
+var throttle = function(func, throttleWait){
+
+    return function(...params){
+          const context = this;
+        //   var waitTime = Date.now() - this.lastCall();
+		let previousCall = this.lastCall;
+        this.lastCall = Date.now();
+        if(previousCall=== undefined || (this.lastCall -previousCall >= throttleWait) ){
+           func.apply(context, params)
+        }
+    }
+}
+
+var printMyAlisaName= function(str){
+        console.log(str);
+};
+var throttleAlisa = throttle(printMyAlisaName,501);
+
+for(let i=0; i<100; i++){
+
+    setTimeout(
+        ()=>{
+            throttleAlisa(i);
+        }, i * 500);
+}

@@ -18,27 +18,93 @@ n1.next = n2;
 n2.next = n3;
 n3.next = n4;
 
-var n = head;
+var node = head;
 console.log("Before" + JSON.stringify(head));
 
-while (n.next != null) {
+while (!!node.next) {
     var previous;
 
-    var nextElem = n.next;
+    var nextElem = node.next;
 
-    if (!!previous && previous !== n.next) {
-        var tmp = n;
-        n.next = previous
+    if (!!previous && previous !== node.next) {
+        var tmp = node;
+        node.next = previous
         previous.next = tmp.next;
     }
 
-    previous = n;
+    previous = node;
 
-    console.log("DATA-- >" + n.data);
+    console.log("DATA-- >" + node.data);
     // console.log("location-- >" + JSON.stringify(n.next));
-    n = nextElem;
+    node = nextElem;
 }
 
 
 console.log("After" + JSON.stringify(head));
 // a-->b-->c-->d
+
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+var getIntersectionNode = function (headA, headB) {
+
+
+    let nodeA = headA,
+        nodeB = headB,
+        lengthA = 0,
+        lengthB = 0;
+    while (!!nodeA) {
+        nodeA = nodeA.next;
+        lengthA++;
+    }
+
+
+    while (!!nodeB) {
+        nodeB = nodeB.next;
+        lengthB++;
+    }
+    let difference = Math.abs(lengthA - lengthB);
+    let counter = 0;
+    let biggerLL, smallerLL;
+
+    if (lengthA >= lengthB) {
+        biggerLL = headA;
+        smallerLL = headB;
+    } else {
+        biggerLL = headB;
+        smallerLL = headA;
+    }
+    let intersectingValue;
+    while (!!biggerLL) {
+
+        if (counter >= difference) {
+
+            if (biggerLL === smallerLL) {
+                var value = biggerLL;
+                intersectingValue = value;
+                break;
+            }
+            biggerLL = biggerLL.next;
+            smallerLL = smallerLL.next;
+        } else {
+            biggerLL = biggerLL.next;
+
+        }
+        counter++;
+    }
+    return intersectingValue !== undefined ? intersectingValue : null;
+
+
+
+};

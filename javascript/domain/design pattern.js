@@ -1,6 +1,6 @@
 // What is a Design Pattern ?
 
-//   In software engineering, a design pattern is a reusable solution for commonly occurring problems in software design.Design patterns represent the best practices used by the experienced software developers.
+// In software engineering, a design pattern is a reusable solution for commonly occurring problems in software design.Design patterns represent the best practices used by the experienced software developers.
 
 // A design pattern can be thought of as a programming template.
 
@@ -144,10 +144,12 @@ console.log(truck);
 function Car(name) {
     this.name = name; // Default values
     this.color = 'White';
-} // Creating a new Object to decorate
+}
+
+// Creating a new Object to decorate
 const tesla = new Car('Tesla Model 3'); // Decorating the object with new functionalitytesla.setColor = function(color) {
 this.color = color;
-}
+
 tesla.setPrice = function(price) {
     this.price = price;
 }
