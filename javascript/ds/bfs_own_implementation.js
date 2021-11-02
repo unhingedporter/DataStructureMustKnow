@@ -12,7 +12,7 @@ class Queue {
     }
 
     enqueu(elem) {
-        this.q.push(elem);
+        this.q.unshift(elem);
     }
 
     peek() {
@@ -20,7 +20,7 @@ class Queue {
     }
 
     deque() {
-        return this.q.length > 0 ? this.q.shift() : null;
+        return this.q.length > 0 ? this.q.pop() : null;
     }
 
     isEmpty() {
@@ -42,7 +42,7 @@ class TreeTraversal {
             var elem = queue.deque();
             if (!elem) {
                 level++;
-                console.log(`Level ${level} - `);
+                console.log(`Level ${level} `);
 
                 if (queue.peek() == null) {
                     break; //Two null encountered
@@ -52,7 +52,7 @@ class TreeTraversal {
                 }
             }
 
-            process.stdout.write(`${elem.value} ,`);
+            console.log(`${elem.value} ,`);
 
             if (!!elem.left) {
                 queue.enqueu(elem.left);
