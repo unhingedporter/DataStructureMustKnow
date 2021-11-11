@@ -22,6 +22,11 @@ MinHeap.prototype.insert = function(val) {
   this.bubbleUp(this.data.length-1);
 };
 
+var swap = function(arr, firstIndex, secondIndex){
+  var temp = arr[firstIndex];
+  arr[firstIndex] = arr[secondIndex];
+  arr[secondIndex] = temp;
+}
 MinHeap.prototype.bubbleUp = function(index) {
   while (index > 0) {
     // get the parent
@@ -29,10 +34,7 @@ MinHeap.prototype.bubbleUp = function(index) {
     
     // if parent is greater than child
     if (this.data[parent] > this.data[index]) {
-      // swap
-      var temp = this.data[parent];
-      this.data[parent] = this.data[index];
-      this.data[index] = temp;
+      swap(this.data, parent, index);
     }
     
     index = parent;
@@ -71,11 +73,8 @@ MinHeap.prototype.bubbleDown = function(index) {
     if (toSwap == null) {
       break;
     }
-    
-    var temp = this.data[toSwap];
-    this.data[toSwap] = this.data[index];
-    this.data[index] = temp;
-    
+
+    swap(this.data,toSwap, index);    
     index = toSwap;
   }
 };
