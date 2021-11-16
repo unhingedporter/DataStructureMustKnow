@@ -12,6 +12,17 @@
 // - extract_min takes O(logn) time
 //     - replace min with bottom right
 //     - bubble down until it meets requirements
+/*
+How is Binary Heap represented?
+A Binary Heap is a Complete Binary Tree. A binary heap is typically represented as an array.
+
+    The root element will be at Arr[0].
+    Below table shows indexes of other nodes for the ith node, i.e., Arr[i]:
+    Arr[(i-1)/2]	Returns the parent node
+    Arr[(2*i)+1]	Returns the left child node
+    Arr[(2*i)+2]	Returns the right child node
+  
+*/
 
 function MinHeap() {
   this.data = [];
@@ -27,6 +38,7 @@ var swap = function(arr, firstIndex, secondIndex){
   arr[firstIndex] = arr[secondIndex];
   arr[secondIndex] = temp;
 }
+
 MinHeap.prototype.bubbleUp = function(index) {
   while (index > 0) {
     // get the parent

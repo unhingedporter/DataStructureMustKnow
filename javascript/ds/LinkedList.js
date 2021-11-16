@@ -41,19 +41,19 @@ class LinkedList {
     // 1->2->3->null
     // null<-1<-2<-3
 
-    reverse(head){
+    reverse(head) {
 
         var prev = null,
-        current = head;
+            current = head;
 
-        while(current != null){            
+        while (current != null) {
             var next = current.next;
             current.next = prev;
             prev = current;
             current = next;
         }
-       // this.head = prev;
-        
+        // this.head = prev;
+
         return prev;
 
     }
@@ -151,8 +151,92 @@ class LinkedList {
                 Now traverse the bigger list from the first node till d nodes so that from here onwards both the lists have equal no of nodes 
                 Then we can traverse both the lists in parallel till we come across a common node. (Note that getting a common node is done by comparing the address of the nodes)
         */
-    }
+    } 
+    addTwoNumbers = function (l1, l2) {
 
+        var reverse = function (head) {
+            var prev = null,
+                current = head;
+
+            while (current != null) {
+                var next = current.next;
+                current.next = prev;
+                prev = current;
+                current = next;
+            }
+
+
+            return prev;
+        }
+        var carryOver = 0;
+
+        l1 = reverse(l1);
+        l2 = reverse(l2);
+        var addListNode = new ListNode(-Infinity);
+        var newLinkedList = addListNode;
+
+
+        while (l1 !== null && l2 !== null) {
+
+            var sum = l1.val + l2.val + carryOver;
+
+
+            if (sum > 9) {
+                sum = sum % 10;
+                carryOver = 1;
+            } else {
+                carryOver = 0;
+            }
+
+            newLinkedList.next = new ListNode(sum)
+
+            l1 = l1.next;
+            l2 = l2.next;
+            newLinkedList = newLinkedList.next;
+        }
+
+
+
+
+        while (l1 !== null) {
+
+            if (carryOver === 1) {
+                l1.val += carryOver;
+
+                if (l1.val > 9) {
+                    l1.val = l1.val % 10;
+                    carryOver = 1
+                } else { carryOver = 0; }
+            }
+            newLinkedList.next = new ListNode(l1.val);
+            newLinkedList = newLinkedList.next;
+
+            l1 = l1.next;
+        }
+
+        while (l2 !== null) {
+            if (carryOver === 1) {
+                l2.val += carryOver;
+
+                if (l2.val > 9) {
+                    l2.val = l2.val % 10;
+                    carryOver = 1
+                } else { carryOver = 0; }
+            }
+            newLinkedList.next = new ListNode(l2.val);
+            newLinkedList = newLinkedList.next;
+
+            l2 = l2.next;
+        }
+        if (carryOver === 1) {
+            newLinkedList.next = new ListNode(carryOver);
+
+        }
+        addListNode = addListNode.next;
+        return reverse(addListNode);
+
+
+    }
     isPalindrome() {
         var slow_pointer = this.head;
         var fast_pointer = this.head;
@@ -210,6 +294,7 @@ class LinkedList {
             current.next = null;
         } */
     }
+
 
 }
 

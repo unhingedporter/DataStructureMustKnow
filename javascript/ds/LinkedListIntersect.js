@@ -99,7 +99,6 @@ var getIntersectionNode = function (headA, headB) {
             smallerLL = smallerLL.next;
         } else {
             biggerLL = biggerLL.next;
-
         }
         counter++;
     }
