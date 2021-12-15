@@ -2,7 +2,7 @@
 
 class Node {
 
-    constructor(int value, left = null, right = null) {
+    constructor(value, left = null, right = null) {
         this.left = left;
         this.right = right;
         this.value = value;
@@ -10,8 +10,6 @@ class Node {
 }
 
 class Tree {
-
-
     inorderTraversal(root) {
         if (!root) {
             return;

@@ -165,9 +165,9 @@ class LinkedList {
                 current = next;
             }
 
-
             return prev;
         }
+
         var carryOver = 0;
 
         l1 = reverse(l1);
@@ -179,7 +179,6 @@ class LinkedList {
         while (l1 !== null && l2 !== null) {
 
             var sum = l1.val + l2.val + carryOver;
-
 
             if (sum > 9) {
                 sum = sum % 10;
@@ -195,9 +194,6 @@ class LinkedList {
             newLinkedList = newLinkedList.next;
         }
 
-
-
-
         while (l1 !== null) {
 
             if (carryOver === 1) {
@@ -206,7 +202,9 @@ class LinkedList {
                 if (l1.val > 9) {
                     l1.val = l1.val % 10;
                     carryOver = 1
-                } else { carryOver = 0; }
+                } else { 
+                    carryOver = 0;
+                }
             }
             newLinkedList.next = new ListNode(l1.val);
             newLinkedList = newLinkedList.next;

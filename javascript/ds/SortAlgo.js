@@ -31,7 +31,7 @@ var SortAlgo = (function () {
     SortAlgo.prototype.getEquilibriumPoint = function () {
         // -20 is the equilibrium point
         // [3,4,8,-9,20,6]
-        // Total_sum - left_sum = left_sum
+        // Total_sum - left_sum = Right_sum
         // prefix_sum[i-1] == suffix_sum[i+1]
     };
     SortAlgo.prototype.getRanges = function () {

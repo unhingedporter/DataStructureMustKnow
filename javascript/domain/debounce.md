@@ -37,15 +37,7 @@ amy.speak()
 console.log(new Date().getMilliseconds());
 amy.speak()
 
- 
- var debounce = function(func, wait){
-    let context = this;
-    clearInterval(clearTimeout);
-    var clearTimeout = setTimeout( 
-        function(param){
-            func.apply([this, ...param]);
-        }, wait);
-}
+  
 
 var debounce = function(func, wait){
     let timeout;

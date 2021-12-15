@@ -33,26 +33,6 @@ MinHeap.prototype.insert = function(val) {
   this.bubbleUp(this.data.length-1);
 };
 
-var swap = function(arr, firstIndex, secondIndex){
-  var temp = arr[firstIndex];
-  arr[firstIndex] = arr[secondIndex];
-  arr[secondIndex] = temp;
-}
-
-MinHeap.prototype.bubbleUp = function(index) {
-  while (index > 0) {
-    // get the parent
-    var parent = Math.floor((index + 1) / 2) - 1;
-    
-    // if parent is greater than child
-    if (this.data[parent] > this.data[index]) {
-      swap(this.data, parent, index);
-    }
-    
-    index = parent;
-  }
-};
-
 MinHeap.prototype.extractMin = function() {
   var min = this.data[0];
   
@@ -65,10 +45,36 @@ MinHeap.prototype.extractMin = function() {
   return min;
 };
 
+var swap = function(arr, firstIndex, secondIndex){
+  var temp = arr[firstIndex];
+  arr[firstIndex] = arr[secondIndex];
+  arr[secondIndex] = temp;
+}
+
+MinHeap.prototype.bubbleUp = function(index) {
+  while (index > 0) {
+    // get the parent
+    var parent = Math.floor((index - 1) / 2);
+    
+    // if parent is greater than child
+    if (this.data[parent] > this.data[index]) {
+      swap(this.data, parent, index);
+    }
+    
+    index = parent;
+  }
+};
+
 MinHeap.prototype.bubbleDown = function(index) {
   while (true) {
     var child = (index+1)*2;
-    var sibling = child - 1;
+    var sibling ;
+    
+    if(child % 2 === 0){
+       sibling = child - 1;
+    } else {
+      sibling = child + 1;
+    }
     var toSwap = null;
     
     // if current is greater than child
@@ -101,7 +107,13 @@ heap.insert(1);
 heap.insert(14);
 heap.insert(2);
 heap.insert(7);
+heap.insert(3);
 
+console.log(heap.extractMin());
+console.log(heap.extractMin());
+console.log(heap.extractMin());
+console.log(heap.extractMin());
+console.log(heap.extractMin());
 console.log(heap.extractMin());
 console.log(heap.extractMin());
 console.log(heap.extractMin());

@@ -16,7 +16,7 @@ var height = function (root) {
     return 0;
   }
 
-  return 1 + Math.max.call({}, height(root.left), height(root.right));
+  return 1 + Math.max.call(null, height(root.left), height(root.right));
 };
 var isBalanced = function (root) {
   if (!root) {

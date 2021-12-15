@@ -1,4 +1,4 @@
-// “Inheritance is a mechanism of acquiring features and behaviours of a class by another class.”
+    // “Inheritance is a mechanism of acquiring features and behaviours of a class by another class.”
 
 // What is Class?
 

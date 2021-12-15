@@ -171,13 +171,11 @@ map(function callbackFn(element, index, array){ ... })
 map(function callbackFn(element, index, array) { ... }, thisArg)
 
 
-var a = [[1, 2, 3], 4, [5, [6, 7]] ]
+var a = [[1, 2, 3], 4, [5, [6, 7]]]
 
 
 var k = [];
 var flattening = function(elem){
-
-
 
 for(var iterator = 0 ; iterator < elem.length; iterator++){
 

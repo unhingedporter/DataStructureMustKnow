@@ -470,7 +470,7 @@ function curry(f) { // curry(f) does the currying transform
     };
   };
 }
-
+// Worst possible implementation
 // usage
 function sum(a, b) {
   return a + b;

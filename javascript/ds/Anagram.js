@@ -13,7 +13,6 @@ class Anagram {
 
         for (let [key, value] of Object.entries(strArr)) {
 
-
             var sortedVal = value.split('').sort(); //.join('');
 
             if (hashAnagram[sortedVal]) {
@@ -43,7 +42,7 @@ class Anagram {
         for (let [key, value] of Object.entries(strArr)) {
 
 
-            var sortedVal = value.split('').sort(); 
+            var sortedVal = value.split('').sort();
 
             if (hashAnagram.has(sortedVal)) {
                 var existingVal = hashAnagram.get(sortedVal);
@@ -55,9 +54,9 @@ class Anagram {
 
         }
         // need better logic
-        return Array.from(hashAnagram).map(([name, value]) => ({name: value}))
-        
-         
+        return Array.from(hashAnagram).map(([name, value]) => ({ name: value }))
+
+
     }
 
 

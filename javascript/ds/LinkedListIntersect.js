@@ -69,7 +69,6 @@ var getIntersectionNode = function (headA, headB) {
         lengthA++;
     }
 
-
     while (!!nodeB) {
         nodeB = nodeB.next;
         lengthB++;

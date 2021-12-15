@@ -28,7 +28,6 @@ class FrequencyCounterByType {
         this.frequencyCounterArr = [];
     }
 
-
     matchExists(obj, type) {
         return typeof (obj) === type;
     }

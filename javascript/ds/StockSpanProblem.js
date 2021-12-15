@@ -8,7 +8,7 @@
 // For example,
 // if an array of 7 days prices is given as 
 // { 100, 80, 60, 70, 60, 75, 85 }, then the span values , for corresponding 7 days are 
-// { 1, 1, 1, 2, 1, 4, 6 }
+// {   1,  1,  1,  2,  1,  4,  6 }
 
 
 class Stack {
@@ -105,5 +105,5 @@ class StockSpan {
 var num = new StockSpan([100, 80, 60, 70, 60, 75, 85]);
 
 num.getStockSpanList();
-console.log("Previous greater element are");
-num.getPreviousGreaterInArr();
+// console.log("Previous greater element are");
+// num.getPreviousGreaterInArr();

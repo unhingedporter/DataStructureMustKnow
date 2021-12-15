@@ -28,9 +28,6 @@ a.map(function (p, q) {
 
 var a = [3, 4, 5]
 
-
-var a = [3, 4, 5]
-
 Array.prototype.rotate = function (n) {
     n = n % this.length;
     while (this.length && n < 0) n += this.length;
@@ -50,7 +47,6 @@ a.map(function (p, q) {
 
 
 var productExceptSelf = function (arr) {
-
 
     var multiplyAllElem = arr.reduce((a, c) => {
 

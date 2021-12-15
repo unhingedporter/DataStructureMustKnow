@@ -7,7 +7,6 @@
     - Random access 
     - Cache friendliness
 
-
     Insert -> At end o(1)
             At middle O(n)
 

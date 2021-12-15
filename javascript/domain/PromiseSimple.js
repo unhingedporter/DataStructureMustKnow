@@ -6,12 +6,12 @@ const promise = new Promise(resolve => {
 
 promise.then(value => console.log(value));
 
-Output => Promise pending
+// Output => Promise pending
 
-After 2 minutes ->
-  Hello from a promise
+// After 2 seconds ->
+//   Hello from a promise
 
-Similar implementation of promise:
+// Similar implementation of promise:
 
 import { Observable } from 'rxjs';
 
@@ -23,9 +23,9 @@ const observable = new Observable(observer => {
 
 observable.subscribe(value => console.log(value));
 
-One of the significant differences between Observables and Promises is Observables support the ability to emit multiple asynchronous values.A Promise once it has resolved its async value it completes and can no longer be used.The one shot use falls short for the use case where we need multiple values over time.Some common use cases of this, web sockets with push notifications, user input changes, repeating intervals, etc.
+// One of the significant differences between Observables and Promises is Observables support the ability to emit multiple asynchronous values.A Promise once it has resolved its async value it completes and can no longer be used.The one shot use falls short for the use case where we need multiple values over time.Some common use cases of this, web sockets with push notifications, user input changes, repeating intervals, etc.
 
-Our next example is going to show how to create an Observable just like our previous example but instead of using a setTimeout we will use a setInterval to show multiple values.
+// Our next example is going to show how to create an Observable just like our previous example but instead of using a setTimeout we will use a setInterval to show multiple values.
 
   import { Observable } from 'rxjs';
 
@@ -46,11 +46,6 @@ interval.subscribe(value => console.log(value));
 In this example, we have a new Observable with a setInterval.Notice we still call observer.next() to emit our value.With Observables, you can call emit() multiple times yielding multiple values.Multi - value support is the big advantage to Observables over Promises.Now since we can have long - running async tasks in our Observable like a setInterval we need to stop any tasks once we don’t care about receiving any more values.This leads us into unsubscribing from Observables.
 
 With Observables, we can cancel them or unsubscribe from them when we no longer care about the values.To do this let’s look at the following code.
-
-
-
-
-
 
 class PromiseSimple {
   constructor(executionFunction) {
@@ -169,28 +164,24 @@ makeApiCall()
   //------------------------------------------------------------------------------------------------------------
 
 var promise1 = new Promise(function(resolve, reject){
-
     setTimeout(function(){
         resolve('1')
     }, 500);
 });
 
 var promise2 = new Promise(function(resolve, reject){
-
     setTimeout(function(){
         resolve('2')
     }, 500);
 });
 
 var promise3 = new Promise(function(resolve, reject){
-
     setTimeout(function(){
         resolve('3')
     }, 500);
 });
 
 var promise4 = new Promise(function(resolve, reject){
-
     setTimeout(function(){
         resolve('4')
     }, 3000);
