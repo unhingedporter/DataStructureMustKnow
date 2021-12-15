@@ -18,8 +18,7 @@ class CoinChange {
         if (num_coins === 0) {
             return 0;
         }
-        // console.log(`1. The number of coins reached ${result}`);
-
+ 
         var result = this.findPossibleCount(arr_coins, num_coins - 1, sum);
         console.log(`2. The number of coins reached ${result}`);
         if (arr_coins[num_coins - 1] <= sum) {
