@@ -1,5 +1,7 @@
-// polyfill for bind
+// Polyfill
 
+// A polyfill is a piece of code (usually JavaScript on the Web) used to provide modern functionality on older browsers that do not natively support it.
+// Polyfill for bind
 
 
 var printEmployeeInfo = function (salary) {
@@ -15,6 +17,7 @@ var employee = {
 
 printEmployeeInfo.call(employee, '10L');
 printEmployeeInfo.apply(employee, ['10L']);
+
 // Borrow function
 var empInfo = printEmployeeInfo.bind(employee, '15l')();
 var empInfo = printEmployeeInfo.poly_bind(employee, '15l')();

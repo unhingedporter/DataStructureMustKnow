@@ -89,7 +89,7 @@ let objAssign = Object.assign({}, object1, object2);
 console.log(objExtend.name.forename); // "John"
 console.log(objAssign.name.forename); //  undefined
 
----------------------
+-----------------------------------------------------------------------------------------------
 
 Object.assign() copies property values. If the source value is a reference to an object, it only copies that reference value.
 

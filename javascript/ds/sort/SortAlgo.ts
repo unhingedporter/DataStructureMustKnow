@@ -40,8 +40,6 @@ class SortAlgo {
                 }
             }
         }
-        console.log(temp)
-
         return temp;
     }
 

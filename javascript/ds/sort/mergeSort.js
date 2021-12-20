@@ -1,7 +1,7 @@
 // MergeSort(arr[], l,  r)
 // If r > l
 //      1. Find the middle point to divide the array into two halves:  
-//              middle m = l+ (r-l)/2
+//              middle m = l + (r-l)/2
 //      2. Call mergeSort for first half:   
 //              Call mergeSort(arr, l, m)
 //      3. Call mergeSort for second half:

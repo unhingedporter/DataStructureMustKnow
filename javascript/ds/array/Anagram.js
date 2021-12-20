@@ -14,7 +14,6 @@ class Anagram {
         for (let [key, value] of Object.entries(strArr)) {
 
             var sortedVal = value.split('').sort(); //.join('');
-
             if (hashAnagram[sortedVal]) {
                 var existingVal = hashAnagram[sortedVal];
                 existingVal.push(value);
@@ -22,11 +21,9 @@ class Anagram {
             } else {
                 hashAnagram[sortedVal] = [value];
             }
-
         }
 
         return Object.values(hashAnagram);
-
     }
 
     // Time Complexity = O(N)
@@ -40,10 +37,7 @@ class Anagram {
         var hashAnagram = new Map();
 
         for (let [key, value] of Object.entries(strArr)) {
-
-
             var sortedVal = value.split('').sort();
-
             if (hashAnagram.has(sortedVal)) {
                 var existingVal = hashAnagram.get(sortedVal);
                 existingVal.push(value);
@@ -51,15 +45,10 @@ class Anagram {
             } else {
                 hashAnagram.set(sortedVal, value);
             }
-
         }
         // need better logic
         return Array.from(hashAnagram).map(([name, value]) => ({ name: value }))
-
-
     }
-
-
 
     main() {
         var arr = ['RATS', 'STAR', 'ARSA', 'CAR', 'ARE', 'AAB', 'BAA', 'ABA'];

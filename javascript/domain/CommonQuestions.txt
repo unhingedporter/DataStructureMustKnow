@@ -244,8 +244,6 @@ Another feature of this technique is to allow for an easily referenceable (presu
 
 (function($) { /* jQuery plugin code referencing $ */ } )(jQuery);
 
-
-
 What will the code below output? Explain your answer.
 
 console.log(0.1 + 0.2);

@@ -7,10 +7,10 @@
     - Random access 
     - Cache friendliness
 
-    Insert -> At end o(1)
+    Insert -> At end O(1)
             At middle O(n)
 
-    Delete -> At end o(1)
+    Delete -> At end O(1)
             At middle O(n)           
 
     Search -> Need more discussion
@@ -25,8 +25,8 @@
 
 * Rotate an array 
 
-    Time complexity : 0(n)
-    Space Complexity: o(1)
+    Time complexity : O(n)
+    Space Complexity: O(1)
 
     ar[] = [1,1,1,1,1,222,33,55]
 
