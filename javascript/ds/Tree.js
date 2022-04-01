@@ -18,6 +18,23 @@ class Tree {
     }
     searchBST(root, val) {
 
+        if (!root) {
+            return null;
+        }
+
+        if (root.val > val) {
+            return searchBST(root.left, val);
+        } else if (root.val < val) {
+            return searchBST(root.right, val);
+        } else {
+            return root;
+        }
+
+        return null;
+
+    }
+    searchNode(root, val) {
+
 
         if (!root) {
             return null;

@@ -1,5 +1,4 @@
 function curry(callback) {
-    // Write your code here.
       const curriedCallback = (...args)=>{
   
           if(args.length === 0){
