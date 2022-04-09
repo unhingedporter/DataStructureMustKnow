@@ -1,5 +1,5 @@
 
-Array.prototype.myMap = function () {
+Array.prototype.myMap = function (callback) {
 
     let output = [];
 

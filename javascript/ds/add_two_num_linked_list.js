@@ -45,7 +45,7 @@ a.map(function (p, q) {
     return a[q] * a[p];
 })
 
-
+// If division is allowed
 var productExceptSelf = function (arr) {
 
     var multiplyAllElem = arr.reduce((a, c) => {
@@ -77,3 +77,52 @@ var productExceptSelf = function (arr) {
 
 
 };
+
+
+
+
+// IF division is not allowed
+// Take two array left and right 
+/*
+[2,3,4,5]
+
+left  [1,1,1]
+      [1,2,6,24]  
+
+right [60,20,5,1]
+
+Multiplication: [60,40,30,24]
+
+*/
+
+var productExceptSelf = function (arr) {
+        var leftArr = [];
+        var rightArr = [];
+        
+        leftArr.length = arr.length;
+        rightArr.length = arr.length;
+        
+        leftArr.fill(1);
+        rightArr.fill(1);
+        
+        for(var i = 1; i< leftArr.length; i++){
+            leftArr[i] = leftArr[i - 1] * arr[i - 1];       
+        }
+        
+        for(var j=rightArr.length - 2; j>=0; j-- ){
+            rightArr[j] = rightArr[j+1] * arr[j+1];        
+        }
+        
+        console.log("Left multiplication is " + leftArr);
+        console.log("right multiplcation is " + rightArr);
+        
+        var multiplicationArr = [];
+        
+        for(var i=0; i < arr.length; i++){
+            multiplicationArr[i] = leftArr[i] * rightArr[i];
+        }
+        
+        return multiplicationArr;
+        
+    
+    };

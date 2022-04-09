@@ -151,7 +151,7 @@ class LinkedList {
                 Now traverse the bigger list from the first node till d nodes so that from here onwards both the lists have equal no of nodes 
                 Then we can traverse both the lists in parallel till we come across a common node. (Note that getting a common node is done by comparing the address of the nodes)
         */
-    } 
+    }
     addTwoNumbers = function (l1, l2) {
 
         var reverse = function (head) {
@@ -202,7 +202,7 @@ class LinkedList {
                 if (l1.val > 9) {
                     l1.val = l1.val % 10;
                     carryOver = 1
-                } else { 
+                } else {
                     carryOver = 0;
                 }
             }
@@ -228,12 +228,9 @@ class LinkedList {
         }
         if (carryOver === 1) {
             newLinkedList.next = new ListNode(carryOver);
-
         }
         addListNode = addListNode.next;
         return reverse(addListNode);
-
-
     }
     isPalindrome() {
         var slow_pointer = this.head;
