@@ -67,7 +67,7 @@ function Person(fName, lName) {
 // Create methods on prototype of the Person class
 
 Person.prototype.getFullName = function() {
-    return this.firstName + ' ' + this.lastName;
+    return `${this.firstName}  ${this.lastName}`;
 }
 
 // Create child class

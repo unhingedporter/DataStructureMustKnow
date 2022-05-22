@@ -239,3 +239,14 @@ var executeSequentially = function(tasks) {
 };
 
 executeSequentially(promiseCollection)
+
+
+var sleep = function(timer){
+ 
+  return new Promise((resolve, reject)=>{
+
+    setTimeout(function(){
+      return resolve()
+    }, timer)
+  })
+}

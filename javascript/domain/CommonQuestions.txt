@@ -103,7 +103,7 @@ The code will output 1, "truexyz", 2, 1. Here's a general guideline for addition
 
     Number + Number -> Addition
     Boolean + Number -> Addition
-    Boolean + Number -> Addition
+    Boolean + String -> Addition
     Number + String -> Concatenation
     String + Boolean -> Concatenation
     String + String -> Concatenation
@@ -683,13 +683,9 @@ var employee = {
 	
 	
 	var isPropertyExists = function(obj, propName){
-	
-	
-		
+
 		if(!obj){
-		
-		return false; 
-		
+  		return false; 
 		}
 		
 	 

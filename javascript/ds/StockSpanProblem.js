@@ -95,7 +95,7 @@ class StockSpan {
 
             // can be improved
             stack.push(stockPriceIterator);
-        }
+        } 
 
 
     }

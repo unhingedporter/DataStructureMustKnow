@@ -4,6 +4,8 @@ The Object.assign() method copies all enumerable own properties from one or more
 const target = { a: 1, b: 2 };
 const source = { b: 4, c: 5 };
 
+// Won't copy date and function as expected. It uses shallow copy mechanism
+
 const returnedTarget = Object.assign(target, source);
 
 console.log(target);
@@ -106,6 +108,10 @@ const person = {
 
 const me = Object.create(person);
 
+me.isHuman
+false
+me.hasOwnProperty('isHuman')
+false
 me.name = 'Matthew'; // "name" is a property set on "me", but not on "person"
 me.isHuman = true; // inherited properties can be overwritten
 
@@ -194,6 +200,13 @@ Object.is() determines whether two values are the same value. Two values are the
 This is not the same as being equal according to the == operator. The == operator applies various coercions to both sides (if they are not the same Type) before testing for equality (resulting in such behavior as "" == false being true), but Object.is doesn't coerce either value.
 
 This is also not the same as being equal according to the === operator. The === operator (and the == operator as well) treats the number values -0 and +0 as equal and treats Number.NaN as not equal to NaN.
+
++0 === -0
+true
++0 == -0
+true
+Object.is(+0, -0)
+false
 
 Polyfill:
 if (!Object.is) {

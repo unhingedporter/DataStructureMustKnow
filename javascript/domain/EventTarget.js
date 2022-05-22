@@ -17,10 +17,9 @@ class EventTarget {
     }
 
     dispatchEvent(name) {
-        this.listeners[name]?.forEach(callback) => {
+        this.listeners[name]?.forEach((callback) => {
             callback();
         });
     }
-
 
 }
