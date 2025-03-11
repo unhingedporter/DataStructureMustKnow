@@ -1,0 +1,25 @@
+Breadth-First Search (BFS) Problems:
+
+    Number of Islands: This problem involves counting the number of distinct islands in a 2D grid map. We can solve it using BFS. Problem Link
+    Word Ladder: Find the length of the shortest transformation sequence from a start word to an end word, using BFS. Problem Link
+    Shortest Path in Binary Matrix: Calculate the length of the shortest clear path from the top-left to the bottom-right cell in a binary matrix, employing BFS. Problem Link
+    Clone Graph: Clone an undirected graph using BFS traversal. Problem Link
+    Surrounded Regions: Given a 2D board containing 'X' and 'O', capture all regions surrounded by 'X', using BFS. **Problem Link5. Surrounded Regions: Given a 2D board containing 'X' and 'O', capture all regions surrounded by 'X', using BFS. Problem Link
+
+Depth-First Search (DFS) Problems:
+
+    Number of Islands: Count the number of islands in a 2D grid map, utilizing DFS. Problem Link
+    Word Search: Determine if a word exists in a 2D board, using DFS. Problem Link
+    Symmetric Tree: Check if a binary tree is symmetric using DFS. Problem Link
+    Path Sum: Determine if the given sum exists in a binary tree, using DFS. Problem Link
+    Binary Tree Level Order Traversal: Perform level order traversal on a binary tree using DFS. Problem Link
+
+Mixed BFS/DFS Problems:
+
+    Is Graph Bipartite?: Determine if a graph can be colored using two colors such that no two adjacent vertices have the same color, using BFS or DFS. Problem Link
+    Pacific Atlantic Water Flow: Find the list of grid coordinates where water can flow to both the Pacific and Atlantic oceans, using BFS or DFS. Problem Link
+    Number of Connected Components in an Undirected Graph: Count the number of connected components in an undirected graph, using BFS or DFS. Problem Link
+    Course Schedule: Determine if it is possible to finish all courses given a list of prerequisites, using BFS or DFS. Problem Link
+    Network Delay Time: Calculate the minimum time taken for all nodes to receive the signal in a network, using BFS or DFS. Problem Link
+
+Happy coding, and may the graphs be ever in your favor!

@@ -332,3 +332,44 @@ var ll = new LinkedList(head);
 // ll.detectLoop();
 // ll.printMiddle();
 ll.isPalindrome();
+
+// Merge linked list
+
+// need to go through
+var sortList = function (head) {
+
+    var sortLList = function (head) {
+        if (head == null || head.next == null) return head;
+        var mid = midNode(head);
+        head = sortLList(head);
+        mid = sortLList(mid);
+        return mergeList(head, mid);
+    }
+
+    var midNode = function (head) {
+        var slow = head, fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        var temp = slow.next;
+        slow.next = null;
+        return temp;
+    }
+
+    var mergeList = function (a, b) {
+        if (a == null || b == null) return b == null ? a : b;
+        var temp;
+        if (a.val <= b.val) {
+            temp = a;
+            a.next = mergeList(a.next, b);
+        }
+        else {
+            temp = b;
+            b.next = mergeList(a, b.next);
+        }
+        return temp;
+    }
+
+    return sortLList(head);
+};

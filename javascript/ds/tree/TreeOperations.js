@@ -152,6 +152,59 @@ class TreeOperations {
     }
   }
 
+  printRightViewDFS(root) {
+    const dfs = (node, currentLevel, result) => {
+      if (!node) return;
+      if (currentLevel >= result.length) {
+        result.push(node.value);
+      }
+
+      if (node.right) {
+        dfs(node.right, currentLevel + 1, result);
+      }
+
+      if (node.left) {
+        dfs(node.left, currentLevel + 1, result);
+      }
+    }
+
+    const rightSideViewDFS = function (root) {
+      const result = [];
+
+      dfs(root, 0, result);
+      return result;
+    };
+  }
+
+  printRightViewBFS(root) {
+
+    if (!root) return [];
+    const result = [];
+    let queue = [root];
+
+    while (queue.length) {
+      let length = queue.length, count = 0, currentNode;
+
+      while (count < length) {
+        currentNode = queue.shift();
+
+        if (currentNode.left) {
+          queue.push(currentNode.left);
+        }
+
+        if (currentNode.right) {
+          queue.push(currentNode.right);
+        }
+
+        count++;
+      }
+
+      result.push(currentNode.value)
+    }
+
+    return result;
+  }
+
   printRightView(root) {
     if (!root) {
       return;
@@ -267,7 +320,7 @@ class TreeOperations {
     return sum;
   }
 
-  isBSTBalanced() {}
+  isBSTBalanced() { }
 
   verticalOrderTraversal(root) {
     if (!root) {
@@ -313,15 +366,15 @@ class TreeOperations {
     return hashTable;
   }
 
-  findCommonAncestor() {}
+  findCommonAncestor() { }
 
-  invertTree() {}
+  invertTree() { }
 
   /* https://leetcode.com/problems/path-sum/
     Given a binary tree and a sum, determine if the tree has a root-to-leaf path 
     such that adding up all the values along the path equals the given sum.
      */
-  hasPathSum(root, sum) {}
+  hasPathSum(root, sum) { }
 
   BFSTraversal() {
     console.log(
@@ -357,7 +410,7 @@ class TreeOperations {
     }
   }
 
-  DFSTraversal() {}
+  DFSTraversal() { }
 }
 
 var traversal = new TreeOperations();

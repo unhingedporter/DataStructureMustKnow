@@ -23,3 +23,5 @@ var flatten = function (root) {
     preorderTraversal(root);
     return dummyNode;
 };
+
+TODO: REVISE

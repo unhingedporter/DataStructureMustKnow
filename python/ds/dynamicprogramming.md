@@ -17,3 +17,12 @@ Dynamic programming :
         - Search Cloud words (Edit distance)
         - Resource Allocatin (0-1 Knapsack)
         
+
+Basic (1D DP)	Fibonacci, Climbing Stairs, Min Cost Climbing Stairs
+Knapsack Type	0/1 Knapsack, Subset Sum, Partition Equal Subset Sum
+Unbounded Knapsack	Coin Change, Rod Cutting
+Sequence Alignment	Longest Common Subsequence (LCS), Edit Distance
+String Problems	Palindromic Subsequence, Longest Palindromic Substring
+Grid Problems	Unique Paths, Minimum Path Sum
+Tree DP	Diameter of Binary Tree, House Robber III
+Bitmask DP	Travelling Salesman Problem (TSP)

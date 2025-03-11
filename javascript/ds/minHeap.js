@@ -120,3 +120,104 @@ console.log(heap.extractMin());
 console.log(heap.extractMin());
 
 // Reference: https://gist.github.com/tpae/54ec7371f947505967a2036b9c002428
+
+
+class MinHeap {
+  constructor() {
+    this.heap = [];
+  }
+
+  // Helper method to get the parent index
+  parentIndex(index) {
+    return Math.floor((index - 1) / 2);
+  }
+
+  // Helper method to get the left child index
+  leftChildIndex(index) {
+    return 2 * index + 1;
+  }
+
+  // Helper method to get the right child index
+  rightChildIndex(index) {
+    return 2 * index + 2;
+  }
+
+  // Method to check if the heap is empty
+  isEmpty() {
+    return this.heap.length === 0;
+  }
+
+  // Method to insert a new element
+  insert(value) {
+    this.heap.push(value);
+    this.heapifyUp();
+  }
+
+  // Helper method to maintain heap property after insertion
+  heapifyUp() {
+    let index = this.heap.length - 1;
+
+    while (index > 0) {
+      const parentIdx = this.parentIndex(index);
+
+      if (this.heap[index] < this.heap[parentIdx]) {
+        [this.heap[index], this.heap[parentIdx]] = [this.heap[parentIdx], this.heap[index]];
+        index = parentIdx;
+      } else {
+        break;
+      }
+    }
+  }
+
+  // Method to remove and return the minimum element (root)
+  extractMin() {
+    if (this.isEmpty()) return null;
+
+    const min = this.heap[0];
+    const last = this.heap.pop();
+
+    if (!this.isEmpty()) {
+      this.heap[0] = last;
+      this.heapifyDown();
+    }
+
+    return min;
+  }
+
+  // Helper method to maintain heap property after extraction
+  heapifyDown() {
+    let index = 0;
+
+    while (this.leftChildIndex(index) < this.heap.length) {
+      let smallerChildIdx = this.leftChildIndex(index);
+      const rightChildIdx = this.rightChildIndex(index);
+
+      if (rightChildIdx < this.heap.length && this.heap[rightChildIdx] < this.heap[smallerChildIdx]) {
+        smallerChildIdx = rightChildIdx;
+      }
+
+      if (this.heap[index] > this.heap[smallerChildIdx]) {
+        [this.heap[index], this.heap[smallerChildIdx]] = [this.heap[smallerChildIdx], this.heap[index]];
+        index = smallerChildIdx;
+      } else {
+        break;
+      }
+    }
+  }
+
+  // Method to get the minimum element without removing it
+  peek() {
+    return this.isEmpty() ? null : this.heap[0];
+  }
+}
+
+// Usage example
+const minHeap = new MinHeap();
+minHeap.insert(10);
+minHeap.insert(15);
+minHeap.insert(5);
+minHeap.insert(20);
+
+console.log(minHeap.extractMin()); // Output: 5
+console.log(minHeap.extractMin()); // Output: 10
+console.log(minHeap.peek());       // Output: 15
